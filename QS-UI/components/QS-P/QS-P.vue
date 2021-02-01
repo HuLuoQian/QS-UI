@@ -1,0 +1,70 @@
+<template>
+	<view :class="getClass" :style="getStyle">
+		<slot></slot>
+	</view>
+</template>
+
+<script>
+	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
+	import props from '@/QS-UI-CONFIG/components/QS-P/js/props.js';
+	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
+	const QSComponentMixinRes = QSComponentMixin();
+	export default {
+		mixins: [QSComponentMixinRes.mixin],
+		props: {
+			// #ifdef MP-ALIPAY
+			...QSComponentMixinRes.props,
+			// #endif
+			height: {
+				type: [Number, String],
+				default: '22rpx'
+			},
+			width: {
+				type: [Number, String],
+				default: '100%'
+			},
+			size: {
+				type: [Number, String],
+				default: ''
+			},
+			borderRadius: {
+				type: [Number, String],
+				default: ''
+			},
+			backgroundColor: {
+				type: String,
+				default: ''
+			},
+			...props
+		},
+		computed: {
+			QS_nCompClass() {
+				return 'QS QS-P';
+			},
+			QS_nCompStyle() {
+				const style = {
+					height: this.getHeight,
+					width: this.getWidth,
+					backgroundColor: this.backgroundColor,
+					borderRadius: this.borderRadius
+				};
+				return MP_styleObj2String(style);
+			},
+			getHeight() {
+				if(this.size) return this.size;
+				return this.height === 'common' ? '' : this.height;
+			},
+			getWidth() {
+				if(this.size) return this.size;
+				return this.width === 'common' ? '' : this.width;
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.QS-P {
+		height: $qs-padding-common;
+		width: $qs-padding-common;
+	}
+</style>

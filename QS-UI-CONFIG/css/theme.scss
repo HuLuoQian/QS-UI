@@ -1,0 +1,40 @@
+$qs-btn-type-default: #f8f8f8;
+$qs-btn-type-main: #BB9D6F;
+$qs-btn-type-primary: #4ABC00;
+$qs-btn-type-warning: #CC2E41;
+
+$qs-btn-type-warning-disabled: #CC2E41;
+$qs-btn-type-primary-disabled: #4ABC00;
+$qs-btn-type-main-disabled: #E8D9C2;
+$qs-btn-type-default-disabled: #F2F2F2;
+
+$qs-btn-type-default-plain: rgba(255,255,255,0);
+$qs-btn-type-main-plain: rgba(255,255,255,0);
+$qs-btn-type-primary-plain: rgba(255,255,255,0);
+$qs-btn-type-warning-plain: rgba(255,255,255,0);
+
+$qs-color-main: #BC9D6F;
+
+$qs-color-red: #CC2E41;
+
+$qs-color-text-x: #333333;
+$qs-color-text-xx: #666666;
+$qs-color-text-xxx: #999999;
+$qs-color-text-xxxx: #BBBBBB;
+
+
+$qs-size-text-small-xxx: 22rpx;
+$qs-size-text-small-xx: 24rpx;
+$qs-size-text-small-x: 26rpx;
+$qs-size-text-small: 28rpx;
+$qs-size-text-def: 30rpx;
+$qs-size-text-large: 32rpx;
+$qs-size-text-large-x: 38rpx;
+$qs-size-text-large-xx: 44rpx;
+$qs-size-text-large-xxx: 50rpx;
+
+$qs-padding-common: 25rpx;
+
+:export {
+	theme: $qs-color-main
+}

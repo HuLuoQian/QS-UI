@@ -1,0 +1,16 @@
+/* picker类型 css配置 */
+
+/* 选中框中的内容样式 */
+.pickerDefault{
+	font-size: 16px;
+	transition: color .3s;
+	font-weight: bold;
+}
+/* 选中时的颜色 */
+.selectColor{
+	color: #000000;
+}
+/* 未选中时的颜色 */
+.defaultColor{
+	color: #666;
+}

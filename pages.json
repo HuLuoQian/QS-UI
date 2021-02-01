@@ -1,0 +1,63 @@
+{
+	"easycom": {
+		"^QS-(.*)": "@/QS-UI/components/QS-$1/QS-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabbar/index/index",
+			"style": {
+				
+			}
+		}
+	    ,{
+            "path" : "pages/tabbar/components/components",
+            "style" :                                                                                    
+            {
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/js/multilang/multilang",
+            "style" :                                                                                    
+            {
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/js/router/router",
+            "style" :                                                                                    
+            {
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/js/other/other",
+            "style" :                                                                                    
+            {
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "QS-UI",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"list": [
+			{
+				"text":"JS",
+				"pagePath":"pages/tabbar/index/index"
+			},
+			{
+				"text":"组件",
+				"pagePath":"pages/tabbar/components/components"
+			}
+		]
+	}
+}
