@@ -66,11 +66,11 @@
 			},
 			min: {
 				type: [String, Number],
-				default: -Number.NEGATIVE_INFINITY
+				default: 0
 			},
 			max: {
 				type: [String, Number],
-				default: Number.NEGATIVE_INFINITY
+				default: 1
 			},
 			boxHeightScale: {
 				type: [String, Number],
