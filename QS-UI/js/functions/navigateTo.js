@@ -15,9 +15,8 @@ module.exports = function() {
 	const obj = mergeArg({
 		url: '',
 		data: {},
-		check: null,
 		animationType: '',
-		useQSDebounce: false,
+		debounce: false,
 		success: undefined,
 		fail: undefined,
 		complete: undefined,
@@ -28,7 +27,7 @@ module.exports = function() {
 		url,
 		data,
 		animationType,
-		useQSDebounce,
+		debounce,
 		success,
 		fail,
 		complete
@@ -110,7 +109,7 @@ module.exports = function() {
 			// #endif
 		});
 	}
-	if (useQSDebounce) {
+	if (debounce) {
 		QSDebounce({
 			key: QSDebcKeys.openWindow,
 			success() {

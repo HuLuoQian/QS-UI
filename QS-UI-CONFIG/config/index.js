@@ -13,7 +13,7 @@ const config = {
 	},
 	launchPath: '/pages/home/home',	//在调用关闭页面的api($qs.navigateBack)时，它会判断是否是最后一页，若是在最后一页调用关闭页面方法则会reLaunch至该页面
 	useBackTop: true,	//是否开启QS-BackTop功能
-	backTopShowScrollTop: 300,	//页面滑动时, QS-BackTop显示按钮阈值
+	backTopShowScrollTop: 150,	//页面滑动时, QS-BackTop显示按钮阈值
 	defaultLanguage: 'zh_CN',	//默认语言, 可以配置系统语言
 	mixins: {	//全局mixins配置, 若传false则关闭所有
 		useNavigateTo: true,	//在全局mixins挂载uni.$qs.navigateTo方法，这样就可以直接在html代码中@tap里直接写VALUES里配置好的方法名称

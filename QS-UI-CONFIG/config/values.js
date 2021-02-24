@@ -1,4 +1,4 @@
-module.exports = {	//各种名称配置，方便名称重复时修改
+module.exports = {	//各种名称配置，方便名称重复时修改, 或者改为自己喜欢的名字
 	data: {	//mixin中的data数据字段名称
 		QSBackTop: {
 			QSBackTopType: 'QSBackTopType',	//页面中的QS-BackTop类型，若为page，是为页面级滚动，若传别的值，则不会执行scroll内方法，
@@ -22,7 +22,8 @@ module.exports = {	//各种名称配置，方便名称重复时修改
 	},
 	storageName: {	//缓存名称
 		lang: 'QS_lang',	//多语言缓存名称
-		//也可以配置自己项目使用的缓存名称，方便管理
+		
+		//也可以配置自己项目使用的缓存名称，方便管理, 比如:
 		token: 'token'
 	},
 	filterName: {	//全局filter名称
@@ -34,6 +35,8 @@ module.exports = {	//各种名称配置，方便名称重复时修改
 		filterName: 'qst',	//全局filter使用方式名称， 例如: {{ 'test.a' | qst }}
 		vuePrototypeName: '$qst'	//Vue原型使用方式名称, 例如：{{ $qst('test.a') }}
 	},
+	
+	//不用动
 	modulesName: {	//模块名称
 		store: {	//vuex store 模块名称
 			multiLang: 'QS_multiLang'	//多语言模块名称, 一般不用改

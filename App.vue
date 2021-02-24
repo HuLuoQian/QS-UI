@@ -1,5 +1,8 @@
 <script>
 	export default {
+		globalData: {
+			isLogin: false 	//示例所需
+		},
 		onLaunch: function() {
 			console.log('App Launch')
 		},

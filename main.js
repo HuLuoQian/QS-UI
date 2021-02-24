@@ -3,7 +3,7 @@ import App from './App'
 import store from './store'
 import QSUI from 'QS-UI';
 
-Vue.use(QSUI, { store });	//传入store对象 可以使用多语言
+Vue.use(QSUI);
 
 Vue.config.productionTip = false
 

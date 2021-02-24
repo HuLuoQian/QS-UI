@@ -18,7 +18,7 @@
 	export default {
 		data() {
 			return {
-				JSRoutes: Object.keys(uni.$qs.Pages.js).map(item=>({ ...uni.$qs.Pages.js[item] }))
+				JSRoutes: Object.keys(uni.$qs.Pages.js).map(item=>({ ...uni.$qs.Pages.js[item] })).filter(item=>item.hide === undefined)
 			}
 		}
 	}
