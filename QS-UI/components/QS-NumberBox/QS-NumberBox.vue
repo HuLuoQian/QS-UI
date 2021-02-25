@@ -42,7 +42,6 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-NumberBox/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	
 	var _this;
@@ -122,7 +121,7 @@
 				const style = {
 					'border-radius': this.borderRadius
 				};
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getInputBoxWidth() {
 				let l = String(this.nValue).length + .3;

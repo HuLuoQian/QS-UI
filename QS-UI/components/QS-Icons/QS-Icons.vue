@@ -11,7 +11,6 @@
 	import icons from './icons.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Icons/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	// #ifdef APP-NVUE
 	var domModule = weex.requireModule('dom');
@@ -108,7 +107,7 @@
 					borderRadius: this.borderRadius,
 					fontWeight: this.fontWeight
 				}
-				return MP_styleObj2String(style);
+				return style;
 			},
 			fontSize() {
 				return this.size;

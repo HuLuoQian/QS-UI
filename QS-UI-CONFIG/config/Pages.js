@@ -2,27 +2,32 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 	js: {
 		multilang: {
 			name: '多语言', //示例所需
-			url: '/pages/js/multilang/multilang',
+			url: '/pages/js/multilang/multilang',	//必须
 			key: 'js.multilang' //示例所需
 		},
 		router: {
 			name: '路由', //示例所需
-			url: '/pages/js/router/router',
+			url: '/pages/js/router/router',	//必须
 			key: 'js.router' //示例所需
 		},
 		testRouterOpen: {
 			name: '路由测试跳转页面', //示例所需
-			url: '/pages/js/testRouterOpen/testRouterOpen',
+			url: '/pages/js/testRouterOpen/testRouterOpen',	//必须
 			key: 'js.testRouterOpen', //示例所需
 			hide: true, //示例所需
 		},
 		testRouterLogin: {
 			name: '路由测试跳转校验登录页面', //示例所需
-			url: '/pages/js/testRouterLogin/testRouterLogin',
+			url: '/pages/js/testRouterLogin/testRouterLogin',	//必须
 			key: 'js.testRouterLogin', //示例所需
 			hide: true, //示例所需
 			login: true, //示例所需，为需登录页面
 		},
+		getSys: {
+			name: '获取系统信息', //示例所需
+			url: '/pages/js/getSys/getSys',	//必须
+			key: 'js.getSys', //示例所需
+		}
 	},
 	components: {
 		

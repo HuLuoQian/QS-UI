@@ -40,7 +40,6 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	var QSButton_preId = 0;
 	export default {
@@ -200,20 +199,8 @@
 				if (this.border) style.border = this.border;
 				if (this.color) style.color = this.color;
 				if (this.fontWeight) style.fontWeight = this.fontWeight;
-				return MP_styleObj2String(style);
+				return style;
 			}
-			// getStyle() {
-			// 	let style = {};
-			// 	if (this.borderRadius) style.borderRadius = this.borderRadius;
-			// 	if (this.height) style.height = this.height;
-			// 	if (this.width) style.width = this.width;
-			// 	if (this.backgroundColor) style.backgroundColor = this.backgroundColor;
-			// 	if (this.fontSize) style.fontSize = this.fontSize;
-			// 	if (this.padding) style.padding = this.padding;
-			// 	if (this.background) style.background = this.background;
-			// 	if (this.border) style.border = this.border;
-			// 	return uni.$qs.MP_styleObj2String(style);
-			// }
 		},
 		methods: {
 			handleClick(e) {

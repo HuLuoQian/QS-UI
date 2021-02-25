@@ -16,7 +16,6 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import swiperPropsMixin from '../../mixins/swiperPropsMixin.js';
-	import MP_styleObj2String from '@/QS-UI/js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	const swiperPropsMixinRes = swiperPropsMixin();
 	export default {
@@ -54,10 +53,10 @@
 		},
 		computed: {
 			getSwiperItemStyle() {
-				return MP_styleObj2String(this.swiperItemStyle);
+				return this.swiperItemStyle;
 			},
 			getImageStyle() {
-				return MP_styleObj2String(this.imageStyle);
+				return this.imageStyle;
 			},
 			QS_nCompClass() {
 				return 'QS-CountHeightSwiper';

@@ -11,7 +11,6 @@ import { beforNext } from '@/QS-UI-CONFIG/config/navigate.js';
 import toast from './toast.js';
 
 module.exports = function() {
-	console.log(arguments);
 	const obj = mergeArg({
 		url: '',
 		data: {},
@@ -33,43 +32,35 @@ module.exports = function() {
 		complete
 	} = obj;
 	const next = function() {
-		console.log('url',url);
 		let goObj = {},goUrl,goFn;
 		if (isString(url)) {
-			console.log('是String')
 			if(-1 === url.indexOf('/')) {
 				const d = getField(Pages, url);
-				console.log('链式获取对象:', d);
 				if(isObject(d)) {
 					goObj = d;
 				}else{
 					goObj.url = d;
 				}
 			}else{
-				// console.log('正常路径');
 				goObj.url = url;
 			}
 		} else if (isObject(url)) {
-			console.log('是Object')
-			// if(-1 === url.url.indexOf('/')) {
-			// 	goObj.url = getField(Pages, url.url);
-			// }else{
 				goObj = { ...url } || {};
 				if(-1 === goObj.url.indexOf('/')) goObj = JSON.parse(JSON.stringify(getField(Pages, goObj.url)));
-			// }
 		} else {
 			console.log('参数类型错误, 无法跳转');
+			console.warn('参数类型错误, 无法跳转');
 			toast('参数类型错误, 无法跳转');
 			return;
 		}
-		console.log('goObj', goObj);
+		// console.log('goObj', goObj);
 		if(!goObj.url) goObj.url = url;
 		
 		const newGoObj = beforNext(JSON.parse(JSON.stringify(goObj)), obj);
-		console.log('newGoObj', newGoObj);
+		// console.log('newGoObj', newGoObj);
 		if(newGoObj === false) return;
 		if(typeof newGoObj === 'object') goObj = newGoObj;
-		console.log('goObj', goObj);
+		// console.log('goObj', goObj);
 		
 		goObj.url = goObj.url || '';
 		goUrl = goObj.url;
@@ -85,7 +76,7 @@ module.exports = function() {
 				}
 				goFn = uni[type];
 			} else {
-				console.log('跳转type 不正确，值应为redirectTo, navigateTo, reLaunch 之一');
+				console.log('跳转type 不正确，值应为redirectTo || rdt、 navigateTo || ngt、 reLaunch || rl, 之一');
 				if(isFn(fail)) fail();
 				return;
 			}
@@ -93,11 +84,9 @@ module.exports = function() {
 		goFn({
 			url: goUrl,
 			success(r) {
-				console.log('跳转页面成功:', r)
 				if(isFn(success)) success(r);
 			},
 			fail(r) {
-				console.log('跳转页面失败:', r)
 				if(isFn(fail)) fail(r);
 			},
 			complete(r) {

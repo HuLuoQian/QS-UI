@@ -21,7 +21,6 @@
 	} from '../../js/baseUtil.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Masonry/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	const QSComponentMixinRes = QSComponentMixin();
 
@@ -109,7 +108,7 @@
 			},
 			QS_nCompStyle() {
 				const style = { padding: this.padding };
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getCol() {
 				const arr = [];

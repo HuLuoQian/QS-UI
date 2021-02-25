@@ -88,7 +88,6 @@
 	import props from '@/QS-UI-CONFIG/components/QS-Navbar/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	const statusBarHeight = uni.getSystemInfoSync().statusBarHeight
 	// #ifdef APP-NVUE

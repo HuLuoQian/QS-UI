@@ -3,7 +3,8 @@ import {
 	isArray,
 	isObject
 } from '../js/baseUtil.js';
-import MP_styleObj2String from '../js/functions/MP_styleObj2String.js';
+import classObj2String from '../js/functions/classObj2String.js';
+import styleObj2String from '../js/functions/styleObj2String.js';
 const styleString2Object = function (str) {
 	if(typeof str === 'string') {
 		str = str.split(';').filter(i=>!!i).map(item=>{ const ite = item.split(':').map(it=>it.trim()); return { [ite[0]]: ite[1] }  });
@@ -29,30 +30,10 @@ module.exports = function() {
 			// #endif
 			computed: {
 				getClass() {
-					const nclass = this.compClass;
-					const QS_nCompClass = this.QS_nCompClass;
-					if (QS_nCompClass) {
-						if (nclass) {
-							if (isString(nclass)) {
-								return `${nclass} ${QS_nCompClass}`;
-							} else if (isArray(nclass)) {
-								return [...nclass, QS_nCompClass];
-							} else if (isObject(nclass)) {
-								return [nclass, QS_nCompClass];
-							} else {
-								return QS_nCompClass;
-							}
-						} else {
-							return QS_nCompClass;
-						}
-					} else {
-						return nclass;
-					}
+					return `${classObj2String(this.compClass)} ${classObj2String(this.QS_nCompClass)}`
 				},
 				getStyle() {
-					const style = this.compStyle;
-					const QS_nCompStyle = this.QS_nCompStyle;
-					return MP_styleObj2String([style, QS_nCompStyle]);
+					return `${styleObj2String(this.compStyle)};${styleObj2String(this.QS_nCompStyle)};`
 				}
 			}
 		}

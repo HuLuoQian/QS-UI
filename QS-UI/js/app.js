@@ -29,7 +29,6 @@ import checkNavCustom from './functions/checkNavCustom.js';
 import getSys from './functions/getSys.js';
 import handleAddress from './functions/handleAddress.js';
 import getArrBehind from './functions/getArrBehind.js';
-import MP_styleObj2String from './functions/MP_styleObj2String.js';
 import {
 	showLoading,
 	hideLoading,
@@ -87,7 +86,6 @@ module.exports = {
 	showLoading,
 	hideLoading,
 	launchPath,
-	MP_styleObj2String,
 	log: CONFIG.log,
 	rpxUnit2px,
 	VALUES,

@@ -51,7 +51,6 @@
 <script>
 	import _app from '../../../js/QS-inputs-split/app.js';
 	import QSComponentMixin from '../../../mixins/QS-Components-Mixin.js';
-	import MP_styleObj2String from '../../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	const wH = _app.Sys.windowHeight;
 	const wW = _app.Sys.windowWidth;
@@ -135,7 +134,7 @@
 			},
 			QS_nCompStyle() {
 				const style = {'z-index': this.zIndex};
-				return MP_styleObj2String(style);
+				return style;
 			}
 		},
 		watch: {

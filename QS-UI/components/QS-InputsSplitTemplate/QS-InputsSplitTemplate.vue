@@ -25,7 +25,6 @@
 </template>
 
 <script>
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-InputsSplitTemplate/js/props.js';
 	const QSComponentMixinRes = QSComponentMixin();
@@ -102,7 +101,7 @@
 					'font-size': this.fontSize + 'rpx',
 					'width': this.width,
 				}
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getLayout() {
 				if(this.layout === 'column') {

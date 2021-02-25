@@ -37,7 +37,6 @@
 	import rpxUnit2px from '@/QS-UI/js/functions/rpxUnit2px.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Image/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	
 	const loading = '图片加载中';
@@ -132,14 +131,14 @@
 				if(this.height) style.height = this.nHeight?`${this.nHeight}px`:this.height;
 				if(this.borderRadius) style['border-radius'] = this.borderRadius;
 				if(this.backgroundColor) style['background-color'] = this.backgroundColor;
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getItemStyle() {
 				let style = {};
 				if(this.width) style.width = this.nWidth?`${this.nWidth}px`:this.width;
 				if(this.height) style.height = this.nHeight?`${this.nHeight}px`:this.height;
 				if(this.borderRadius) style['border-radius'] = this.borderRadius;
-				return MP_styleObj2String(style);
+				return style;
 			}
 		},
 		methods: {

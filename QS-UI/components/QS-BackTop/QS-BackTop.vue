@@ -1,10 +1,12 @@
 <template>
 	<view :class="getClass" :style="getStyle" @tap="active">
-		<image v-if="type==='image'" class="backtop-container" :src="image" mode="aspectFill"></image>
-		<view class="backtop-container" v-else-if="type==='text'">
-			<text>{{text}}</text>
-		</view>
-		<slot v-else-if="type==='slot'"></slot>
+		<block v-if="getClass && getStyle">
+			<image v-if="type==='image'" class="backtop-container" :src="image" mode="aspectFill"></image>
+			<view class="backtop-container" v-else-if="type==='text'">
+				<text>{{text}}</text>
+			</view>
+			<slot v-else-if="type==='slot'"></slot>
+		</block>
 	</view>
 </template>
 
@@ -12,7 +14,6 @@
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	import getH5TabbarHeight from '@/QS-UI/js/functions/getH5TabbarHeight.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	const defHeight = rpxUnit2px('80rpx');
@@ -85,7 +86,7 @@
 					transitionDuration: this.duration,
 					zIndex: this.zIndex
 				};
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getBottom() {
 				const pxValue = rpxUnit2px(this.bottom);

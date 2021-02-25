@@ -7,7 +7,6 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-P/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -45,10 +44,12 @@
 				const style = {
 					height: this.getHeight,
 					width: this.getWidth,
+					minHeight: this.getHeight,
+					minWidth: this.getWidth,
 					backgroundColor: this.backgroundColor,
 					borderRadius: this.borderRadius
 				};
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getHeight() {
 				if(this.size) return this.size;

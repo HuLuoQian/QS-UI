@@ -58,7 +58,6 @@
 	import temp from '@/QS-UI-CONFIG/components/QS-Tabs/separate/separate.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Tabs/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
@@ -183,7 +182,7 @@
 				if(this.bottom) obj.bottom = this.bottom;
 				if(this.zIndex) obj.zIndex = this.zIndex;
 				if(this.width) obj.width = this.width;
-				return MP_styleObj2String(obj);
+				return obj;
 			}
 		},
 		created() {

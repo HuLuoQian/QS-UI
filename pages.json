@@ -59,6 +59,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/js/getSys/getSys",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -67,6 +76,9 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
+		"color":"#000000",
+		"selectedColor":"#007AFF",
+		"backgroundColor":"#FFFFFF",
 		"list": [
 			{
 				"text":"JS",

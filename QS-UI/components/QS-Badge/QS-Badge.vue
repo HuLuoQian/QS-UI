@@ -5,7 +5,6 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Badge/js/props.js';
-	import MP_styleObj2String from '../../js/functions/MP_styleObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -81,7 +80,7 @@
 					fontSize: this.getSize + this.cssUnit,
 					padding: '0' + this.cssUnit + ' ' + this.getSize * .5 + this.cssUnit
 				};
-				return MP_styleObj2String(style);
+				return style;
 			},
 			getSize() {
 				return Number(this.size);

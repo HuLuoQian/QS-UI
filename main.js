@@ -3,7 +3,7 @@ import App from './App'
 import store from './store'
 import QSUI from 'QS-UI';
 
-Vue.use(QSUI);
+Vue.use(QSUI, { store });
 
 Vue.config.productionTip = false
 

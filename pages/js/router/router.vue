@@ -22,8 +22,7 @@
 				<QS-P height="25rpx"></QS-P>
 				<QS-Button setTimeoutClick @click="go('js.testRouterLogin')">校验登录</QS-Button>
 			</view>
-		</view>
-		<view class="padding_25rpx">
+			<QS-P height="25rpx"></QS-P>
 			<view class="padding_25rpx bgColor_ffffff border-radius_10rpx">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">详细说明</text>
@@ -31,13 +30,14 @@
 				<QS-P height="25rpx"></QS-P>
 				<text class="QS-text large color_666666 weight">参数说明(默认值):</text>
 				<QS-P height="25rpx"></QS-P>
-				<showProps :prop="prop"></showProps>
+				<showProps :prop="prop" merge></showProps>
 				<QS-P height="50rpx"></QS-P>
 				<text class="QS-text large color_666666 weight">template模板中使用说明</text>
 				<QS-P height="25rpx"></QS-P>
 				<view class="flex_row">
 					<QS-P width="25rpx">·</QS-P>
-					<text class="QS-text color_808080 flex-wrap_wrap">template模板中使用的QS_navigateTo方法是Vue.mixins所继承的一个方法, 可以在QS-UI-CONFIG/config/index.js-->mixins.useNavigateTo 来决定是否开启</text>
+					<text class="QS-text color_808080 flex-wrap_wrap">template模板中使用的QS_navigateTo方法是Vue.mixins所继承的一个方法,
+						可以在QS-UI-CONFIG/config/index.js-->mixins.useNavigateTo 来决定是否开启</text>
 				</view>
 				<QS-P height="25rpx"></QS-P>
 				<view class="flex_row">
@@ -55,14 +55,46 @@
 		data() {
 			return {
 				prop: [
-					{ name: 'url', default: '""' },
-					{ name: 'data', default: '{}' },
-					{ name: 'animationType', default: '""' },
-					{ name: 'debounce', default: 'false' },
-					{ name: 'success', default: 'undefined' },
-					{ name: 'fail', default: 'undefined' },
-					{ name: 'complete', default: 'undefined' },
-					{ name: 'type', default: '"navigateTo"' },
+					{
+						name: 'url',
+						value: '',
+						des: `路由的地址，推荐写config中的Pages.js中点链式字符串, 路由配置文件在QS-UI-CONFIG/config/Pages.js, 例如示例项目中的 js.testRouterOpen, 这样写可以在路由拦截时读取配置文件中的属性，比如login, 也可以 直接写 /pages/xxx/xxx`
+					},
+					{
+						name: 'data',
+						value: {},
+						des: `路由携带数据`
+					},
+					{
+						name: 'animationType',
+						value: '',
+						des: `动画类型, 支持度见uni路由文档`
+					},
+					{
+						name: 'debounce',
+						value: false,
+						des: `是否开启防抖，若传true则在相隔400毫秒内调用不成功(数值在QS-UI-CONFIG/config/QSDebounceKeys.js中配置)`
+					},
+					{
+						name: 'success',
+						value: undefined,
+						des: `成功回调`
+					},
+					{
+						name: 'fail',
+						value: undefined,
+						des: `失败回调`
+					},
+					{
+						name: 'complete',
+						value: undefined,
+						des: `完成回调`
+					},
+					{
+						name: 'type',
+						value: 'navigateTo',
+						des: `跳转类型, 有 navigateTo(直接跳转, 简写: ngt)、redirectTo(关闭当前页面跳转, 简写: rdt)、reLaunch(关闭所有页面，打开到应用内的某个页面，简写: rl)`
+					},
 				]
 			}
 		},

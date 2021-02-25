@@ -6,6 +6,7 @@ import CONFIG from '@/QS-UI-CONFIG/config/index.js';
 import langData from '@/QS-UI-CONFIG/config/lang/index.js';
 import VALUES from '@/QS-UI-CONFIG/config/values.js';
 import languages from '@/QS-UI-CONFIG/config/lang/languages.js';
+import langChange from '@/QS-UI-CONFIG/config/lang/langChange.js';
 const langs = Object.keys(languages).map(item=>languages[item].lang);
 const storeModule = {
 	namespaced: true,
@@ -21,6 +22,7 @@ const storeModule = {
 			}
 			uni.setStorageSync(VALUES.storageName.lang, lang);
 			state.lang = lang;
+			langChange(lang);
 		}
 	}
 }
