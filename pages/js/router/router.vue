@@ -21,6 +21,12 @@
 				<QS-Button setTimeoutClick @click="go('js.testRouterOpen', { a: 1 })">携带参数</QS-Button>
 				<QS-P height="25rpx"></QS-P>
 				<QS-Button setTimeoutClick @click="go('js.testRouterLogin')">校验登录</QS-Button>
+				<QS-P height="25rpx"></QS-P>
+				<text class="QS-text large color_808080">关闭页面</text>
+				<QS-P height="25rpx"></QS-P>
+				<QS-Button setTimeoutClick @click="back">关闭页面</QS-Button>
+				<QS-P height="25rpx"></QS-P>
+				<QS-Button setTimeoutClick @click="back(2)">关闭2个页面，reLaunch至首页</QS-Button>
 			</view>
 			<QS-P height="25rpx"></QS-P>
 			<view class="padding_25rpx bgColor_ffffff border-radius_10rpx">
@@ -28,9 +34,13 @@
 					<text class="QS-text large-x weight">详细说明</text>
 				</view>
 				<QS-P height="25rpx"></QS-P>
-				<text class="QS-text large color_666666 weight">参数说明(默认值):</text>
+				<text class="QS-text large color_666666 weight">uni.$qs.navigateTo 参数说明(默认值):</text>
 				<QS-P height="25rpx"></QS-P>
 				<showProps :prop="prop" merge></showProps>
+				<QS-P height="25rpx"></QS-P>
+				<text class="QS-text large color_666666 weight">uni.$qs.navigateBack 参数说明(默认值):</text>
+				<QS-P height="25rpx"></QS-P>
+				<showProps :prop="navigateBackProp" :wrap="['(',')']"></showProps>
 				<QS-P height="50rpx"></QS-P>
 				<text class="QS-text large color_666666 weight">template模板中使用说明</text>
 				<QS-P height="25rpx"></QS-P>
@@ -95,12 +105,27 @@
 						value: 'navigateTo',
 						des: `跳转类型, 有 navigateTo(直接跳转, 简写: ngt)、redirectTo(关闭当前页面跳转, 简写: rdt)、reLaunch(关闭所有页面，打开到应用内的某个页面，简写: rl)`
 					},
+				],
+				navigateBackProp: [
+					{
+						name: 'delta',
+						value: 1,
+						des: '需关闭的页面数量'
+					},
+					{
+						name: 'finalToLaunch',
+						value: true,
+						des: '当关闭的页面数量大于或等于现有页面数量时, 是否直接reLaunch至QS-UI-CONFIG/config/index.js-->launchPath 中所配置的页面路径'
+					}
 				]
 			}
 		},
 		methods: {
 			go(target, data) {
 				uni.$qs.navigateTo(target, data);
+			},
+			back(delta) {
+				uni.$qs.navigateBack(delta);
 			}
 		}
 	}

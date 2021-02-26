@@ -11,6 +11,10 @@
 					<QS-Button @click="modify">{{$qst('test.modifyLang')}}</QS-Button>
 				</view>
 				<QS-P height="100rpx"></QS-P>
+				<view class="flex_row_c_c">
+					<text class="QS-text weight mini">字节跳动小程序暂不支持</text>
+				</view>
+				<QS-P height="50rpx"></QS-P>
 			</view>
 		</view>
 		<QS-BackTop ref="QSBackTop"></QS-BackTop>

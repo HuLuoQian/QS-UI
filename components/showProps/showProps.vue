@@ -3,7 +3,7 @@
 		<view class="flex_row">
 			<QS-P width="25rpx"></QS-P>
 			<view class="flex_column">
-				{{'{'}}
+				{{wrap[0]}}
 				<view class="flex_row">
 					<QS-P width="25rpx"></QS-P>
 					<view class="flex_column">
@@ -12,7 +12,7 @@
 						</view>
 					</view>
 				</view>
-				{{'}'}}
+				{{wrap[1]}}
 			</view>
 			<!-- <text class="QS-text color_666666 flex-wrap_wrap" decode>
 				{{getProps}}
@@ -60,6 +60,10 @@
 			showDes: {
 				type: Boolean,
 				default: true
+			},
+			wrap: {
+				type: Array,
+				default: ()=>['{', '}']
 			}
 		},
 		filters: {

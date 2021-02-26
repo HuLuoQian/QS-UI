@@ -1,7 +1,8 @@
+import { isObject } from '../baseUtil.js';
 module.exports = function(obj = {}, args) {	//合并参数
 	// console.log('args', args)
 	const arg = args[0];
-	if (args.length === 1 && typeof arg === 'object') {
+	if (args.length === 1 && isObject(arg)) {
 		obj = { 
 			...obj,
 			...arg
