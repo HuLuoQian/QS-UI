@@ -63,7 +63,14 @@
             "path" : "pages/js/getSys/getSys",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/js/interaction/interaction",
+            "style" :                                                                                    
+            {
                 "enablePullDownRefresh": false
             }
             

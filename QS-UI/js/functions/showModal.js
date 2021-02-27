@@ -1,9 +1,9 @@
 import mergeArg from './mergeArg.js';
 module.exports = function() {
 	const config = mergeArg({
-		title: '',
 		content: '',
-		showCancel: false,
+		title: '',
+		showCancel: true,
 		cancelText: '取消',
 		cancelColor: '',
 		confirmText: '确定',

@@ -27,6 +27,11 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			name: '获取系统信息', //示例所需
 			url: '/pages/js/getSys/getSys',	//必须
 			key: 'js.getSys', //示例所需
+		},
+		interaction: {
+			name: '交互反馈', //示例所需
+			url: '/pages/js/interaction/interaction',	//必须
+			key: 'js.interaction', //示例所需
 		}
 	},
 	components: {

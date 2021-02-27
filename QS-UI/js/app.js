@@ -61,11 +61,24 @@ module.exports = {
 	QSDebcKeys,
 	QSDebounce,
 	unlock,
+	
 	showModal,
+	modal: showModal,
+	
 	toast,
+	showToast: toast,
+	
 	Pages,
+	
 	navigateTo,
+	go: navigateTo,
+	
 	navigateBack,
+	back: navigateBack,
+	
+	showActionSheet,
+	actionSheet: showActionSheet,
+	
 	isNumber,
 	isArray,
 	isArrayHasLen,
@@ -104,6 +117,5 @@ module.exports = {
 	acc,
 	deepClone,
 	countDown,
-	showActionSheet,
 	canvas
 }

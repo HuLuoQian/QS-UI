@@ -10,6 +10,7 @@ module.exports = {
 			testRouterOpen: 'TestRouterOpen',
 			testRouterLogin: 'TestRouterLogin',
 			getSys: 'SystemInfo',
+			interaction: 'Interaction',
 		}
 	},
 	tabbar: {
