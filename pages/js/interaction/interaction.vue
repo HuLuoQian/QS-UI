@@ -54,14 +54,13 @@
 			return {
 				// #ifdef H5
 				fixedTop: '44px',
-				offsetTop: uni.$qs.rpxUnit2px('77rpx') + 44,
 				// #endif
 				// #ifndef H5
 				fixedTop: 0,
-				offsetTop: uni.$qs.rpxUnit2px('77rpx'),
 				// #endif
+				offsetTop: uni.$qs.rpxUnit2px('77rpx'),
 				scrollToOffsetTop: uni.$qs.rpxUnit2px('25rpx'),
-				nodes: [ { node: '#toast', id: 'toast', text: 'toast' }, { node: '#modal', id: 'modal', text: 'modal' }, { node: '#actionSheet', id: '#actionSheet', text: 'actionSheet' } ],
+				nodes: [ { node: '#toast', text: 'Toast' }, { node: '#modal', text: 'Modal' }, { node: '#actionSheet', text: 'ActionSheet' } ],
 				toastProp: [
 					{
 						name: 'title',
@@ -197,21 +196,6 @@
 		},
 		onReady() {
 			this.$refs.QSNodeNav.init();
-			// uni.createIntersectionObserver(this)
-			// .relativeToViewport()
-			// .observe('#toast', res=>{
-			// 	console.log(res);
-			// });
-			// const nodes = this.nodes;
-			// for(let i = 0; i < nodes.length; i++) {
-			// 	const item = nodes[i];
-			// 	console.log(item.node)
-			// 	const ob = uni.createIntersectionObserver(this)
-			// 	.relativeToViewport()
-			// 	.observe(item.node, res=>{
-			// 		console.log(res);
-			// 	});
-			// }
 		},
 		computed: {
 			nodeNavShow() {

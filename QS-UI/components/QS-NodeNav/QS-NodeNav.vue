@@ -6,7 +6,7 @@
 		opacity: isFixed?getShow:1,
 		backgroundColor: backgroundColor
 	}">
-		<view class="item" v-for="(item, index) in nodes" :key="item.id" @tap="click(item)">
+		<view class="item" v-for="(item, index) in nodes" :key="item.node" @tap="click(item)">
 			<view class="content" :style="{ borderBottom: current === index?`1px solid ${activeColor}`:'' }">
 				<text :style="{ 
 					fontSize: fontSize,
@@ -54,9 +54,9 @@
 				type: String,
 				default: '30rpx'
 			},
-			show: {
-				type: Boolean,
-				default: false
+			showScrollTop: {
+				type: [String, Number],
+				default: 50
 			},
 			backgroundColor: {
 				type: String,
@@ -72,7 +72,7 @@
 			},
 			viewportHeight: {
 				type: [String, Number],
-				default: 30
+				default: 0
 			}
 		},
 		data() {
@@ -84,14 +84,9 @@
 				scrollTop: 0
 			}
 		},
-		watch: {
-			show(n) {
-				if (n !== this.nshow) this.nshow = n;
-			}
-		},
 		computed: {
 			getShow() {
-				return this.scrollTop > 50 ? 1 : 0;
+				return this.scrollTop > rpxUnit2px(this.showScrollTop) ? 1 : 0;
 			},
 			isFixed() {
 				return this.mode === 'fixed';
@@ -123,9 +118,6 @@
 					})
 				})
 			},
-			setShow(bl) {
-				if (this.nshow !== bl) this.nshow = bl;
-			},
 			init(obj = {}) {
 				let {
 					offsetTop
@@ -145,7 +137,6 @@
 						bottom: -Sys.windowHeight + top + Number(this.viewportHeight)
 					})
 					ob.observe(item.node, res => {
-						// console.log(res);
 						if (res.intersectionRatio > 0) {
 							this.current = i;
 						}
