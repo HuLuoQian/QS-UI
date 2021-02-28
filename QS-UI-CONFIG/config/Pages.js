@@ -32,7 +32,13 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			name: '交互反馈', //示例所需
 			url: '/pages/js/interaction/interaction',	//必须
 			key: 'js.interaction', //示例所需
-		}
+		},
+		request: {
+			name: '交互反馈', //示例所需
+			url: '/pages/js/request/request',	//必须
+			key: 'js.request', //示例所需
+		},
+		
 	},
 	components: {
 		

@@ -28,7 +28,7 @@ const requestCatch = function (err = {}, args = {}) {
 
 /**
  * 接口访问后校验数据
- * @param {Object} obj 接口访问返回数据
+ * @param {Object} obj.res 接口访问返回数据 obj.type 判断返回数据方式
  * return true 则走Promise resolve
  * return false 则走Promise reject
  */
@@ -43,7 +43,7 @@ const checkRes = function(obj) { //对于返回数据的健壮性判断
 	switch (type) {
 		case 'code200':
 			if (res) {
-				if (res.code === 200) {
+				if (res.code == 200) {
 					return true;
 				} else {
 					return false;

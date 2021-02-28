@@ -10,7 +10,8 @@ module.exports = {
 			testRouterOpen: '测试路由跳转',
 			testRouterLogin: '测试路由跳转(校验登录)',
 			getSys: '系统信息',
-			interaction: '交互反馈'
+			interaction: '交互反馈',
+			request: '请求接口'
 		}
 	},
 	tabbar: {

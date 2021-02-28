@@ -52,14 +52,9 @@
 	export default {
 		data() {
 			return {
-				// #ifdef H5
-				fixedTop: '44px',
-				// #endif
-				// #ifndef H5
-				fixedTop: 0,
-				// #endif
-				offsetTop: uni.$qs.rpxUnit2px('77rpx'),
-				scrollToOffsetTop: uni.$qs.rpxUnit2px('25rpx'),
+				fixedTop: uni.$qs.getSys().uniappPlatform === 'H5'?'44px':0,
+				offsetTop: 'this',
+				scrollToOffsetTop: -(uni.$qs.rpxUnit2px('25rpx')) - uni.$qs.rpxUnit2px('77rpx'),
 				nodes: [ { node: '#toast', text: 'Toast' }, { node: '#modal', text: 'Modal' }, { node: '#actionSheet', text: 'ActionSheet' } ],
 				toastProp: [
 					{

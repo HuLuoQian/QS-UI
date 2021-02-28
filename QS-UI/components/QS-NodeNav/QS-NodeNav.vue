@@ -93,6 +93,9 @@
 			},
 			getScrollToOffsetTop() {
 				return this.scrollToOffsetTop == 'this' ? this.height : this.scrollToOffsetTop;
+			},
+			getOffsetTop() {
+				return this.offsetTop == 'this'?this.height : this.offsetTop;
 			}
 		},
 		beforeDestroy() {
@@ -114,7 +117,7 @@
 				view.exec(data => {
 					console.log(data);
 					uni.pageScrollTo({
-						scrollTop: this.scrollTop + data[0].top - rpxUnit2px(this.offsetTop) - rpxUnit2px(this.getScrollToOffsetTop)
+						scrollTop: this.scrollTop + data[0].top + Number(this.getScrollToOffsetTop)
 					})
 				})
 			},
@@ -122,7 +125,7 @@
 				let {
 					offsetTop
 				} = obj;
-				offsetTop = offsetTop || this.offsetTop;
+				offsetTop = offsetTop || this.getOffsetTop;
 				offsetTop = rpxUnit2px(offsetTop);
 				let top = Number(offsetTop);
 				this.top = top;
