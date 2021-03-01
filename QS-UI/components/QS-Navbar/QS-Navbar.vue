@@ -1,11 +1,11 @@
 <template>
-	<view ref="QS-navbar" :class="getClass">
+	<view ref="QS_Navbar" class="QS_Navbar" :class="getClass">
 		<!-- #ifndef MP-ALIPAY -->
-		<view ref="background" :animation="navbarAnimation" :class="{ 'QS-navbar--fixed': getFixed }" :style="{ 'z-index': zIndex }">
-			<view class="QS-navbar-statusBar" :style="{ 'height': statusBarHeight }" v-if="getStatusBar"></view>
-			<view class="QS-navbar-header" :style="{ 'padding-right': menuButtonInfoLeft + 'px' }">
+		<view ref="background" :animation="navbarAnimation" :class="{ 'QS_Navbar--fixed': getFixed }" :style="{ 'z-index': zIndex }">
+			<view class="QS_Navbar-statusBar" :style="{ 'height': statusBarHeight }" v-if="getStatusBar"></view>
+			<view class="QS_Navbar-header" :style="{ 'padding-right': menuButtonInfoLeft + 'px' }">
 				<block v-for="(item, index) in navbarItems || []" :key="index">
-					<view class="QS-navbar-item" :style="{ 
+					<view class="QS_Navbar-item" :style="{ 
 						'width': (Number(item.width)*wW + 'rpx'), 
 						'background-color': item.backgroundColor, 
 						'border-style': item.borderStyle,
@@ -23,9 +23,9 @@
 					}"
 					 :data-index="index" @tap.stop="_click($event)">
 						<block v-if="item&&item.type === 'search'">
-							<view class="QS-navbar-item--search">
+							<view class="QS_Navbar-item--search">
 								<QSIcons animationType="shook" hasAnimation startAnimationType="tap" type="search" :size="item.iconSize || iconSize"
-								 :color="item.iconColor || '#000000'"></QSIcons><text class="QS-navbar-text text_overflow_ellipsis" :style="{ 'color': item.color || '#000000' }">{{item.text}}</text>
+								 :color="item.iconColor || '#000000'"></QSIcons><text class="QS_Navbar-text text_overflow_ellipsis" :style="{ 'color': item.color || '#000000' }">{{item.text}}</text>
 							</view>
 						</block>
 						<block v-else-if="item&&item.type === 'icon'">
@@ -72,8 +72,8 @@
 			</view>
 		</view>
 		<block v-if="getHasPlacherholder && getFixed">
-			<view class="QS-navbar-statusBar" :style="{ 'height': statusBarHeight }" v-if="getStatusBar&&getFixed"></view>
-			<view class="QS-navbar--fixed--placherholder" v-if="getFixed"></view>
+			<view class="QS_Navbar-statusBar" :style="{ 'height': statusBarHeight }" v-if="getStatusBar&&getFixed"></view>
+			<view class="QS_Navbar--fixed--placherholder" v-if="getFixed"></view>
 		</block>
 		<!-- <block v-if="hasPopTip">
 			<popTip ref="popTip" dynamic maskBg="rgba(0,0,0,.6)" :popData="popData" @tapPopup="tapPopup" :x="popTipX" :y="popTipY" placement="top-end"></popTip>
@@ -85,7 +85,7 @@
 <script>
 	// #ifndef MP-ALIPAY
 	// import popTip from '@/components/chunLei-popups/chunLei-popups.vue'
-	import props from '@/QS-UI-CONFIG/components/QS-Navbar/js/props.js';
+	import props from '@/QS-UI-CONFIG/components/QS_Navbar/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	const QSComponentMixinRes = QSComponentMixin();
@@ -143,9 +143,6 @@
 			...props
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS QS-navbar';
-			},
 			hasPopTip() {
 				const data = this.navbarItems;
 				for (let i = 0; i < data.length; i++)
@@ -300,7 +297,7 @@
 			},
 			getQuery(cb) {
 				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['QS-navbar'], option => {
+				dom.getComponentRect(this.$refs['QS_Navbar'], option => {
 					// console.log('获取navbar布局信息成功: ' + JSON.stringify(option))
 					if (cb && typeof cb === 'function') cb(option.size)
 				})
@@ -313,7 +310,7 @@
 				// #ifdef MP-BAIDU || MP-ALIPAY
 				view = uni.createSelectorQuery();
 				// #endif
-				view.select('.QS-navbar').fields({
+				view.select('.QS_Navbar').fields({
 					size: true
 				})
 				view.exec(res => {
@@ -337,20 +334,20 @@
 	// #ifndef MP-ALIPAY
 	@import "../../css/index.scss";
 
-	.QS-navbar {
+	.QS_Navbar {
 		width: 750rpx;
 	}
 
-	.QS-navbar-statusBar {
+	.QS_Navbar-statusBar {
 		width: 750rpx;
 		height: 20px;
 	}
 
-	.QS-navbar--fixed {
+	.QS_Navbar--fixed {
 		position: fixed;
 	}
 
-	.QS-navbar-header {
+	.QS_Navbar-header {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -363,12 +360,12 @@
 		overflow: hidden;
 	}
 
-	.QS-navbar--fixed--placherholder {
+	.QS_Navbar--fixed--placherholder {
 		width: 750rpx;
 		height: 44px;
 	}
 
-	.QS-navbar-item {
+	.QS_Navbar-item {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -377,7 +374,7 @@
 		overflow: hidden;
 	}
 
-	.QS-navbar-item--search {
+	.QS_Navbar-item--search {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -387,7 +384,7 @@
 		padding: 3px 8px;
 	}
 
-	.QS-navbar-text {
+	.QS_Navbar-text {
 		font-size: 30rpx;
 	}
 

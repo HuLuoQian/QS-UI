@@ -1,5 +1,5 @@
 <template>
-	<view :class="getClass" :style="getStyle">
+	<view class="QS-P" :class="getClass" :style="getStyle">
 		<slot></slot>
 	</view>
 </template>
@@ -37,9 +37,6 @@
 			...props
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS QS-P';
-			},
 			QS_nCompStyle() {
 				const style = {
 					height: this.getHeight,

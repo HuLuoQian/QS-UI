@@ -1,5 +1,6 @@
 <template>
 	<list 
+	class="page"
 	:class="getClass" 
 	:style="getStyle" 
 	:id="pageId" 
@@ -212,9 +213,6 @@
 			},
 		},
 		computed:{
-			QS_nCompClass() {
-				return 'QS page';
-			},
 			QS_nCompStyle() {
 				const style = {
 					'background-color': this.fatherListBackgroundColor

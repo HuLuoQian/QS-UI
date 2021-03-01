@@ -1,5 +1,5 @@
 <template>
-	<view :class="getClass" :style="getStyle">
+	<view class="QS-Masonry" :class="getClass" :style="getStyle">
 		<view class="QS-Masonry-container">
 			<view class="col-container" v-for="(item, index) in getCol" :key="lists[index].id">
 				<view class="col-container-item" :style="{ width: getColWidth }">
@@ -103,9 +103,6 @@
 			}
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS-Masonry';
-			},
 			QS_nCompStyle() {
 				const style = { padding: this.padding };
 				return style;

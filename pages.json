@@ -79,7 +79,6 @@
             "path" : "pages/js/request/request",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

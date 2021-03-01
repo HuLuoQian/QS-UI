@@ -1,6 +1,6 @@
 <template>
 	<view 
-	class="container QS"
+	class="QS-Tabs-wxs-list-refresh"
 	:style="{
 		'background-color': hasRefreshContainerBackgroundColor
 	}">
@@ -112,7 +112,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.container {
+	.QS-Tabs-wxs-list-refresh {
 		height: 100%;
 		width: 100%;
 		display: flex;

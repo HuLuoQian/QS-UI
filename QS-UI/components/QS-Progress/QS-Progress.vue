@@ -41,7 +41,7 @@
 </template>
 
 <script>
-	import { QSProgressCompoentsObjs } from './QS-Progress.js';
+	// import { QSProgressCompoentsObjs } from './QS-Progress.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import props from '@/QS-UI-CONFIG/components/QS-Progress/js/props.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
@@ -57,6 +57,7 @@
 			}
 		});
 	}
+	var QSProgressCompoentsObjs = {};
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
 		components: {

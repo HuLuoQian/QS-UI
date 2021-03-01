@@ -1,5 +1,6 @@
 <template>
 	<view 
+	class="QS-Animation"
 	:class="getClass"
 	:style="getStyle"
 	ref="icon"
@@ -91,9 +92,6 @@
 			})
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS-Animation';
-			},
 			getAnimationFinishClickMoveThreshold() {
 				return Number(this.animationFinishClickMoveThreshold);
 			},

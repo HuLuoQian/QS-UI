@@ -38,7 +38,6 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			url: '/pages/js/request/request',	//必须
 			key: 'js.request', //示例所需
 		},
-		
 	},
 	components: {
 		

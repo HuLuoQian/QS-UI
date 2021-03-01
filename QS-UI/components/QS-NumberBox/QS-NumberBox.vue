@@ -1,5 +1,6 @@
 <template>
 	<view 
+	class="QS-NumberBox"
 	:class="getClass" 
 	:style="getStyle">
 		<text class="icon-box" :style="{
@@ -114,9 +115,6 @@
 			...props
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS QS-NumberBox';
-			},
 			QS_nCompStyle() {
 				const style = {
 					'border-radius': this.borderRadius

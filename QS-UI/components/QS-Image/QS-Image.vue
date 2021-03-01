@@ -1,10 +1,8 @@
 <template>
 	<view 
+	class="QS-Image"
 	:class="getClass"
-	
-	:style="getStyle"
-	
-	:class="imgLoadSuccess?'':'backgrounColor_f8f8f8'">
+	:style="getStyle">
 		<text class="imgStatusStyle" :style="{ fontSize: textFontSize }" v-if="!imgLoadSuccess">
 			{{imgStatusText}}
 		</text>
@@ -123,7 +121,7 @@
 		},
 		computed: {
 			QS_nCompClass() {
-				return 'QS QS-Image';
+				return this.imgLoadSuccess?'':'backgrounColor_f8f8f8';
 			},
 			QS_nCompStyle() {
 				let style = {};

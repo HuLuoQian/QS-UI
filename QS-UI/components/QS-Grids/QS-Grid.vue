@@ -1,5 +1,5 @@
 <template>
-	<view ref="QS-SwiperGrid-items" class="QS QS-SwiperGrid-items" :style="{ padding: paddingCol + ' ' + paddingRow }">
+	<view ref="QS-SwiperGrid-items" class="QS-SwiperGrid-items" :style="{ padding: paddingCol + ' ' + paddingRow }">
 		<block v-for="(item, index) in grids" :key="index">
 			<block v-if="useQSAnimation">
 			<QSAnimation :animationType="animationType" @click="_click(index)">
@@ -286,8 +286,6 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../../css/index.scss";
-
 	.QS-SwiperGrid-items {
 		/* #ifdef APP-NVUE */
 		/* flex: 1; */
