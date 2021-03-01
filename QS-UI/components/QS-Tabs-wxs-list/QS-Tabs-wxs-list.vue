@@ -1,5 +1,5 @@
 <template>
-	<view :class="getClass" :style="getStyle"
+	<view class="QS-Tabs-wxs-list" :class="getClass" :style="getStyle"
 	@touchmove.prevent.stop="voidFn">
 		<!-- 顶部tabs -->
 		<view v-if="tabsPosition === 'top'" class="tabs-container" :style="{
@@ -403,9 +403,6 @@
 			}
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'container QS';
-			},
 			QS_nCompStyle() {
 				const style = {
 					'z-index': this.getZindex
@@ -843,7 +840,7 @@
 
 <style lang="scss" scoped>
 	@import "@/QS-UI-CONFIG/components/QS-tabs-wxs-list/css/QS-refresh-image-isrefreshing.css";
-	.container {
+	.QS-Tabs-wxs-list {
 		position: relative;
 		width: 100%;
 		display: flex;

@@ -1,5 +1,6 @@
 <template>
 	<view 
+	class="QS-Tabs"
 	:class="getClass"
 	:style="getStyle">
 		<scroll-view ref="scrollViewX" id="scrollViewX" class="scrollViewX" :scroll="false" :scroll-x="true" :show-scrollbar="false"
@@ -168,9 +169,6 @@
 			}
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS QS-Tabs';
-			},
 			getScrollInto() {
 				return 'tabitem' + this.tabIndex;
 			},

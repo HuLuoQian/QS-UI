@@ -19,7 +19,6 @@
 
 <script>
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
-	const Sys = uni.getSystemInfoSync();
 	export default {
 		props: {
 			width: {
@@ -72,7 +71,7 @@
 			},
 			viewportHeight: {
 				type: [String, Number],
-				default: 0
+				default: 1
 			}
 		},
 		data() {
@@ -95,7 +94,7 @@
 				return this.scrollToOffsetTop == 'this' ? this.height : this.scrollToOffsetTop;
 			},
 			getOffsetTop() {
-				return this.offsetTop == 'this'?this.height : this.offsetTop;
+				return this.offsetTop == 'this'? this.height : this.offsetTop;
 			}
 		},
 		beforeDestroy() {
@@ -115,13 +114,13 @@
 				// #endif
 				view.select(item.node).boundingClientRect();
 				view.exec(data => {
-					console.log(data);
 					uni.pageScrollTo({
-						scrollTop: this.scrollTop + data[0].top + Number(this.getScrollToOffsetTop)
+						scrollTop: this.scrollTop + data[0].top + rpxUnit2px(this.getScrollToOffsetTop)
 					})
 				})
 			},
 			init(obj = {}) {
+				const Sys = uni.getSystemInfoSync();
 				let {
 					offsetTop
 				} = obj;

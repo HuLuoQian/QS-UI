@@ -1,5 +1,5 @@
 <template>
-	<text v-if="text" :class="getClass" :style="getStyle" @tap="click">{{ text }}</text>
+	<text class="QS-Badge" v-if="text" :class="getClass" :style="getStyle" @tap="click">{{ text }}</text>
 </template>
 
 <script>
@@ -60,9 +60,6 @@
 			...props
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS QS-Badge';
-			},
 			QS_nCompStyle() {
 				const stlye =  {
 					width: this.getWidth,

@@ -1,6 +1,7 @@
 <template>
 	<text 
 	ref="icon" 
+	class="qs-icons"
 	:animation="Animation" 
 	:style="getStyle"
 	:class="getClass" 
@@ -95,9 +96,6 @@
 			})
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS qs-icons';
-			},
 			QS_nCompStyle() {
 				const style = { 
 					color: this.color, 

@@ -1,7 +1,7 @@
 <template>
 	<button 
 	:id="preId" 
-	class="QS_WavesButton" 
+	class="QS_Button" 
 	:class="getClass" 
 	:style="getStyle" 
 	:loading="loading" 
@@ -166,7 +166,7 @@
 		},
 		data() {
 			return {
-				preId: 'QS_WavesButton' + QSButton_preId++,
+				preId: 'QS_Button' + QSButton_preId++,
 				rippleTop: 0,
 				rippleLeft: 0,
 				fields: {},
@@ -180,11 +180,11 @@
 			},
 			QS_nCompClass() {
 				return [
-					'QS_WavesButton--' + this.type,
-					'QS_WavesButton-size-' + this.size,
-					this.plain ? 'QS_WavesButton--' + this.type + '--plain' : 'not-plain',
-					this.plain ? 'QS_WavesButton--border' : '',
-					this.disabled ? 'QS_WavesButton--' + this.type + '--disabled' : '',
+					'QS_Button--' + this.type,
+					'QS_Button-size-' + this.size,
+					this.plain ? 'QS_Button--' + this.type + '--plain' : 'not-plain',
+					this.plain ? 'QS_Button--border' : '',
+					this.disabled ? 'QS_Button--' + this.type + '--disabled' : '',
 				];
 			},
 			QS_nCompStyle() {
@@ -264,7 +264,7 @@
 					// #endif
 					// #ifndef MP-ALIPAY
 					Query = uni.createSelectorQuery().in(this);
-					id = '.QS_WavesButton';
+					id = '.QS_Button';
 					// #endif
 					Query.select(id).fields({
 						size: true,
@@ -289,7 +289,7 @@
 			retryGetFields() { // 目前应该不用
 				return new Promise(rs => {
 					let Query = uni.createSelectorQuery();
-					Query.select('#QS_WavesButton').fields({
+					Query.select('#QS_Button').fields({
 						size: true,
 						rect: true
 					});
@@ -311,7 +311,7 @@
 </script>
 
 <style scoped lang="scss">
-	.QS_WavesButton {
+	.QS_Button {
 		position: relative;
 		overflow: hidden;
 		border: none;
@@ -399,21 +399,21 @@
 			border-color: $qs-btn-type-main;
 		}
 
-		&.QS_WavesButton-size-default {
+		&.QS_Button-size-default {
 			font-size: 30rpx;
 			// height: 70rpx;
 			// line-height: 70rpx;
 			padding: 20rpx 30rpx;
 		}
 
-		&.QS_WavesButton-size-mini {
+		&.QS_Button-size-mini {
 			font-size: 26rpx;
 			// height: 65rpx;
 			// line-height: 65rpx;
 			padding: 10rpx 15rpx;
 		}
 
-		&.QS_WavesButton-size-large {
+		&.QS_Button-size-large {
 			font-size: 34rpx;
 			height: 75rpx;
 			// line-height: 75rpx;

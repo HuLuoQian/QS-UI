@@ -1,12 +1,10 @@
 <template>
-	<view :class="getClass" :style="getStyle" @tap="active">
-		<block v-if="getClass && getStyle">
-			<image v-if="type==='image'" class="backtop-container" :src="image" mode="aspectFill"></image>
-			<view class="backtop-container" v-else-if="type==='text'">
-				<text>{{text}}</text>
-			</view>
-			<slot v-else-if="type==='slot'"></slot>
-		</block>
+	<view class="QS-Backtop" :class="getClass" :style="getStyle" @tap="active">
+		<image v-if="type==='image'" class="backtop-container" :src="image" mode="aspectFill"></image>
+		<view class="backtop-container" v-else-if="type==='text'">
+			<text>{{text}}</text>
+		</view>
+		<slot v-else-if="type==='slot'"></slot>
 	</view>
 </template>
 
@@ -75,9 +73,6 @@
 		computed: {
 			isTabbar() {
 				return String(this.tabbar) === 'true';
-			},
-			QS_nCompClass() {
-				return 'QS QS-Backtop';
 			},
 			QS_nCompStyle() {
 				const style =  {

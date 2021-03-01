@@ -1,5 +1,5 @@
 <template>
-	<swiper :class="getClass" :style="getStyle" :indicatorDots="getIndicatorDots" :indicatorColor="indicatorColor"
+	<swiper class="QS-CountHeightSwiper" :class="getClass" :style="getStyle" :indicatorDots="getIndicatorDots" :indicatorColor="indicatorColor"
 	 :indicatorActiveColor="indicatorActiveColor" :activeClass="activeClass" :changingClass="changingClass" :autoplay="getAutoplay"
 	 :current="getCurrent" :currentItemId="currentItemId" :interval="getInterval" :duration="getDuration" :circular="getCircular"
 	 :vertical="getVertical" :previousMargin="previousMargin" :nextMargin="nextMargin" :acceleration="getAcceleration"
@@ -57,9 +57,6 @@
 			},
 			getImageStyle() {
 				return this.imageStyle;
-			},
-			QS_nCompClass() {
-				return 'QS-CountHeightSwiper';
 			},
 			QS_nCompStyle() {
 				return {

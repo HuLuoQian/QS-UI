@@ -1,5 +1,5 @@
 <template>
-	<view ref="QS-SwiperGrid" :class="getClass">
+	<view ref="QS-SwiperGrid" class="QS-SwiperGrid" :class="getClass">
 		<block v-if="mode === 'swiper'">
 			<swiper 
 			:indicator-dots="indicatorDots"
@@ -267,9 +267,6 @@
 			...props
 		},
 		computed: {
-			QS_nCompClass() {
-				return 'QS QS-SwiperGrid';
-			},
 			getWidth() {
 				return (this.componentWidth - (rpxUnit2px(this.paddingRow)*2))/this.row;
 			},

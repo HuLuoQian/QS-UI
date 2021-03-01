@@ -1,5 +1,5 @@
 <template>
-	<view :class="getClass" :style="getStyle">
+	<view class="QS-List" :class="getClass" :style="getStyle">
 		<!-- #ifdef APP-VUE || MP-WEIXIN || H5 || MP-QQ -->
 		<view @touchmove.prevent.stop="voidFn">
 			<view class="refresh-container" id="refresh-container" @touchstart="QSREFRESHWXS.touchstart" @touchmove="QSREFRESHWXS.touchmove"
@@ -153,11 +153,6 @@
 				old: {
 					scrollTop: 0
 				}
-			}
-		},
-		computed:{
-			QS_nCompClass() {
-				return 'QS QS-List';
 			}
 		},
 		created() {
