@@ -6,7 +6,11 @@
 		opacity: isFixed?getShow:1,
 		backgroundColor: backgroundColor
 	}">
+<<<<<<< HEAD
 		<view class="item" v-for="(item, index) in nodes" :key="item.id" @tap="click(item)">
+=======
+		<view class="item" v-for="(item, index) in nodes" :key="item.node" @tap="click(item)">
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 			<view class="content" :style="{ borderBottom: current === index?`1px solid ${activeColor}`:'' }">
 				<text :style="{ 
 					fontSize: fontSize,
@@ -54,9 +58,9 @@
 				type: String,
 				default: '30rpx'
 			},
-			show: {
-				type: Boolean,
-				default: false
+			showScrollTop: {
+				type: [String, Number],
+				default: 50
 			},
 			backgroundColor: {
 				type: String,
@@ -72,7 +76,11 @@
 			},
 			viewportHeight: {
 				type: [String, Number],
+<<<<<<< HEAD
 				default: 30
+=======
+				default: 0
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 			}
 		},
 		data() {
@@ -84,6 +92,7 @@
 				scrollTop: 0
 			}
 		},
+<<<<<<< HEAD
 		watch: {
 			show(n) {
 				if (n !== this.nshow) this.nshow = n;
@@ -92,12 +101,23 @@
 		computed: {
 			getShow() {
 				return this.scrollTop > 50 ? 1 : 0;
+=======
+		computed: {
+			getShow() {
+				return this.scrollTop > rpxUnit2px(this.showScrollTop) ? 1 : 0;
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 			},
 			isFixed() {
 				return this.mode === 'fixed';
 			},
 			getScrollToOffsetTop() {
 				return this.scrollToOffsetTop == 'this' ? this.height : this.scrollToOffsetTop;
+<<<<<<< HEAD
+=======
+			},
+			getOffsetTop() {
+				return this.offsetTop == 'this'?this.height : this.offsetTop;
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 			}
 		},
 		beforeDestroy() {
@@ -119,6 +139,7 @@
 				view.exec(data => {
 					console.log(data);
 					uni.pageScrollTo({
+<<<<<<< HEAD
 						scrollTop: this.scrollTop + data[0].top - rpxUnit2px(this.offsetTop) - rpxUnit2px(this.getScrollToOffsetTop)
 					})
 				})
@@ -126,11 +147,21 @@
 			setShow(bl) {
 				if (this.nshow !== bl) this.nshow = bl;
 			},
+=======
+						scrollTop: this.scrollTop + data[0].top + Number(this.getScrollToOffsetTop)
+					})
+				})
+			},
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 			init(obj = {}) {
 				let {
 					offsetTop
 				} = obj;
+<<<<<<< HEAD
 				offsetTop = offsetTop || this.offsetTop;
+=======
+				offsetTop = offsetTop || this.getOffsetTop;
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 				offsetTop = rpxUnit2px(offsetTop);
 				let top = Number(offsetTop);
 				this.top = top;
@@ -145,7 +176,10 @@
 						bottom: -Sys.windowHeight + top + Number(this.viewportHeight)
 					})
 					ob.observe(item.node, res => {
+<<<<<<< HEAD
 						// console.log(res);
+=======
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 						if (res.intersectionRatio > 0) {
 							this.current = i;
 						}

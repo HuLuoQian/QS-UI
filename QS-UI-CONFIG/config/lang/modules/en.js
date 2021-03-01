@@ -11,6 +11,10 @@ module.exports = {
 			testRouterLogin: 'TestRouterLogin',
 			getSys: 'SystemInfo',
 			interaction: 'Interaction',
+<<<<<<< HEAD
+=======
+			request: 'Request'
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 		}
 	},
 	tabbar: {

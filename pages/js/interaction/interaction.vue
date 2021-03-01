@@ -52,6 +52,7 @@
 	export default {
 		data() {
 			return {
+<<<<<<< HEAD
 				// #ifdef H5
 				fixedTop: '44px',
 				offsetTop: uni.$qs.rpxUnit2px('77rpx') + 44,
@@ -62,6 +63,12 @@
 				// #endif
 				scrollToOffsetTop: uni.$qs.rpxUnit2px('25rpx'),
 				nodes: [ { node: '#toast', id: 'toast', text: 'toast' }, { node: '#modal', id: 'modal', text: 'modal' }, { node: '#actionSheet', id: '#actionSheet', text: 'actionSheet' } ],
+=======
+				fixedTop: uni.$qs.getSys().uniappPlatform === 'H5'?'44px':0,
+				offsetTop: 'this',
+				scrollToOffsetTop: -(uni.$qs.rpxUnit2px('25rpx')) - uni.$qs.rpxUnit2px('77rpx'),
+				nodes: [ { node: '#toast', text: 'Toast' }, { node: '#modal', text: 'Modal' }, { node: '#actionSheet', text: 'ActionSheet' } ],
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 				toastProp: [
 					{
 						name: 'title',
@@ -197,6 +204,7 @@
 		},
 		onReady() {
 			this.$refs.QSNodeNav.init();
+<<<<<<< HEAD
 			// uni.createIntersectionObserver(this)
 			// .relativeToViewport()
 			// .observe('#toast', res=>{
@@ -212,6 +220,8 @@
 			// 		console.log(res);
 			// 	});
 			// }
+=======
+>>>>>>> e3325e2714daa8526c3b250b50f09738adb653eb
 		},
 		computed: {
 			nodeNavShow() {

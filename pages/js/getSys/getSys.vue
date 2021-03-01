@@ -14,7 +14,7 @@
 					<text class="QS-text large-x weight">说明</text>
 				</view>
 				<QS-P height="25rpx"></QS-P>
-				<text class="QS-text color_666666 flex-wrap_wrap">使用方式: uni.$qs.getSys() , 在uni.getSystemInfoSync的基础上增加了H5BrowserType 字段， 该字段为H5环境时判断浏览器类型，如支付宝或者微信环境, 其值可以在QS-UI-CONFIG/config/values.js-->H5BrowserType字段配置</text>
+				<text class="QS-text color_666666 flex-wrap_wrap">使用方式: uni.$qs.getSys() , 在uni.getSystemInfoSync的基础上增加了H5BrowserType(H5浏览器环境) 字段 和 uniappPlatform(uniapp 平台类型) 字段， 该字段为H5环境时判断浏览器类型，如支付宝或者微信环境, 其值可以在QS-UI-CONFIG/config/values.js-->H5BrowserType字段与uniappPlatform字段配置</text>
 			</view>
 		</view>
 		

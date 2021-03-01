@@ -70,6 +70,8 @@
 			filterValue(val) {
 				switch(typeof val) {
 					case 'string':
+						if(val[0] === '{' && val[val.length-1] === '}') return val;
+						if(val[0] === '[' && val[val.length-1] === ']') return val;
 						return `"${val}"`;
 						break;
 					case 'object':

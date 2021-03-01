@@ -35,6 +35,16 @@ module.exports = {	//各种名称配置，方便名称重复时修改, 或者改
 		filterName: 'qst',	//全局filter使用方式名称， 例如: {{ 'test.a' | qst }}
 		vuePrototypeName: '$qst'	//Vue原型使用方式名称, 例如：{{ $qst('test.a') }}
 	},
+	uniappPlatform: {	//uni-app平台值
+		'H5': 'H5',
+		'APP-PLUS': 'APP-PLUS',
+		'MP-WEIXIN': 'MP-WEIXIN',
+		'MP-ALIPAY': 'MP-ALIPAY',
+		'MP-BAIDU': 'MP-BAIDU',
+		'MP-TOUTIAO': 'MP-TOUTIAO',
+		'MP-QQ': 'MP-QQ',
+		'MP-360': 'MP-360'
+	},
 	
 	//不用动
 	modulesName: {	//模块名称

@@ -39,7 +39,7 @@ function QSRequest(args = {}) {
 		field,
 		check,
 		proxyFn,
-		hasLoading,
+		loading,
 		contentType,
 		urlAppendData
 	} = args;
@@ -62,7 +62,7 @@ function QSRequest(args = {}) {
 			}
 		}
 		try {
-			if (hasLoading) showLoading('请稍候');
+			if (loading) showLoading('请稍候');
 			if (!sendData.header) sendData.header = {};
 			
 			switch(contentType) {
@@ -70,15 +70,9 @@ function QSRequest(args = {}) {
 					sendData.header['Content-Type'] = 'application/x-www-form-urlencoded'
 					break;
 				default:
-					sendData.header['Content-Type'] = 'application/json'
+					sendData.header['Content-Type'] = contentType || 'application/json'
 					break;
 			}
-			
-			// if (contentType === 'json') {
-			// 	sendData.header['Content-type'] = 'application/json'
-			// } else {
-			// 	sendData.header['Content-type'] = 'application/x-www-form-urlencoded'
-			// }
 			if (!sendData.method) {
 				sendData.method = 'GET'
 			}
@@ -98,7 +92,7 @@ function QSRequest(args = {}) {
 			request(obj).then(async res => {
 				if (ifUseDebounce) unlock(nUrl);
 				log(`${name?`${name}-`:''} 接口访问成功: ${JSON.stringify(res)}`);
-				if (hasLoading) hideLoading();
+				if (loading) hideLoading();
 				let checkResult = true;
 				if (check !== false) {
 					checkResult = checkRes({
@@ -112,7 +106,7 @@ function QSRequest(args = {}) {
 					let result = data;
 					if (isFn(proxyFn)) result = proxyFn(data);
 					if (isPromise(result)) {
-						log('是promise， 等待返回')
+						// log('是promise， 等待返回')
 						result.then(R=>{ 
 							log(`接口${name?`-${name}`:''}-最终输出数据`, R);
 							resolve(R) 
@@ -121,7 +115,7 @@ function QSRequest(args = {}) {
 							reject(E) 
 						});
 					}else{
-						log('不是promise')
+						// log('不是promise')
 						log(`接口${name?`-${name}`:''}-最终输出数据`, result);
 						resolve(result);
 					}
@@ -134,7 +128,7 @@ function QSRequest(args = {}) {
 				if (ifUseDebounce) unlock(nUrl);
 				requestCatch(err, args);
 				log(`${name?`${name}-`:''} 接口访问失败: ${JSON.stringify(err)}`);
-				if (hasLoading) hideLoading();
+				if (loading) hideLoading();
 				log('接口访问失败');
 				reject(err);
 			})
