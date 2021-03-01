@@ -38,6 +38,16 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			url: '/pages/js/request/request',	//必须
 			key: 'js.request', //示例所需
 		},
+		handleAddress: {
+			name: '地址解析', //示例所需
+			url: '/pages/js/handleAddress/handleAddress',	//必须
+			key: 'js.handleAddress', //示例所需
+		},
+		countDown: {
+			name: '倒计时', //示例所需
+			url: '/pages/js/countDown/countDown',	//必须
+			key: 'js.countDown', //示例所需
+		}
 	},
 	components: {
 		

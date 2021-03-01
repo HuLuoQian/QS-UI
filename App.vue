@@ -1,7 +1,8 @@
 <script>
 	export default {
 		globalData: {
-			isLogin: false 	//示例所需
+			isLogin: false 	,//演示跳转页面拦截登录
+			requestLogin: false ,//演示访问接口拦截登录
 		},
 		onLaunch: function() {
 			console.log('App Launch')

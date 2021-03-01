@@ -11,7 +11,9 @@ module.exports = {
 			testRouterLogin: '测试路由跳转(校验登录)',
 			getSys: '系统信息',
 			interaction: '交互反馈',
-			request: '请求接口'
+			request: '请求接口',
+			handleAddress: '地址解析',
+			countDown: '倒计时'
 		}
 	},
 	tabbar: {

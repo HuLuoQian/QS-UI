@@ -7,7 +7,7 @@
 <script>
 	import getH5TabbarHeight from '../../js/functions/getH5TabbarHeight.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
+	import props from '@/QS-UI-CONFIG/components/QS-FixedBottom/js/props.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	const Sys = uni.getSystemInfoSync();
 	export default {
@@ -35,7 +35,8 @@
 			tabbar: {
 				type: [String, Boolean],
 				default: false
-			}
+			},
+			...props
 		},
 		computed: {
 			getTabbar () {
