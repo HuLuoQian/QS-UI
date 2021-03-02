@@ -5,12 +5,12 @@ import {
 } from '../js/baseUtil.js';
 import classObj2String from '../js/functions/classObj2String.js';
 import styleObj2String from '../js/functions/styleObj2String.js';
-const styleString2Object = function (str) {
-	if(typeof str === 'string') {
-		str = str.split(';').filter(i=>!!i).map(item=>{ const ite = item.split(':').map(it=>it.trim()); return { [ite[0]]: ite[1] }  });
-	}
-	return str;
-}
+// const styleString2Object = function (str) {
+// 	if(typeof str === 'string') {
+// 		str = str.split(';').filter(i=>!!i).map(item=>{ const ite = item.split(':').map(it=>it.trim()); return { [ite[0]]: ite[1] }  });
+// 	}
+// 	return str;
+// }
 module.exports = function() {
 	const props = {
 		'compClass': {

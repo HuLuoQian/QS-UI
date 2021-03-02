@@ -16,6 +16,8 @@ const config = {
 	backTopShowScrollTop: 300,	//页面滑动时, QS-BackTop显示按钮阈值
 	defaultLanguage: 'zh_CN',	//默认语言, 可以配置系统语言
 	mixins: {	//全局mixins配置, 若传false则关闭所有
+		usePageScroll: true,
+		
 		useNavigateTo: true,	//在全局mixins挂载uni.$qs.navigateTo方法，这样就可以直接在html代码中@tap里直接写VALUES里配置好的方法名称
 		useGetNavbarQuery: true,	//在全局mixins挂载获取当前页面上QS-Navbar组件的获取布局信息方法
 		useGetQuery: true,	//在全局mixins挂载获取布局信息方法

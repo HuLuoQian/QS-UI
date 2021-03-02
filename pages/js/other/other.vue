@@ -1,7 +1,7 @@
 <template>
 	<view class="QS">
 		
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

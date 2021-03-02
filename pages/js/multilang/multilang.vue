@@ -17,7 +17,7 @@
 				<QS-P height="50rpx"></QS-P>
 			</view>
 		</view>
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

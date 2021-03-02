@@ -10,6 +10,11 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			url: '/pages/js/router/router',	//必须
 			key: 'js.router' //示例所需
 		},
+		request: {
+			name: '请求接口', //示例所需
+			url: '/pages/js/request/request',	//必须
+			key: 'js.request', //示例所需
+		},
 		testRouterOpen: {
 			name: '路由测试跳转页面', //示例所需
 			url: '/pages/js/testRouterOpen/testRouterOpen',	//必须
@@ -32,11 +37,6 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			name: '交互反馈', //示例所需
 			url: '/pages/js/interaction/interaction',	//必须
 			key: 'js.interaction', //示例所需
-		},
-		request: {
-			name: '交互反馈', //示例所需
-			url: '/pages/js/request/request',	//必须
-			key: 'js.request', //示例所需
 		},
 		handleAddress: {
 			name: '地址解析', //示例所需

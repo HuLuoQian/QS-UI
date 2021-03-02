@@ -56,7 +56,7 @@
 				</view>
 			</view>
 		</view>
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

@@ -8,7 +8,7 @@
 				<QS-P height="25rpx"></QS-P>
 				<QS-Button @click="get">访问接口</QS-Button>
 				<QS-P height="25rpx"></QS-P>
-				<QS-Button @click="getUseDebounce">演示防抖,快速点击注意控制台打印</QS-Button>
+				<QS-Button @click="getUseDebounce">防抖,快速点击注意控制台打印</QS-Button>
 				<QS-P height="25rpx"></QS-P>
 				<QS-Button @click="urlFieldDemo">演示urlField作用</QS-Button>
 				<QS-P height="25rpx"></QS-P>
@@ -34,7 +34,7 @@
 			</view>
 		</view>
 
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 
@@ -118,7 +118,8 @@
 							}
 						},
 						check: false,
-						loading: true
+						loading: true,
+						contentType: 'form'	//为了uni接口的跨域问题设置hearders的contentType为application/x-www-form-urlencoded
 					})
 					.then(res => {
 						console.log('请求结果', res);
@@ -138,7 +139,8 @@
 						},
 						check: true, //默认为true
 						loading: true,
-						useDebounce: true
+						useDebounce: true,
+						contentType: 'form'
 					})
 					.then(res => {
 						console.log('请求结果', res);
@@ -156,6 +158,7 @@
 							}
 						},
 						loading: true,
+						contentType: 'form'
 					})
 					.then(res => {
 						uni.$qs.toast(`请求结果: ${JSON.stringify(res)}`)
@@ -172,7 +175,8 @@
 							}
 						},
 						loading: true,
-						field: 'name' //返回数据中的 name字段
+						field: 'name', //返回数据中的 name字段
+						contentType: 'form'
 					})
 					.then(res => {
 						uni.$qs.toast(`请求结果: ${JSON.stringify(res)}`)
@@ -192,7 +196,8 @@
 						field: 'name', //返回数据中的 name字段
 						proxyFn: function(data) {	//可以传一个函数来处理数据, 比如对返回的列表list循环操作
 							return data + '-proxy'
-						}
+						},
+						contentType: 'form'
 					})
 					.then(res => {
 						uni.$qs.toast(`请求结果: ${JSON.stringify(res)}`)
@@ -214,7 +219,8 @@
 							return new Promise((rs, rj)=>{	//可以return一个Promise对象来异步处理数据
 								rs(data + '-proxy-async');
 							})
-						}
+						},
+						contentType: 'form'
 					})
 					.then(res => {
 						uni.$qs.toast(`请求结果: ${JSON.stringify(res)}`)
@@ -237,6 +243,7 @@
 								rs(data + '-proxy-async');
 							})
 						},
+						contentType: 'form',
 						login: true	//不一定叫login, 可以根据拦截函数的逻辑来, 可以传一个登录标识来告诉拦截函数此接口需要登录信息, 拦截函数在 QS-UI-CONFIG/config/request.js->setConfig
 						//...可以传自己业务逻辑需要的标识
 					})

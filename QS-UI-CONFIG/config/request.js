@@ -4,7 +4,6 @@
  * @param {Object} args	QS-Request拿到的参数
  */
 const setConfig = function(config, args) { //config为传给uni.request的参数, args 为传给QS-Request的参数
-	console.log(config, args)
 	if (args.login) { //判断是否有登录标识
 		if (!getApp().globalData.requestLogin) {
 			if(args.loading) uni.$qs.hideLoading();	//如果有展示loading 先关闭

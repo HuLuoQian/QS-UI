@@ -48,10 +48,31 @@ import acc from './functions/acc.js';
 import deepClone from './functions/deepClone.js';
 import countDown from './functions/countDown.js';
 import showActionSheet from './functions/showActionSheet.js';
+import uuid from './functions/uuid.js';
 import canvas from './QS-SharePoster/QS-SharePoster.js';
 
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
+
+class pageRootsObj{
+	constructor(arg) {
+	    this.pageRoots = {};
+	}
+	
+	setPageContext(vm, ContextType) {
+		// Object.keys(vm).forEach(i=>console.log(i, vm[i]))
+		console.log(vm)
+		const id = vm.$parent._uid;
+		if(!this.pageRoots[id]) this.pageRoots[id] = {};
+		this.pageRoots[id][ContextType] = vm;
+	}
+	
+	getPage(page, ContextType) {
+		console.log(page)
+		const id = page._uid || page.$vm._uid;
+		return this.pageRoots[id] && this.pageRoots[id][ContextType];
+	}
+}
 
 module.exports = {
 	...$qs,
@@ -117,5 +138,7 @@ module.exports = {
 	acc,
 	deepClone,
 	countDown,
-	canvas
+	canvas,
+	uuid,
+	pageRoots: new pageRootsObj()
 }

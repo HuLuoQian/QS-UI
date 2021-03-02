@@ -15,6 +15,7 @@
 	import getH5TabbarHeight from '@/QS-UI/js/functions/getH5TabbarHeight.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	const defHeight = rpxUnit2px('80rpx');
+	var _this;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
 		// name: 'QS-Backtop',
@@ -70,6 +71,10 @@
 				tabbarHeight: 0
 			}
 		},
+		created() {
+			_this = this;
+			uni.$qs.pageRoots.setPageContext(this, 'QSBackTop');
+		},
 		computed: {
 			isTabbar() {
 				return String(this.tabbar) === 'true';
@@ -110,24 +115,27 @@
 			}
 		},
 		methods: {
+			getRoot() {
+				return _this;
+			},
 			setShow(bl) {
-				if(this.isTabbar) this.tabbarHeight = getH5TabbarHeight();
-				if (this.showBl !== bl) this.showBl = bl;
+				if(_this.isTabbar) _this.tabbarHeight = getH5TabbarHeight();
+				if (_this.showBl !== bl) _this.showBl = bl;
 			},
 			show() {
-				this.setShow(true);
+				_this.setShow(true);
 			},
 			hide() {
-				this.setShow(false);
+				_this.setShow(false);
 			},
 			active() {
-				if (this.backTopType === 'page') {
+				if (_this.backTopType === 'page') {
 					uni.pageScrollTo({
 						scrollTop: 0,
 						duration: 300
 					})
 				} else {
-					this.$emit('backTop');
+					_this.$emit('backTop');
 				}
 			}
 		}

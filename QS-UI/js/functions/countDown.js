@@ -1,9 +1,10 @@
 import number2Duration from './number2Duration.js';
+import uuid from './uuid.js';
 
 const countDownObjs = {};
 
 module.exports = function (config = {}) {
-	const { 
+	let { 
 		id, 
 		beginDate, 
 		endDate,
@@ -11,9 +12,11 @@ module.exports = function (config = {}) {
 		aboutToBeginText = '距离开始还有',
 		aboutToEndText = '距离结束还有',
 		endedText = '已结束',
-		showEnd = true,
-		showEndThreshold = (1000 * 60 * 60 * 24 * 1)
+		showEndThreshold = true,
+		showEndThresholdTime = (1000 * 60 * 60 * 24 * 1),
+		intervalTime = 100
 	} = config;
+	id = id || uuid();
 	const countDownObj = {};
 	if(countDownObjs[id]) {
 		const curObj = countDownObjs[id];
@@ -50,7 +53,7 @@ module.exports = function (config = {}) {
 			countDownObj.status = 1;
 		} else if (nNow >= bgDate && nNow < edDate) {
 			countDownObj.status = 2;
-			if (showEnd && (edDate - nNow) < showEndThreshold) {
+			if (showEndThreshold && (edDate - nNow) < showEndThresholdTime) {
 				countDownObj.text = `${aboutToEndText} ${number2Duration(edDate - nNow)}`;
 			} else {
 				countDownObj.text = text;
@@ -63,7 +66,8 @@ module.exports = function (config = {}) {
 				countDownObj.fn = null;
 			}
 		}
-	}, 1000);
+	}, intervalTime);
+	countDownObj.stop = function () { clearInterval(countDownObj.fn); }
 	countDownObjs[id] = countDownObj;
 	return countDownObj;
 }

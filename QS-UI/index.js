@@ -1,13 +1,14 @@
 import QSUIJS from './js/app.js';
 import config from '@/QS-UI-CONFIG/index.js';
 import backTopMixin from './mixins/QSBacktopMixin.js';
-import mixin from './mixins/mixin.js';
+import mixins from './mixins/mixin.js';
 import store from './js/store/index.js';
 const install = (Vue, options = {}) => {
 	if(typeof uni == 'object' && config.SETIN_UNI) uni[config.QSUI_JS_NAME] = QSUIJS;	//挂在uni对象下
 	if(config.SETIN_VUE) Vue.prototype[config.QSUI_JS_NAME] = QSUIJS;	//挂在Vue原型上
-	if(config.mixins) Vue.mixin(mixin);
-	if(config.useBackTop) Vue.mixin(backTopMixin);
+	if(config.mixins) Vue.mixin(mixins);
+	// if(config.useBackTop) Vue.mixin(backTopMixin);
+	// Vue.mixin({ data(){return {}} })
 	if(config.filters) {
 		if(config.filters.useDateFormat) {
 			Vue.filter(QSUIJS.VALUES.filterName.dateFormat, QSUIJS.dateFormat)

@@ -5,7 +5,7 @@
 			<QS-P height="25rpx"></QS-P>
 			<text class="QS-text">参数: {{a || '无'}}</text>
 		</view>
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

@@ -44,7 +44,7 @@
 			</view>
 		</view>
 		<QS-NodeNav ref="QSNodeNav" :nodes="nodes" :fixedTop="fixedTop" :offsetTop="offsetTop" :scrollToOffsetTop="scrollToOffsetTop"></QS-NodeNav>
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 
