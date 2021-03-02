@@ -60,17 +60,32 @@ class pageRootsObj{
 	}
 	
 	setPageContext(vm, ContextType) {
-		// Object.keys(vm).forEach(i=>console.log(i, vm[i]))
-		console.log(vm)
-		const id = vm.$parent._uid;
+		const id = this.getParentId(vm);
 		if(!this.pageRoots[id]) this.pageRoots[id] = {};
 		this.pageRoots[id][ContextType] = vm;
 	}
 	
 	getPage(page, ContextType) {
-		console.log(page)
-		const id = page._uid || page.$vm._uid;
+		const id = this.getId(page);
 		return this.pageRoots[id] && this.pageRoots[id][ContextType];
+	}
+	
+	getParentId(vm) {
+		// #ifdef H5
+		return vm.$parent.__page__.id;
+		// #endif
+		// #ifndef H5
+		return vm.$parent._uid;
+		// #endif
+	}
+	
+	getId(page) {
+		// #ifdef H5
+		return page.__page__.id;
+		// #endif
+		// #ifndef H5
+		return page.$vm._uid;
+		// #endif
 	}
 }
 

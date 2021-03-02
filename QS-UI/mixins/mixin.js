@@ -107,7 +107,10 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 		}
 
 		function checkBackTopShow(scrollTop) {
-			const page = getCurrentPages()[0];
+			const pages = getCurrentPages();
+			// console.log(pages)
+			const page = pages[pages.length - 1];
+			// console.log(page)
 			let backTopVm = uni.$qs.pageRoots.getPage(page, 'QSBackTop');
 			if (!backTopVm) return;
 			backTopVm = backTopVm.getRoot();
