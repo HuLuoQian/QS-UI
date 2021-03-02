@@ -24,6 +24,8 @@ module.exports = function(my_time) {
 		time = minutesRound + "分钟" + seconds + "秒";
 	} else if (!daysRound && !hoursRound && !minutesRound && seconds) {
 		time = seconds + "秒";
+	} else {
+		time = seconds + "秒";
 	}
 	// var time = hoursRound + ":" + minutesRound + ":" + seconds;
 	return time;
