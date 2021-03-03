@@ -18,7 +18,7 @@
 
 <style lang="scss">
 	/*每个页面公共css */
-	@import "QS-UI/css/index.scss";
+	@import "@/uni_modules/QS-UI/css/index.scss";
 	
 	page{
 		min-height: 100vh;

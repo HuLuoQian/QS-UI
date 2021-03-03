@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
-import QSUI from 'QS-UI';
+import QSUI from '@/uni_modules/QS-UI/index.js';
 
-Vue.use(QSUI, { store });
+Vue.use(QSUI);
 
 Vue.config.productionTip = false
 

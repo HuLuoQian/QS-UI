@@ -12,7 +12,7 @@
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
-	import getH5TabbarHeight from '@/QS-UI/js/functions/getH5TabbarHeight.js';
+	import getH5TabbarHeight from '../../js/functions/getH5TabbarHeight.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-BackTop', setContext: true });
 	const defHeight = rpxUnit2px('80rpx');
 	var _this;
