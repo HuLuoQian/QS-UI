@@ -65,6 +65,14 @@ class pageRootsObj{
 		this.pageRoots[id][ContextType] = vm;
 	}
 	
+	clearPageContext(vm, ContextType) {
+		const id = this.getParentId(vm);
+		if(this.pageRoots[id]) {
+			if(this.pageRoots[id][ContextType]) this.pageRoots[id][ContextType] = null;
+			if(!Object.keys(this.pageRoots[id]).length) this.pageRoots[id] = null;
+		}
+	}
+	
 	getPage(page, ContextType) {
 		const id = this.getId(page);
 		return this.pageRoots[id] && this.pageRoots[id][ContextType];

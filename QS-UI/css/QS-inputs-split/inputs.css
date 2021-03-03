@@ -45,11 +45,11 @@
 	pointer-events: auto;
 }
 
-.padding_20rpx_30rpx {
+.padding-rpx_20_30rpx {
 	padding: 20rpx 30rpx;
 }
 
-.padding_10rpx_15rpx {
+.padding-rpx_10_15 {
 	padding: 10rpx 15rpx;
 }
 

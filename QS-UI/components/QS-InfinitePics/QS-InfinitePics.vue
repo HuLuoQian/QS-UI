@@ -2,7 +2,7 @@
 	<QStemplate :compClass="compClass" :compStyle="compStyle" :title="title" :titleHide="titleHide" :fontSize="fontSize" :width="width" :titleFlex="titleFlex"
 	 :contentFlex="contentFlex" :titleStyle="titleStyle" :contentStyle="contentStyle" :required="required" :requiredSign="requiredSign"
 	 :layout="layout" :titleLayout="titleLayout" :itemDisabled="itemDisabled" :titleColor="titleColor">
-		<view class="QS width100 padding_10rpx_15rpx wrap" :class="itemLayout_computed">
+		<view class="QS width100 padding-rpx_10_15 wrap" :class="itemLayout_computed">
 
 			<view 
 			class="flex_column_c_c border_radius_4px transition_border_point6s padding_10rpx" 

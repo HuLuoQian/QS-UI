@@ -4,7 +4,7 @@
 		 :contentFlex="contentFlex" :titleStyle="titleStyle" :contentStyle="contentStyle" :required="required" :requiredSign="requiredSign"
 		 :layout="layout" :titleLayout="titleLayout" :itemDisabled="itemDisabled" :titleColor="titleColor">
 			<view class="flex_row width100">
-				<view class="flex_row_e_c padding_10rpx_15rpx Flex8" :class="nValue.data?'':'fontColorADADAD'">
+				<view class="flex_row_e_c padding-rpx_10_15 Flex8" :class="nValue.data?'':'fontColorADADAD'">
 					{{nValue.data||placherhold}}
 				</view>
 				<view class="Flex1 flex_row_c_c">

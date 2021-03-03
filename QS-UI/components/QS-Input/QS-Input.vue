@@ -3,7 +3,7 @@
 	 :contentFlex="contentFlex" :titleStyle="titleStyle" :contentStyle="contentStyle" :required="required" :requiredSign="requiredSign"
 	 :layout="layout" :titleLayout="titleLayout" :itemDisabled="itemDisabled" :titleColor="titleColor">
 		<view 
-		class="QS flex_row_none_c transition_point6s width100 padding_10rpx_15rpx" 
+		class="QS flex_row_none_c transition_point6s width100 padding-rpx_10_15" 
 		:style="{
 			'border-radius': borderRadius,
 			'background-color': backgroundColor,

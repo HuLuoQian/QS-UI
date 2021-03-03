@@ -13,7 +13,7 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
 	import getH5TabbarHeight from '@/QS-UI/js/functions/getH5TabbarHeight.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-BackTop', setContext: true });
 	const defHeight = rpxUnit2px('80rpx');
 	var _this;
 	export default {
@@ -73,7 +73,6 @@
 		},
 		created() {
 			_this = this;
-			uni.$qs.pageRoots.setPageContext(this, 'QSBackTop');
 		},
 		computed: {
 			isTabbar() {
@@ -115,9 +114,7 @@
 			}
 		},
 		methods: {
-			getRoot() {
-				return _this;
-			},
+			
 			setShow(bl) {
 				if(_this.isTabbar) _this.tabbarHeight = getH5TabbarHeight();
 				if (_this.showBl !== bl) _this.showBl = bl;

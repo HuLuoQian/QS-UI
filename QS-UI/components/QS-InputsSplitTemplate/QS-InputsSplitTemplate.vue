@@ -4,7 +4,7 @@
 	:class="getClass" 
 	:style="getStyle">
 		<text 
-		class="marginRight5 text_nowrap padding_10rpx_15rpx" 
+		class="marginRight5 text_nowrap padding-rpx_10_15" 
 		:class="[getTitleLayout, getWidthMode]"
 		:style="'flex:' + (titleFlex||1) + ';color:' + (titleColor||'#999') + ';' + (titleStyle||'')"
 		v-if="title&&!titleHide">

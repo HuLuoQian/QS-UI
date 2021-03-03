@@ -1,7 +1,7 @@
 <template>
 	<view class="QS">
-		<view class="padding_25rpx">
-			<view class="padding_25rpx bgColor_ffffff border-radius_10rpx">
+		<view class="padding-rpx_25">
+			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">演示示例</text>
 				</view>
@@ -29,7 +29,7 @@
 				<QS-Button setTimeoutClick @click="back(2)">关闭2个页面，reLaunch至首页</QS-Button>
 			</view>
 			<QS-P height="25rpx"></QS-P>
-			<view class="padding_25rpx bgColor_ffffff border-radius_10rpx">
+			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">详细说明</text>
 				</view>

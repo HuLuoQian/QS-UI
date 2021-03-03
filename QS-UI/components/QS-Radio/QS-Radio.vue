@@ -2,7 +2,7 @@
 	<QStemplate :compClass="compClass" :compStyle="compStyle" :title="title" :titleHide="titleHide" :fontSize="fontSize" :width="width" :titleFlex="titleFlex"
 	 :contentFlex="contentFlex" :titleStyle="titleStyle" :contentStyle="contentStyle" :required="required" :requiredSign="requiredSign"
 	 :layout="layout" :titleLayout="titleLayout" :itemDisabled="itemDisabled" :titleColor="titleColor">
-		<view class="flex_row_none_c width100 padding_10rpx_15rpx">
+		<view class="flex_row_none_c width100 padding-rpx_10_15">
 			<radio-group @change="radioChange" class="width100 wrap" :class="itemLayout_computed">
 				<label class="fontColor666666 flex_row_none_c marginRight_15rpx padding_10rpx" v-for="(radioItem, radioIndex) in itemArray||[]"
 				 :key="radioIndex">

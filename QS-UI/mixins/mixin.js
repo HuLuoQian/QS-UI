@@ -103,22 +103,25 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 		}
 
 		function onPageScroll(e) {
-			if(CONFIG.mixins.useBackTop) checkBackTopShow(e.scrollTop);
+			handleScroll(e.scrollTop);
 		}
 
-		function checkBackTopShow(scrollTop) {
+		function handleScroll(scrollTop) {
 			const pages = getCurrentPages();
-			// console.log(pages)
 			const page = pages[pages.length - 1];
-			// console.log(page)
-			let backTopVm = uni.$qs.pageRoots.getPage(page, 'QSBackTop');
-			if (!backTopVm) return;
-			backTopVm = backTopVm.getRoot();
-			if (!backTopVm) return;
-			if (scrollTop > CONFIG.backTopShowScrollTop) {
-				if (!backTopVm.showBl) backTopVm.show();
-			} else {
-				if (backTopVm.showBl) backTopVm.hide();
+			let backTopVm = uni.$qs.pageRoots.getPage(page, 'QS-BackTop');
+			if(backTopVm) {
+				// backTopVm = backTopVm.getRoot();
+				// if (backTopVm)
+				if (scrollTop > CONFIG.backTopShowScrollTop) {
+					if (!backTopVm.showBl) backTopVm.show();
+				} else {
+					if (backTopVm.showBl) backTopVm.hide();
+				}
+			}
+			let nodeNavVm = uni.$qs.pageRoots.getPage(page, 'QS-NodeNav');
+			if(nodeNavVm) {
+				nodeNavVm.setScrollTop(scrollTop);
 			}
 		}
 

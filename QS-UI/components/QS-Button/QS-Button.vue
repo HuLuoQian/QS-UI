@@ -13,7 +13,8 @@
 	:hover-class="hoverClass||'button-hover'"
 	@getuserinfo="getuserinfo($event)" 
 	@getphonenumber="getphonenumber($event)" 
-	@tap.prevent.stop="handleClick($event)">
+	@tap.prevent.stop="handleClick($event)"
+	v-show="getClass && getStyle">
 		<block v-if="preIconType">
 			<QSIcons ref="icon" :hasAnimation="!!iconAnimationType" :animationType="iconAnimationType" :type="preIconType"
 			 :color="preIconColor" :size="preIconSize"></QSIcons>

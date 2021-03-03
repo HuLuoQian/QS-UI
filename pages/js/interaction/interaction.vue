@@ -1,7 +1,7 @@
 <template>
 	<view class="QS">
-		<view class="padding_25rpx">
-			<view id="toast" class="padding_25rpx bgColor_ffffff border-radius_10rpx toast">
+		<view id="toast" class="padding-rpx_25 toast">
+			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">Toast</text>
 				</view>
@@ -14,8 +14,9 @@
 				<QS-P height="25rpx"></QS-P>
 				<text class="QS-text color_666666">toast只不过在原有的基础上多了title自动转String的操作, 并支持merge传参</text>
 			</view>
-			<QS-P height="25rpx"></QS-P>
-			<view id="modal" class="padding_25rpx bgColor_ffffff border-radius_10rpx modal">
+		</view>
+		<view id="modal" class="padding-rpx_25 modal">
+			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">Modal</text>
 				</view>
@@ -28,8 +29,9 @@
 				<QS-P height="25rpx"></QS-P>
 				<text class="QS-text color_666666">modal只不过在原有的基础上支持merge传参</text>
 			</view>
-			<QS-P height="25rpx"></QS-P>
-			<view id="actionSheet" class="padding_25rpx bgColor_ffffff border-radius_10rpx actionSheet">
+		</view>
+		<view id="actionSheet" class="padding-rpx_25 actionSheet">
+			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">ActionSheet</text>
 				</view>
@@ -53,8 +55,8 @@
 		data() {
 			return {
 				fixedTop: uni.$qs.getSys().uniappPlatform === 'H5'?'44px':0,
-				offsetTop: 'this',
-				scrollToOffsetTop: -(uni.$qs.rpxUnit2px('25rpx')) - uni.$qs.rpxUnit2px('77rpx'),
+				offsetTop: uni.$qs.rpxUnit2px('77rpx'),
+				scrollToOffsetTop: -uni.$qs.rpxUnit2px('77rpx'),
 				nodes: [ { node: '#toast', text: 'Toast' }, { node: '#modal', text: 'Modal' }, { node: '#actionSheet', text: 'ActionSheet' } ],
 				toastProp: [
 					{
@@ -190,12 +192,7 @@
 			}
 		},
 		onReady() {
-			this.$refs.QSNodeNav.init();
-		},
-		computed: {
-			nodeNavShow() {
-				return this.scrollTop > 50;
-			}
+			this.$refs.QSNodeNav.init({ vm: this });
 		},
 		methods: {
 			toast() {

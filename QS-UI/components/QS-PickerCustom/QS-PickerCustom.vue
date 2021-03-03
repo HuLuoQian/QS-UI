@@ -6,7 +6,7 @@
 			<view class="flex_row width100">
 						<block v-if="linkage">
 							<block v-if="linkageNum == 2">
-								<view class="flex_row_e_c padding_10rpx_15rpx Flex8" :class="nValue.data && nValue.data.steps1 && nValue.data.steps2?'':'fontColor666666'">
+								<view class="flex_row_e_c padding-rpx_10_15 Flex8" :class="nValue.data && nValue.data.steps1 && nValue.data.steps2?'':'fontColor666666'">
 									{{
 										nValue.data && nValue.data.steps1 && nValue.data.steps2?
 										(nValue.data.steps1[steps.step_1_value] + '-' + 
@@ -16,7 +16,7 @@
 								</view>
 							</block>
 							<block v-if="linkageNum == 3">
-								<view class="flex_row_e_c padding_10rpx_15rpx Flex8" :class="nValue.data && nValue.data.steps1 && nValue.data.steps2 && nValue.data.steps3?'':'fontColor666666'">
+								<view class="flex_row_e_c padding-rpx_10_15 Flex8" :class="nValue.data && nValue.data.steps1 && nValue.data.steps2 && nValue.data.steps3?'':'fontColor666666'">
 									{{
 										nValue.data && nValue.data.steps1 && nValue.data.steps2 && nValue.data.steps3?
 										(nValue.data.steps1[steps.step_1_value] + '-' + 
@@ -29,7 +29,7 @@
 						</block>
 						<block v-else>
 							<block v-if="nValue.data && nValue.data.length > 0">
-								<view class="flex_row_e_c padding_10rpx_15rpx Flex8">
+								<view class="flex_row_e_c padding-rpx_10_15 Flex8">
 									<view
 									v-for="(i, d) in nValue.data" 
 									:key="d">
@@ -51,7 +51,7 @@
 								</view>
 							</block>
 							<block v-else>
-								<view class="flex_row_e_c padding_10rpx_15rpx Flex8 fontColor666666">
+								<view class="flex_row_e_c padding-rpx_10_15 Flex8 fontColor666666">
 									{{placherhold}}
 								</view>
 							</block>

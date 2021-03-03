@@ -1,7 +1,7 @@
 <template>
 	<view class="QS">
-		<view class="padding_25rpx">
-			<view class="padding_25rpx bgColor_ffffff border-radius_10rpx">
+		<view class="padding-rpx_25">
+			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<QS-P height="100rpx"></QS-P>
 				<view class="flex_row_c_c">
 					<text>{{$qst('test.test')}}</text>

@@ -14,10 +14,10 @@
 		<view class="content">
 			<!-- <view class="flex_row">
 				<image class="title-image" :src="listItem.img" mode="aspectFill"></image>
-				<text class="QS-text mini-xx color_888888 margin-left_15rpx">帝壹城总服务台</text>
+				<text class="QS-text mini-xx color_888888 margin-left-rpx_15">帝壹城总服务台</text>
 			</view> -->
 			<text class="QS-text mini-x color_000000 weight_500">{{listItem.title || ''}}</text>
-			<view class="flex_row_between_c margin-top_15rpx">
+			<view class="flex_row_between_c margin-top-rpx_15">
 				<view class="flex_row_none_c">
 					<image class="image-dollar-small" src="/static/image/dollar.png" mode="aspectFill"></image>
 					<QS-P width="12rpx"></QS-P>

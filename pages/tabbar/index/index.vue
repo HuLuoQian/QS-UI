@@ -1,8 +1,8 @@
 <template>
 	<view class="QS">
-		<view class="flex_column padding_25rpx">
+		<view class="flex_column padding-rpx_25">
 			<view 
-			class="flex_row_between_c bgColor_ffffff padding_10rpx_25rpx border-radius_10rpx margin-bottom_20rpx active_f8f8f8" 
+			class="flex_row_between_c bgColor_ffffff padding-rpx_10_25 border-radius-rpx_10 margin-bottom-rpx_20 active_f8f8f8" 
 			v-for="(item, index) in JSRoutes" 
 			:key="item.url" 
 			@tap="QS_navigateTo(item.key)">

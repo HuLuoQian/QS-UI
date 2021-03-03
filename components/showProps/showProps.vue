@@ -8,7 +8,7 @@
 					<QS-P width="25rpx"></QS-P>
 					<view class="flex_column">
 						<view class="flex_row" v-for="(item, index) in prop" :key="index">
-							<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 margin-left_10rpx flex-wrap_wrap">{{item.value | filterValue}}</text></text></text>
+							<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 margin-left-rpx_10 flex-wrap_wrap">{{item.value | filterValue}}</text></text></text>
 						</view>
 					</view>
 				</view>
@@ -30,9 +30,9 @@
 		<view class="flex_row" v-if="showDes">
 			<view class="flex_column">
 				<QS-P height="25rpx"></QS-P>
-				<view class="flex_row" :class="index?'margin-top_15rpx':''" v-for="(item, index) in prop" :key="index">
+				<view class="flex_row" :class="index?'margin-top-rpx_15':''" v-for="(item, index) in prop" :key="index">
 					<QS-P width="25rpx">·</QS-P>
-					<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 flex-wrap_wrap margin-left_10rpx">{{item.des}}</text></text>
+					<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 flex-wrap_wrap margin-left-rpx_10">{{item.des}}</text></text>
 				</view>
 			</view>
 			<text class="QS-text color_666666 flex-wrap_wrap" decode>
