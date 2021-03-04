@@ -6,7 +6,8 @@
 			v-for="(item, index) in JSRoutes" 
 			:key="item.url" 
 			@tap="QS_navigateTo(item.key)">
-				<text class="QS-text">{{ $qst(`router.${item.key}`) }}</text>
+				<!-- <text class="QS-text">{{ $qst(`router.${item.key}`) }}</text> -->
+				<text class="QS-text">{{ item.key }}</text>
 				<QS-Icons type="arrow-right" size="30rpx"></QS-Icons>
 			</view>
 		</view>
