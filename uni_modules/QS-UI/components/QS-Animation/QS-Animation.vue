@@ -585,6 +585,6 @@
 
 <style scoped>
 	.QS-Animation {
-		display: inherit;
+		display: inline-block;
 	}
 </style>

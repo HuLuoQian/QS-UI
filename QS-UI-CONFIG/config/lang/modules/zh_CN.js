@@ -14,6 +14,9 @@ module.exports = {
 			request: '请求接口',
 			handleAddress: '地址解析',
 			countDown: '倒计时'
+		},
+		components: {
+			QSAnimation: 'QS-Animation 动画'
 		}
 	},
 	tabbar: {

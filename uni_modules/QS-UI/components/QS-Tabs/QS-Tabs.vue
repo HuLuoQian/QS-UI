@@ -9,7 +9,7 @@
 			width: width || '750rpx'
 		}">
 			<view class="scrollViewX-column">
-				<view class="scrollViewX-row">
+				<view class="scrollViewX-row" :class="getModeClass">
 					<view class="tab-item" :style="{
 						'padding-left': space,
 						'padding-right': space,
@@ -93,7 +93,7 @@
 			},
 			activeFontSize: {
 				type: [String, Number],
-				default: '32rpx'
+				default: '30rpx'
 			},
 			defFontSize: {
 				type: [String, Number],
@@ -151,6 +151,10 @@
 				type: [String, Number],
 				default: 0
 			},
+			mode: {
+				type: String,
+				default: 'scroll'
+			},
 			...props
 		},
 		data() {
@@ -169,6 +173,10 @@
 			}
 		},
 		computed: {
+			getModeClass() {
+				if(this.mode == 'scroll') return '';
+				if(this.mode == 'center') return 'center';
+			},
 			getScrollInto() {
 				return 'tabitem' + this.tabIndex;
 			},
@@ -247,6 +255,9 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
+		&.center{
+			justify-content: center;
+		}
 	}
 
 	.scrollViewX-container {

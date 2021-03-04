@@ -6,7 +6,7 @@
 					<text class="QS-text large-x weight">演示示例</text>
 				</view>
 				<QS-P height="25rpx"></QS-P>
-				<showProps :prop="prop" :showDes="false"></showProps>
+				<showProps :prop="prop" :showDes="false" :showAttributesText="false"></showProps>
 			</view>
 			<QS-P height="25rpx"></QS-P>
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">

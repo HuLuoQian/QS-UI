@@ -16,8 +16,14 @@ import {
 	isString,
 } from './baseUtil.js';
 import rpxUnit2px from './functions/rpxUnit2px.js';
-import {QSRequest} from './QS-Request.js';
-import { QSDebcKeys, QSDebounce, unlock } from './functions/QSDebounce.js';
+import {
+	QSRequest
+} from './QS-Request.js';
+import {
+	QSDebcKeys,
+	QSDebounce,
+	unlock
+} from './functions/QSDebounce.js';
 import showModal from './functions/showModal.js';
 import toast from './functions/toast.js';
 import navigateTo from './functions/navigateTo.js';
@@ -37,7 +43,9 @@ import previewImage from './functions/previewImage.js';
 import number2Duration from './functions/number2Duration.js';
 import getLocationQuery from './functions/getLocationQuery.js';
 import cent2dollar from './functions/cent2dollar.js';
-import { doPageDemand } from '@/QS-UI-CONFIG/js/pageDemand.js';
+import {
+	doPageDemand
+} from '@/QS-UI-CONFIG/js/pageDemand.js';
 import multiLang from './functions/multiLang.js';
 import dateFormat from './functions/dateFormat.js';
 import toLine from './functions/toLine.js';
@@ -54,30 +62,37 @@ import canvas from './QS-SharePoster/QS-SharePoster.js';
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
 
-class pageRootsObj{
+class pageRootsObj {
 	constructor(arg) {
-	    this.pageRoots = {};
+		this.pageRoots = {};
 	}
-	
+
 	setPageContext(vm, ContextType) {
+		if(ContextType === 'QS-Global-Canvas') {
+			this.pageRoots['QS-Global-Canvas'] = vm;
+			return;
+		}
 		const id = this.getParentId(vm);
-		if(!this.pageRoots[id]) this.pageRoots[id] = {};
+		if (!this.pageRoots[id]) this.pageRoots[id] = {};
 		this.pageRoots[id][ContextType] = vm;
 	}
-	
+
 	clearPageContext(vm, ContextType) {
 		const id = this.getParentId(vm);
-		if(this.pageRoots[id]) {
-			if(this.pageRoots[id][ContextType]) this.pageRoots[id][ContextType] = null;
-			if(!Object.keys(this.pageRoots[id]).length) this.pageRoots[id] = null;
+		if (this.pageRoots[id]) {
+			if (this.pageRoots[id][ContextType]) this.pageRoots[id][ContextType] = null;
+			if (!Object.keys(this.pageRoots[id]).length) this.pageRoots[id] = null;
 		}
 	}
-	
+
 	getPage(page, ContextType) {
+		if(ContextType === 'QS-Global-Canvas') {
+			return this.pageRoots['QS-Global-Canvas'];
+		}
 		const id = this.getId(page);
 		return this.pageRoots[id] && this.pageRoots[id][ContextType];
 	}
-	
+
 	getParentId(vm) {
 		// #ifdef H5
 		return vm.$parent.__page__.id;
@@ -86,7 +101,7 @@ class pageRootsObj{
 		return vm.$parent._uid;
 		// #endif
 	}
-	
+
 	getId(page) {
 		// #ifdef H5
 		return page.__page__.id;
@@ -97,6 +112,18 @@ class pageRootsObj{
 	}
 }
 
+const newpageRootsObj = new pageRootsObj();
+
+function globalDrawCanvas(obj) {
+	let globalCanvas = newpageRootsObj.getPage(null, 'QS-Global-Canvas');
+	console.log(globalCanvas);
+	if(!globalCanvas) return Promise.reject({ errMsg: '找不到全局canvas' });
+	globalCanvas = globalCanvas.getRoot();
+	if(!globalCanvas) return Promise.reject({ errMsg: '找不到全局canvas' });
+	console.log(globalCanvas);
+	return globalCanvas.draw(obj)
+}
+
 module.exports = {
 	...$qs,
 	config: CONFIG,
@@ -105,24 +132,24 @@ module.exports = {
 	QSDebcKeys,
 	QSDebounce,
 	unlock,
-	
+
 	showModal,
 	modal: showModal,
-	
+
 	toast,
 	showToast: toast,
-	
+
 	Pages,
-	
+
 	navigateTo,
 	go: navigateTo,
-	
+
 	navigateBack,
 	back: navigateBack,
-	
+
 	showActionSheet,
 	actionSheet: showActionSheet,
-	
+
 	isNumber,
 	isArray,
 	isArrayHasLen,
@@ -163,5 +190,6 @@ module.exports = {
 	countDown,
 	canvas,
 	uuid,
-	pageRoots: new pageRootsObj()
+	pageRoots: newpageRootsObj,
+	globalDrawCanvas
 }

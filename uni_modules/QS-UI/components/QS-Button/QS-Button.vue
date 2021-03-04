@@ -402,22 +402,19 @@
 
 		&.QS_Button-size-default {
 			font-size: 30rpx;
-			// height: 70rpx;
-			// line-height: 70rpx;
 			padding: 20rpx 30rpx;
+			display: block;
 		}
 
 		&.QS_Button-size-mini {
 			font-size: 26rpx;
-			// height: 65rpx;
-			// line-height: 65rpx;
-			padding: 10rpx 15rpx;
+			padding: 10rpx 25rpx;
+			display: inline-block;
 		}
 
 		&.QS_Button-size-large {
 			font-size: 34rpx;
 			height: 75rpx;
-			// line-height: 75rpx;
 			padding: 30rpx 60rpx;
 		}
 	}

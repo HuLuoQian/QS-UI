@@ -10,5 +10,5 @@ module.exports = function classObj2String (item) {
 	}else if(isObject(item)) {
 		return Object.keys(item).filter(ite=>!!item[ite]).join(' ');
 	}
-	return item;
+	return item || '';
 }

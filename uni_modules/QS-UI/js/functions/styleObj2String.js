@@ -10,5 +10,5 @@ module.exports = function styleObj2String (item) {
 	}else if(isObject(item)) {
 		return Object.keys(item).map(ite=>`${toLine(ite, '-')}: ${item[ite]}`).join(';') + ';';
 	}
-	return item;
+	return item || '';
 }

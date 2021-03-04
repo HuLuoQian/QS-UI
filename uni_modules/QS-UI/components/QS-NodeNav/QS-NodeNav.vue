@@ -175,6 +175,7 @@
 					ob.observe(item.node, res => {
 						// console.log(res)
 						if (res.intersectionRatio > 0) {
+							uni.vibrateShort();
 							this.current = i;
 						}
 					});

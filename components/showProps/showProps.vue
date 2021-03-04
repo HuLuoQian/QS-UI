@@ -1,22 +1,28 @@
 <template>
 	<view class="QS">
-		<view class="flex_row">
-			<QS-P width="25rpx"></QS-P>
-			<view class="flex_column">
-				{{wrap[0]}}
-				<view class="flex_row">
-					<QS-P width="25rpx"></QS-P>
-					<view class="flex_column">
-						<view class="flex_row" v-for="(item, index) in prop" :key="index">
-							<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 margin-left-rpx_10 flex-wrap_wrap">{{item.value | filterValue}}</text></text></text>
+		<view class="flex_column">
+			<block v-if="showAttributesText">
+				<text class="QS-text large-xx weight">Attributes</text>
+				<QS-P height="25rpx"></QS-P>
+			</block>
+			<view class="flex_row">
+				<QS-P width="25rpx"></QS-P>
+				<view class="flex_column">
+					{{wrap[0]}}
+					<view class="flex_row">
+						<QS-P width="25rpx"></QS-P>
+						<view class="flex_column">
+							<view class="flex_row" v-for="(item, index) in prop" :key="index">
+								<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 margin-left-rpx_10 flex-wrap_wrap">{{item.value | filterValue}}</text></text></text>
+							</view>
 						</view>
 					</view>
+					{{wrap[1]}}
 				</view>
-				{{wrap[1]}}
+				<!-- <text class="QS-text color_666666 flex-wrap_wrap" decode>
+					{{getProps}}
+				</text> -->
 			</view>
-			<!-- <text class="QS-text color_666666 flex-wrap_wrap" decode>
-				{{getProps}}
-			</text> -->
 		</view>
 		<view class="flex_row" v-if="merge">
 			<QS-P width="25rpx"></QS-P>
@@ -64,6 +70,10 @@
 			wrap: {
 				type: Array,
 				default: ()=>['{', '}']
+			},
+			showAttributesText: {
+				type: Boolean,
+				default: true
 			}
 		},
 		filters: {
@@ -95,7 +105,7 @@
 			getProps() {
 				const prop = this.prop;
 				return `
-					${this.type === 'component'?'props: ':''}{
+					{
 						${prop.map(item=>`&nbsp;&nbsp;&nbsp;&nbsp;${item.name}: ${item.value},`).join('\n')}
 					}
 					`

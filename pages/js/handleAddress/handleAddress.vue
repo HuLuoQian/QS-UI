@@ -5,7 +5,9 @@
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">演示示例</text>
 				</view>
-				<QS-P height="25rpx"></QS-P>
+				<QS-P height="45rpx"></QS-P>
+				<QS-Input title="需解析的地址" v-model="address"></QS-Input>
+				<QS-P height="45rpx"></QS-P>
 				<QS-Button @click="handleAddress">解析地址</QS-Button>
 			</view>
 			<QS-P height="25rpx"></QS-P>
@@ -24,9 +26,14 @@
 
 <script>
 	export default {
+		data() {
+			return {
+				address: '浙江省金华市婺城区'
+			}
+		},
 		methods: {
 			handleAddress() {
-				const res = `结果: ${JSON.stringify(uni.$qs.handleAddress('浙江省金华市婺城区'))}`;
+				const res = `结果: ${JSON.stringify(uni.$qs.handleAddress(this.address))}`;
 				console.log(res)
 				uni.$qs.modal({ content: res });
 			}

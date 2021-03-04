@@ -14,6 +14,9 @@ module.exports = {
 			request: 'Request',
 			handleAddress: 'Address Resolution',
 			countDown: 'Count Down'
+		},
+		components: {
+			QSAnimation: 'QS-Animation animation'
 		}
 	},
 	tabbar: {

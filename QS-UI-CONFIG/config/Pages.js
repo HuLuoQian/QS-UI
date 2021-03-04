@@ -50,7 +50,11 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 		}
 	},
 	components: {
-		
+		QSAnimation: {
+			name: '动画', //示例所需
+			url: '/pages/components/QS-Animation/QS-Animation',	//必须
+			key: 'components.QSAnimation', //示例所需
+		}
 	}
 }
 
