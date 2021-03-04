@@ -16,7 +16,8 @@ module.exports = {
 			countDown: '倒计时'
 		},
 		components: {
-			QSAnimation: 'QS-Animation 动画'
+			QSAnimation: 'QS-Animation 动画',
+			QSBackTop: 'QS-BackTop 返回顶部',
 		}
 	},
 	tabbar: {

@@ -16,7 +16,8 @@ module.exports = {
 			countDown: 'Count Down'
 		},
 		components: {
-			QSAnimation: 'QS-Animation animation'
+			QSAnimation: 'QS-Animation animation',
+			QSBackTop: 'QSBackTop backtop',
 		}
 	},
 	tabbar: {

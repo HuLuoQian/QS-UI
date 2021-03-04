@@ -109,6 +109,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/components/QS-BackTop/QS-BackTop",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
