@@ -42,7 +42,6 @@ import {
 import previewImage from './functions/previewImage.js';
 import number2Duration from './functions/number2Duration.js';
 import getLocationQuery from './functions/getLocationQuery.js';
-import cent2dollar from './functions/cent2dollar.js';
 import {
 	doPageDemand
 } from '@/QS-UI-CONFIG/js/pageDemand.js';
@@ -114,20 +113,9 @@ class pageRootsObj {
 
 const newpageRootsObj = new pageRootsObj();
 
-function globalDrawCanvas(obj) {
-	let globalCanvas = newpageRootsObj.getPage(null, 'QS-Global-Canvas');
-	console.log(globalCanvas);
-	if(!globalCanvas) return Promise.reject({ errMsg: '找不到全局canvas' });
-	globalCanvas = globalCanvas.getRoot();
-	if(!globalCanvas) return Promise.reject({ errMsg: '找不到全局canvas' });
-	console.log(globalCanvas);
-	return globalCanvas.draw(obj)
-}
-
 module.exports = {
 	...$qs,
 	config: CONFIG,
-	globalData: CONFIG.globalData,
 	STATUS: CONFIG.STATUS,
 	QSDebcKeys,
 	QSDebounce,
@@ -175,7 +163,6 @@ module.exports = {
 	VALUES,
 	previewImage,
 	number2Duration,
-	cent2dollar,
 	getLocationQuery,
 	doPageDemand,
 	multiLang,
@@ -191,5 +178,4 @@ module.exports = {
 	canvas,
 	uuid,
 	pageRoots: newpageRootsObj,
-	globalDrawCanvas
 }

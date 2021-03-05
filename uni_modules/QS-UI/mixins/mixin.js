@@ -10,12 +10,7 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 (function(m) {
 	if (CONFIG.mixins) {
 		const mixin = {};
-		const data = {};
 		const methods = {};
-		// data
-		if (CONFIG.mixins.useGlobalData) {
-			data[VALUES.mixinsName.QS_globalData] = globalData;
-		}
 
 		if (CONFIG.mixins.useOnPullDownRefresh) {
 			mixin.onPullDownRefresh = function() {
@@ -27,8 +22,8 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 							.then(() => {
 								const now = +new Date();
 								const diff = (now - oldTime);
-								if (diff < CONFIG.mixins.stopPullDownRefreshDuration) {
-									const time = CONFIG.mixins.stopPullDownRefreshDuration - diff;
+								if (diff < CONFIG.stopPullDownRefreshDuration) {
+									const time = CONFIG.stopPullDownRefreshDuration - diff;
 									setTimeout(() => {
 										uni.stopPullDownRefresh();
 									}, time)
@@ -65,16 +60,6 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 					console.log('没有找到$qs对象');
 					console.warn('没有找到$qs对象');
 				}
-			}
-		}
-
-		if (CONFIG.mixins.useGetNavbarQuery) {
-			methods[VALUES.mixinsName.getNavbarQuery] = function(refName = 'QSNavbar') {
-				if (this.$refs[refName] && isFn(this.$refs[refName].getPromiseQuery)) return this.$refs[refName].getPromiseQuery();
-				return Promise.resolve({
-					width: 0,
-					height: 0
-				});
 			}
 		}
 
@@ -130,9 +115,6 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 			mixin.onPageScroll = onPageScroll;
 		}
 		
-		mixin.data = function() {
-			return {...data};
-		}
 		mixin.methods = methods;
 		//exports
 		m['exports'] = mixin;

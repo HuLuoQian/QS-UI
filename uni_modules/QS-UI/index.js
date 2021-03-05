@@ -13,18 +13,17 @@ const install = (Vue, options = {}) => {
 		if(config.filters.useNumber2Duration) {
 			Vue.filter(QSUIJS.VALUES.filterName.number2Duration, QSUIJS.number2Duration)
 		}
-		if(config.filters.useCent2dollar) {
-			Vue.filter(QSUIJS.VALUES.filterName.cent2dollar, QSUIJS.cent2dollar)
-		}
-		if(config.multiLang && (config.multiLang.SETIN_FILTER || config.multiLang.SETIN_VUE)) {
-			QSUIJS.multiLang.setStore(store);
-			store.registerModule(QSUIJS.VALUES.modulesName.store.multiLang, QSUIJS.multiLang.storeModule);
-			if(config.multiLang.SETIN_FILTER) Vue.filter(QSUIJS.VALUES.multiLang.filterName, QSUIJS.multiLang.getLang)
-			if(config.multiLang.SETIN_VUE) {
-				Vue.prototype[QSUIJS.VALUES.multiLang.vuePrototypeName] = QSUIJS.multiLang.getLang;
-			}
+		
+	}
+	if(config.multiLang && (config.multiLang.SETIN_FILTER || config.multiLang.SETIN_VUE)) {
+		QSUIJS.multiLang.setStore(store);
+		store.registerModule(QSUIJS.VALUES.modulesName.store.multiLang, QSUIJS.multiLang.storeModule);
+		if(config.multiLang.SETIN_FILTER) Vue.filter(QSUIJS.VALUES.multiLang.filterName, QSUIJS.multiLang.getLang)
+		if(config.multiLang.SETIN_VUE) {
+			Vue.prototype[QSUIJS.VALUES.multiLang.vuePrototypeName] = QSUIJS.multiLang.getLang;
 		}
 	}
+	Vue.prototype['QS_globalData1'] = { a: '123' };
 	
 	
 	if(process.env.NODE_ENV !== 'development' && config.FORCE_PRODUCTION){

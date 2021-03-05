@@ -1,6 +1,7 @@
 <script>
 	export default {
 		globalData: {
+			a: '',
 			isLogin: false 	,//演示跳转页面拦截登录
 			requestLogin: false ,//演示访问接口拦截登录
 		},

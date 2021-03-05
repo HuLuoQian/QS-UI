@@ -50,6 +50,13 @@
 				]
 			}
 		},
+		watch:{
+			tabIndex() {
+				this.$nextTick(()=>{
+					this.startAni()
+				})
+			}
+		},
 		computed: {
 			getAnimationType() {
 				return this.tabs[this.tabIndex].value;

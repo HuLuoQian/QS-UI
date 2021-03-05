@@ -1,49 +1,33 @@
 <template>
-	<view 
-	class="QS-Tabs"
-	:class="getClass"
-	:style="getStyle">
-		<scroll-view ref="scrollViewX" id="scrollViewX" class="scrollViewX" :scroll="false" :scroll-x="true" :show-scrollbar="false"
-		 :scroll-into-view="getScrollInto" :style="{
+	<view class="QS-Tabs" :class="getClass" :style="getStyle">
+		<scroll-view 
+		ref="scrollViewX" 
+		id="scrollViewX" 
+		class="scrollViewX" 
+		:scroll="false" 
+		:scroll-x="true" 
+		:show-scrollbar="false"
+		:scroll-into-view="getScrollInto" 
+		:style="{
 			height: height,
-			width: width || '750rpx'
+			width: getTabsWidth + 'px'
 		}">
 			<view class="scrollViewX-column">
-				<view class="scrollViewX-row" :class="getModeClass">
+				<view ref="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
 					<view class="tab-item" :style="{
 						'padding-left': space,
 						'padding-right': space,
 					}" v-for="(tab,index) in nTabs"
 					 :key="index" :id="'tabitem'+index" :ref="'tabitem'+index" :data-current="index" @click="ontabtap">
 						<view class="rel-item">
-							<temp 
-							:isActive="tabIndex==index"
-							:tab="tab"
-							:height="height" 
-							:fontSize="tabIndex==index ? activeFontSize: defFontSize"
-							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
-							:color="tabIndex==index ? activeColor: defColor"
-							:activeColor="activeColor"
-							:defColor="defColor"
-							:props="nprops"
-							:index="index"
-							:tabsLen="nTabs.length"
-							:type="type"></temp>
+							<temp :isActive="tabIndex==index" :tab="tab" :height="height" :fontSize="tabIndex==index ? activeFontSize: defFontSize"
+							 :fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''" :color="tabIndex==index ? activeColor: defColor"
+							 :activeColor="activeColor" :defColor="defColor" :props="nprops" :index="index" :tabsLen="nTabs.length" :type="type"></temp>
 						</view>
 						<view class="abs-item">
-							<temp 
-							:isActive="tabIndex==index"
-							:tab="tab"
-							:height="height" 
-							:fontSize="tabIndex==index ? activeFontSize: defFontSize"
-							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
-							:color="tabIndex==index ? activeColor: defColor"
-							:activeColor="activeColor"
-							:defColor="defColor"
-							:props="nprops"
-							:index="index"
-							:tabsLen="nTabs.length"
-							:type="type"></temp>
+							<temp :isActive="tabIndex==index" :tab="tab" :height="height" :fontSize="tabIndex==index ? activeFontSize: defFontSize"
+							 :fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''" :color="tabIndex==index ? activeColor: defColor"
+							 :activeColor="activeColor" :defColor="defColor" :props="nprops" :index="index" :tabsLen="nTabs.length" :type="type"></temp>
 						</view>
 					</view>
 				</view>
@@ -59,14 +43,19 @@
 	import temp from '@/QS-UI-CONFIG/components/QS-Tabs/separate/separate.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Tabs/js/props.js';
+	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
 	// #endif
-	const defProps = { nameField: 'name' };
+	const defProps = {
+		nameField: 'name'
+	};
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
-		components: {temp},
+		components: {
+			temp
+		},
 		props: {
 			// #ifdef MP-ALIPAY
 			...QSComponentMixinRes.props,
@@ -117,7 +106,10 @@
 			},
 			props: {
 				type: Object,
-				default: ()=>{ return {...defProps} }
+				default: () => {
+					return { ...defProps
+					}
+				}
 			},
 			type: {
 				type: String,
@@ -141,7 +133,7 @@
 			},
 			zIndex: {
 				type: [String, Number],
-				default: 999 
+				default: 999
 			},
 			observeSticky: {
 				type: [String, Boolean],
@@ -153,7 +145,7 @@
 			},
 			mode: {
 				type: String,
-				default: 'scroll'
+				default: 'auto'
 			},
 			...props
 		},
@@ -161,49 +153,111 @@
 			return {
 				nTabs: [],
 				scrollInto: '',
-				nprops: { ...defProps, ...this.props }
+				nprops: { 
+					...defProps,
+					...this.props
+				},
+				containerWidth: 0
 			}
 		},
 		watch: {
 			tabs(n) {
 				this.setTabs(n);
+				this.$nextTick(() => {
+					this.getContainerWidth()
+				})
 			},
 			props(n) {
-				this.nprops = { ...defProps, ...this.props };
+				this.nprops = { 
+					...defProps,
+					...this.props
+				};
 			}
 		},
 		computed: {
+			getTabsWidth() {
+				return rpxUnit2px(this.width || '750rpx');
+			},
 			getModeClass() {
-				if(this.mode == 'scroll') return '';
-				if(this.mode == 'center') return 'center';
+				if(this.mode && this.mode !== 'auto') return this.mode;
+				if (this.containerWidth > this.getTabsWidth) return '';
+				if (this.mode == 'scroll') return '';
+				if (this.mode == 'center') return 'center';
 			},
 			getScrollInto() {
 				return 'tabitem' + this.tabIndex;
 			},
 			QS_nCompStyle() {
 				const obj = {};
-				if(this.backgroundColor) obj.backgroundColor = this.backgroundColor;
-				if(this.position) obj.position = this.position;
-				if(this.top) obj.top = this.top;
-				if(this.bottom) obj.bottom = this.bottom;
-				if(this.zIndex) obj.zIndex = this.zIndex;
-				if(this.width) obj.width = this.width;
+				if (this.backgroundColor) obj.backgroundColor = this.backgroundColor;
+				if (this.position) obj.position = this.position;
+				if (this.top) obj.top = this.top;
+				if (this.bottom) obj.bottom = this.bottom;
+				if (this.zIndex) obj.zIndex = this.zIndex;
+				if (this.width) obj.width = this.width;
 				return obj;
 			}
 		},
 		created() {
 			this.setTabs(this.tabs);
 		},
+		mounted() {
+			this.getContainerWidth();
+		},
 		methods: {
 			setTabs(arr) {
 				this.nTabs = arr;
 			},
 			ontabtap(e) {
-				this.$emit('click', e.target.dataset.current || e.currentTarget.dataset.current)
+				this.$emit('click', e.target.dataset.current === undefined?e.currentTarget.dataset.current:e.target.dataset.current)
 			},
-			getQuery(cb) {
+			getContainerWidth() {
 				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['scrollViewX'], option => {
+				const promiseArr = [];
+				for (let i = 0; i < this.tabs.length; i++) {
+					promiseArr.push(new Promise((rs, rj)=>{
+						dom.getComponentRect(this.$refs[`tabitem${i}`], option => {
+							rs(option.size);
+						})
+					}))
+				}
+				
+				Promise.all(promiseArr)
+					.then(res=>{
+						this.tabsInfo = res;
+						this.containerWidth = res.reduce((pre, cur, obj) => {
+							return cur.width + pre;
+						}, 0);
+					})
+					.catch(err=>{
+						conosle.log('获取tab-item布局信息失败')
+					})
+					
+				// #endif
+				// #ifndef APP-NVUE
+				let view;
+				// #ifndef MP-BAIDU || MP-ALIPAY
+				view = uni.createSelectorQuery().in(this);
+				// #endif
+				// #ifdef MP-BAIDU || MP-ALIPAY
+				view = uni.createSelectorQuery();
+				// #endif
+				for (let i = 0; i < this.tabs.length; i++) {
+					view.select(`#tabitem${i}`).fields({
+						size: true
+					})
+				}
+				view.exec(res => {
+					this.tabsInfo = res;
+					this.containerWidth = res.reduce((pre, cur, obj) => {
+						return cur.width + pre;
+					}, 0);
+				})
+				// #endif
+			},
+			getQuery(cb, el = 'scrollViewX') {
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs[el], option => {
 					// console.log('获取tabs布局信息成功: ' + JSON.stringify(option))
 					if (cb && typeof cb === 'function') cb(option.size)
 				})
@@ -216,7 +270,7 @@
 				// #ifdef MP-BAIDU || MP-ALIPAY
 				view = uni.createSelectorQuery();
 				// #endif
-				view.select('.scrollViewX').fields({
+				view.select(`.${el}`).fields({
 					size: true
 				})
 				view.exec(res => {
@@ -231,7 +285,7 @@
 
 <style lang="scss" scoped>
 	.QS-Tabs {
-		// height: 44px;
+		
 	}
 
 	.scrollViewX {
@@ -240,7 +294,8 @@
 		/* #endif */
 		flex-direction: row;
 	}
-	.scrollViewX-column{
+
+	.scrollViewX-column {
 		/* #ifndef APP-NVUE */
 		width: 100%;
 		height: 100%;
@@ -248,14 +303,16 @@
 		/* #endif */
 		flex-direction: column;
 	}
-	.scrollViewX-row{
+
+	.scrollViewX-row {
 		/* #ifndef APP-NVUE */
 		width: 100%;
 		height: 100%;
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		&.center{
+
+		&.center {
 			justify-content: center;
 		}
 	}
@@ -280,11 +337,13 @@
 		white-space: nowrap;
 		/* #endif */
 	}
+
 	.rel-item {
 		opacity: 0;
 		pointer-events: none;
 	}
-	.abs-item{
+
+	.abs-item {
 		position: absolute;
 		top: 0;
 		left: 0;
