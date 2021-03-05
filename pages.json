@@ -118,6 +118,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/components/QS-Badge/QS-Badge",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

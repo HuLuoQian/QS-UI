@@ -21,12 +21,6 @@
 </template>
 
 <script>
-	/*
-	offsetBottom: {
-		type: [String, Number],
-		default: 0
-	},
-	*/
 	export default {
 		data() {
 			return {

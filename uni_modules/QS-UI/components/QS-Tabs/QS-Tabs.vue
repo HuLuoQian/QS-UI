@@ -10,7 +10,7 @@
 		:scroll-into-view="getScrollInto" 
 		:style="{
 			height: height,
-			width: getTabsWidth + 'px'
+			width: width
 		}">
 			<view class="scrollViewX-column">
 				<view ref="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
@@ -157,7 +157,8 @@
 					...defProps,
 					...this.props
 				},
-				containerWidth: 0
+				containerWidth: 0,
+				tabsWidth: 0
 			}
 		},
 		watch: {
@@ -165,6 +166,11 @@
 				this.setTabs(n);
 				this.$nextTick(() => {
 					this.getContainerWidth()
+				})
+			},
+			width() {
+				this.$nextTick(() => {
+					this.getQuery()
 				})
 			},
 			props(n) {
@@ -175,14 +181,14 @@
 			}
 		},
 		computed: {
-			getTabsWidth() {
-				return rpxUnit2px(this.width || '750rpx');
-			},
+			// getTabsWidth() {
+			// 	return rpxUnit2px(this.width || '750rpx');
+			// },
 			getModeClass() {
 				if(this.mode && this.mode !== 'auto') return this.mode;
-				if (this.containerWidth > this.getTabsWidth) return '';
+				if (this.containerWidth > this.tabsWidth) return '';
 				if (this.mode == 'scroll') return '';
-				if (this.mode == 'center') return 'center';
+				return 'center';
 			},
 			getScrollInto() {
 				return 'tabitem' + this.tabIndex;
@@ -203,6 +209,7 @@
 		},
 		mounted() {
 			this.getContainerWidth();
+			this.getQuery();
 		},
 		methods: {
 			setTabs(arr) {
@@ -255,9 +262,9 @@
 				})
 				// #endif
 			},
-			getQuery(cb, el = 'scrollViewX') {
+			getQuery(cb) {
 				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs[el], option => {
+				dom.getComponentRect(this.$refs['scrollViewX'], option => {
 					// console.log('获取tabs布局信息成功: ' + JSON.stringify(option))
 					if (cb && typeof cb === 'function') cb(option.size)
 				})
@@ -270,11 +277,12 @@
 				// #ifdef MP-BAIDU || MP-ALIPAY
 				view = uni.createSelectorQuery();
 				// #endif
-				view.select(`.${el}`).fields({
+				view.select(`.scrollViewX`).fields({
 					size: true
 				})
 				view.exec(res => {
 					console.log('获取tabs布局信息成功: ' + JSON.stringify(res))
+					this.tabsWidth = res[0].width;
 					if (cb && typeof cb === 'function') cb(res[0])
 				})
 				// #endif

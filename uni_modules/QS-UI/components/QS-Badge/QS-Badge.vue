@@ -45,10 +45,6 @@
 				type: String,
 				default: '#f1505c'
 			},
-			backgroundImage: {
-				type: String,
-				default: ''
-			},
 			size: {
 				type: [String, Number],
 				default: 22
@@ -61,7 +57,7 @@
 		},
 		computed: {
 			QS_nCompStyle() {
-				const stlye =  {
+				const style =  {
 					width: this.getWidth,
 					height: this.getSize * 1.6 + this.cssUnit,
 					lineHeight: this.getSize * 1.6 + this.cssUnit,
@@ -72,8 +68,7 @@
 					left: this.left,
 					right: this.right,
 					color: this.color,
-					backgroundColor: this.backgroundImage ? '' : this.backgroundColor,
-					backgroundImage: this.backgroundImage,
+					backgroundColor: this.backgroundColor,
 					fontSize: this.getSize + this.cssUnit,
 					padding: '0' + this.cssUnit + ' ' + this.getSize * .5 + this.cssUnit
 				};

@@ -18,6 +18,7 @@ module.exports = {
 		components: {
 			QSAnimation: 'QS-Animation 动画',
 			QSBackTop: 'QS-BackTop 返回顶部',
+			QSBadge: 'QS-Badge 标记'
 		}
 	},
 	tabbar: {
