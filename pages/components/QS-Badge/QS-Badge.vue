@@ -6,7 +6,7 @@
 					<text class="QS-text large-xx weight">演示示例</text>
 				</view>
 				<QS-P height="80rpx"></QS-P>
-				<view class="flex_row_c_c">
+				<view class="flex_row_c_c" style="height: 50px;">
 					<QS-Badge 
 					text="99+" 
 					:color="colors[colorTabIndex].name"
@@ -15,35 +15,14 @@
 					@click="click"></QS-Badge>
 				</view>
 				<QS-P height="80rpx"></QS-P>
-				<view class="flex_row_none_c">
-					<view style="width: 200rpx;">
-						<text class="QS-text weight">字体颜色</text>
-					</view>
-					<QS-P></QS-P>
-					<view class="flex_1">
-						<QS-Tabs mode="scroll" height="66rpx" :tabs="colors" :tabIndex="colorTabIndex" width="450rpx" @click="colorTabIndex = $event"></QS-Tabs>
-					</view>
-				</view>
+				<titleLeftLine title="字体颜色"></titleLeftLine>
+				<QS-Tabs mode="scroll" height="66rpx" :tabs="colors" :tabIndex="colorTabIndex" width="700rpx" @click="colorTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
-				<view class="flex_row_none_c">
-					<view style="width: 200rpx;">
-						<text class="QS-text weight">背景颜色</text>
-					</view>
-					<QS-P></QS-P>
-					<view class="flex_1">
-						<QS-Tabs mode="scroll" height="66rpx" :tabs="bgColors" :tabIndex="bgColorTabIndex" width="450rpx" @click="bgColorTabIndex = $event"></QS-Tabs>
-					</view>
-				</view>
+				<titleLeftLine title="背景颜色"></titleLeftLine>
+				<QS-Tabs mode="scroll" height="66rpx" :tabs="bgColors" :tabIndex="bgColorTabIndex" width="700rpx" @click="bgColorTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
-				<view class="flex_row_none_c">
-					<view style="width: 200rpx;">
-						<text class="QS-text weight">大小</text>
-					</view>
-					<QS-P></QS-P>
-					<view class="flex_1">
-						<QS-Tabs mode="scroll" height="66rpx" :tabs="sizes" :tabIndex="sizeTabIndex" width="450rpx" @click="sizeTabIndex = $event"></QS-Tabs>
-					</view>
-				</view>
+				<titleLeftLine title="大小"></titleLeftLine>
+				<QS-Tabs mode="scroll" height="66rpx" :tabs="sizes" :tabIndex="sizeTabIndex" width="700rpx" @click="sizeTabIndex = $event"></QS-Tabs>
 			</view>
 			<QS-P></QS-P>
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">

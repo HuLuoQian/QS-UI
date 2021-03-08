@@ -1,5 +1,5 @@
 /**
- * 自研多语言方案，借助 vuex 实现
+ * 借助 vuex 实现的多语言
  */
 import getField from './getField.js';
 import CONFIG from '@/QS-UI-CONFIG/config/index.js';

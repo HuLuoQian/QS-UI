@@ -18,7 +18,8 @@ module.exports = {
 		components: {
 			QSAnimation: 'QS-Animation Animation',
 			QSBackTop: 'QSBackTop Backtop',
-			QSBadge: 'QSBadge Badge'
+			QSBadge: 'QSBadge Badge',
+			QSButton: 'QSButton Button'
 		}
 	},
 	tabbar: {

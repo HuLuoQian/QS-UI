@@ -56,14 +56,19 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			key: 'components.QSAnimation', //示例所需
 		},
 		QSBackTop: {
-			name: '动画', //示例所需
+			name: '返回顶部', //示例所需
 			url: '/pages/components/QS-BackTop/QS-BackTop',	//必须
 			key: 'components.QSBackTop', //示例所需
 		},
 		QSBadge: {
-			name: '动画', //示例所需
+			name: '标记', //示例所需
 			url: '/pages/components/QS-Badge/QS-Badge',	//必须
 			key: 'components.QSBadge', //示例所需
+		},
+		QSButton: {
+			name: '按钮', //示例所需
+			url: '/pages/components/QS-Button/QS-Button',	//必须
+			key: 'components.QSButton', //示例所需
 		}
 	}
 }
