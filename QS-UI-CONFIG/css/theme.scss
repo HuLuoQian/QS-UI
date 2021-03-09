@@ -1,26 +1,29 @@
-$qs-color-main: #BC9D6F;
+$qs-color-primary: #BC9D6F;
 
 $qs-btn-type-default: #f8f8f8;
+$qs-btn-type-default-color: #000000;
+$qs-btn-type-default-color-plain: #000000;
 $qs-btn-type-default-disabled: #F2F2F2;
-$qs-btn-type-default-plain: rgba(255,255,255,0);
 
-$qs-btn-type-main: #BB9D6F;
-$qs-btn-type-main-plain: rgba(255,255,255,0);
-$qs-btn-type-main-disabled: #E8D9C2;
+$qs-btn-type-primary: #BC9D6F;
+$qs-btn-type-primary-color: #ffffff;
+$qs-btn-type-primary-color-plain: #BC9D6F;
+$qs-btn-type-primary-disabled: #ecc48c;
 
-$qs-btn-type-primary: #4ABC00;
-$qs-btn-type-primary-disabled: #4ABC00;
-$qs-btn-type-primary-plain: rgba(255,255,255,0);
+$qs-btn-type-success: #67C23A;
+$qs-btn-type-success-color: #ffffff;
+$qs-btn-type-success-color-plain: #67C23A;
+$qs-btn-type-success-disabled: #b3e19d;
 
-$qs-btn-type-warning: #CC2E41;
-$qs-btn-type-warning-disabled: #CC2E41;
-$qs-btn-type-warning-plain: rgba(255,255,255,0);
+$qs-btn-type-warning: #FFBF00;
+$qs-btn-type-warning-color: #ffffff;
+$qs-btn-type-warning-color-plain: #FFBF00;
+$qs-btn-type-warning-disabled: #f3d19e;
 
-$qs-color-text-x: #333333;
-$qs-color-text-xx: #666666;
-$qs-color-text-xxx: #999999;
-$qs-color-text-xxxx: #BBBBBB;
-
+$qs-btn-type-danger: #FF6010;
+$qs-btn-type-danger-color: #ffffff;
+$qs-btn-type-danger-color-plain: #FF6010;
+$qs-btn-type-danger-disabled: #fab6b6;
 
 $qs-size-text-small-xxx: 22rpx;
 $qs-size-text-small-xx: 24rpx;
@@ -35,5 +38,5 @@ $qs-size-text-large-xxx: 50rpx;
 $qs-padding-common: 25rpx;
 
 :export {
-	theme: $qs-color-main
+	theme: $qs-color-primary
 }

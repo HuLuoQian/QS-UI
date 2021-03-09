@@ -83,10 +83,6 @@ picker-view-column {
 		height: 100%;
 	}
 	
-	.active_f8f8f8:active{
-		background-color: #f8f8f8;
-	}
-	
 	.text_overflow_ellipsis {
 		/* #ifndef APP-NVUE */
 		overflow: hidden;
@@ -527,6 +523,9 @@ picker-view-column {
 	.bgColor_f7f7f7{
 		background-color: #f7f7f7;
 	}
+	.bgColor_f8f8f8{
+		background-color: #f8f8f8;
+	}
 	.bgColor_eeeeee{
 		background-color: #EEEEEE;
 	}
@@ -537,9 +536,6 @@ picker-view-column {
 		background-color: #FFF9DF;
 	}
 	
-	.color_main{
-		color: $qs-color-main;
-	}
 	.color_ffffff {
 		color: #FFFFFF;
 	}
@@ -554,18 +550,6 @@ picker-view-column {
 	}
 	.color_888888{
 		color: #888888;
-	}
-	.color_gray {
-		color: $qs-color-text-x;
-	}
-	.color_gray-x {
-		color: $qs-color-text-xx;
-	}
-	.color_gray-xx {
-		color: $qs-color-text-xxx;
-	}
-	.color_gray-xxx {
-		color: $qs-color-text-xxxx;
 	}
 	.color_FFDEA0 {
 		color: #FFDEA0;

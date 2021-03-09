@@ -8,9 +8,9 @@
 	:plain="plain" 
 	:form-type="formType"
 	:open-type="openType" 
-	:hover-start-time="hoverStartTime||20" 
-	:hover-stay-time="hoverStayTime||70" 
-	:hover-class="hoverClass||'button-hover'"
+	:hover-start-time="hoverStartTime" 
+	:hover-stay-time="hoverStayTime" 
+	:hover-class="hoverClass"
 	@getuserinfo="getuserinfo($event)" 
 	@getphonenumber="getphonenumber($event)" 
 	@tap.prevent.stop="handleClick($event)"
@@ -41,6 +41,7 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
+	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	const QSComponentMixinRes = QSComponentMixin();
 	var QSButton_preId = 0;
 	export default {
@@ -200,15 +201,23 @@
 				if (this.border) style.border = this.border;
 				if (this.color) style.color = this.color;
 				if (this.fontWeight) style.fontWeight = this.fontWeight;
+				if (this.size === 'mini') {
+					const lineHeight = this.height || ((rpxUnit2px(this.fontSize || '26rpx') + 10) + 'px');
+					style.height = lineHeight;
+					style.lineHeight = lineHeight;
+					style.paddingTop = 0;
+					style.paddingBottom = 0;
+				}
 				return style;
 			}
 		},
 		methods: {
 			handleClick(e) {
 				this.active = false;
-				if (this.disabled && this.iconAnimationType) {
-					this.$refs.icon.shook();
-					this.$emit('disabledClick');
+				if (this.disabled) {
+					if(this.iconAnimationType) {
+						this.$refs.icon.shook();
+					}
 					return;
 				}
 				if (this.iconAnimationType) this.$refs.icon[this.iconAnimationType]();
@@ -312,12 +321,12 @@
 </script>
 
 <style scoped lang="scss">
+	@import "@/QS-UI-CONFIG/css/theme.scss";
 	.QS_Button {
 		position: relative;
 		overflow: hidden;
 		border: none;
 		margin: 0;
-		// padding: 15rpx 20rpx;
 		font-size: 30rpx;
 		display: flex;
 		flex-direction: row;
@@ -337,73 +346,82 @@
 		&--border {
 			border: 1px solid #ffffff;
 		}
+		
+		
 		&--default {
+			color: $qs-btn-type-default-color;
 			background-color: $qs-btn-type-default;
 		}
-
-		&--main {
-			color: #FFFFFF;
-			background-color: $qs-btn-type-main;
-		}
-
-		&--primary {
-			color: #FFFFFF;
-			background-color: $qs-btn-type-primary;
-		}
-
-		&--warning {
-			color: #FFFFFF;
-			background-color: $qs-btn-type-warning;
-		}
-
 		&--default--disabled {
-			color: #ffffff;
+			color: $qs-btn-type-default-color;
 			background-color: $qs-btn-type-default-disabled;
 		}
-
-		&--main--disabled {
-			color: #ffffff;
-			background-color: $qs-btn-type-main-disabled;
-		}
-
-		&--primary--disabled {
-			color: #ffffff;
-			background-color: $qs-btn-type-primary-disabled;
-		}
-
-		&--warning--disabled {
-			color: #ffffff;
-			background-color: $qs-btn-type-warning-disabled;
-		}
-
 		&--default--plain {
-			color: $qs-btn-type-default;
-			background-color: $qs-btn-type-default-plain;
+			color: $qs-btn-type-default-color-plain;
+			background-color: rgba(255,255,255,0);
 			border-color: $qs-btn-type-default;
 		}
 
-		&--main--plain {
-			color: $qs-btn-type-main;
-			background-color: $qs-btn-type-default-plain;
-			border-color: $qs-btn-type-main;
+		&--primary {
+			color: $qs-btn-type-primary-color;
+			background-color: $qs-btn-type-primary;
 		}
-
+		&--primary--disabled {
+			color: $qs-btn-type-primary-color;
+			background-color: $qs-btn-type-primary-disabled;
+		}
 		&--primary--plain {
-			color: $qs-btn-type-primary;
-			background-color: $qs-btn-type-default-plain;
+			color: $qs-btn-type-primary-color-plain;
+			background-color: rgba(255,255,255,0);
 			border-color: $qs-btn-type-primary;
 		}
 
+		&--success {
+			color: $qs-btn-type-success-color;
+			background-color: $qs-btn-type-success;
+		}
+		&--success--disabled {
+			color: $qs-btn-type-success-color;
+			background-color: $qs-btn-type-success-disabled;
+		}
+		&--success--plain {
+			color: $qs-btn-type-success-color-plain;
+			background-color: rgba(255,255,255,0);
+			border-color: $qs-btn-type-success;
+		}
+
+		&--warning {
+			color: $qs-btn-type-warning-color;
+			background-color: $qs-btn-type-warning;
+		}
+		&--warning--disabled {
+			color: $qs-btn-type-warning-color;
+			background-color: $qs-btn-type-warning-disabled;
+		}
 		&--warning--plain {
-			color: $qs-btn-type-main;
-			background-color: $qs-btn-type-default-plain;
-			border-color: $qs-btn-type-main;
+			color: $qs-btn-type-warning-color-plain;
+			background-color: rgba(255,255,255,0);
+			border-color: $qs-btn-type-warning;
+		}
+		
+		&--danger {
+			color: $qs-btn-type-danger-color;
+			background-color: $qs-btn-type-danger;
+		}
+		&--danger--disabled {
+			color: $qs-btn-type-danger-color;
+			background-color: $qs-btn-type-danger-disabled;
+		}
+		&--danger--plain {
+			color: $qs-btn-type-danger-color-plain;
+			background-color: rgba(255,255,255,0);
+			border-color: $qs-btn-type-danger;
 		}
 
 		&.QS_Button-size-default {
 			font-size: 30rpx;
 			padding: 20rpx 30rpx;
-			display: block;
+			// display: block;
 		}
 
 		&.QS_Button-size-mini {

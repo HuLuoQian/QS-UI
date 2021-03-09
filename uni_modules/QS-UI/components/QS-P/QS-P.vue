@@ -16,11 +16,11 @@
 			// #endif
 			height: {
 				type: [Number, String],
-				default: 'common'
+				default: '25rpx'
 			},
 			width: {
 				type: [Number, String],
-				default: 'common'
+				default: '25rpx'
 			},
 			size: {
 				type: [Number, String],
@@ -50,19 +50,15 @@
 			},
 			getHeight() {
 				if(this.size) return this.size;
-				return this.height === 'common' ? '' : this.height;
+				return this.height;
 			},
 			getWidth() {
 				if(this.size) return this.size;
-				return this.width === 'common' ? '' : this.width;
+				return this.width;
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.QS-P {
-		height: $qs-padding-common;
-		width: $qs-padding-common;
-	}
 </style>
