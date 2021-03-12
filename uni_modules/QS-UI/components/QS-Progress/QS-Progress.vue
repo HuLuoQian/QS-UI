@@ -41,11 +41,10 @@
 </template>
 
 <script>
-	// import { QSProgressCompoentsObjs } from './QS-Progress.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import props from '@/QS-UI-CONFIG/components/QS-Progress/js/props.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Progress' });
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
 	const animation = weex.requireModule('animation');

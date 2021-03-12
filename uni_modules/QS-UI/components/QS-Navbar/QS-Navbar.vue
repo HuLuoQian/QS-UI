@@ -85,10 +85,10 @@
 <script>
 	// #ifndef MP-ALIPAY
 	// import popTip from '@/components/chunLei-popups/chunLei-popups.vue'
-	import props from '@/QS-UI-CONFIG/components/QS_Navbar/js/props.js';
+	import props from '@/QS-UI-CONFIG/components/QS-Navbar/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Navbar' });
 	const statusBarHeight = uni.getSystemInfoSync().statusBarHeight
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');

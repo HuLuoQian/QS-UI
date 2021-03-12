@@ -41,7 +41,7 @@
 	import QSInputsPickerMixin from '../../js/QS-inputs-split/QSInputsPickerMixin.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-PickerDate/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-PickerDate' });
 	const QSInputsPickerMixinRes = QSInputsPickerMixin();
 
 	export default {

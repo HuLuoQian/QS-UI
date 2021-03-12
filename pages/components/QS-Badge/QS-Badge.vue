@@ -16,13 +16,13 @@
 				</view>
 				<QS-P height="80rpx"></QS-P>
 				<titleLeftLine title="字体颜色"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="colors" :tabIndex="colorTabIndex" width="700rpx" @click="colorTabIndex = $event"></QS-Tabs>
+				<QS-Tabs mode="scroll" :tabs="colors" :tabIndex="colorTabIndex" width="650rpx" @click="colorTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="背景颜色"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="bgColors" :tabIndex="bgColorTabIndex" width="700rpx" @click="bgColorTabIndex = $event"></QS-Tabs>
+				<QS-Tabs mode="scroll" :tabs="bgColors" :tabIndex="bgColorTabIndex" width="650rpx" @click="bgColorTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="大小"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="sizes" :tabIndex="sizeTabIndex" width="700rpx" @click="sizeTabIndex = $event"></QS-Tabs>
+				<QS-Tabs mode="scroll" :tabs="sizes" :tabIndex="sizeTabIndex" width="650rpx" @click="sizeTabIndex = $event"></QS-Tabs>
 			</view>
 			<QS-P></QS-P>
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">

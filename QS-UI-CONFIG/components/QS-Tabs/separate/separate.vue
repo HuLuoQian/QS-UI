@@ -1,10 +1,28 @@
 <template>
 	<view>
 		<block v-if="type==='columnBetweenText'">
-			<columnBetweenText :isActive="String(isActive)==='true'" :tab="tab" :height="height" :fontSize="fontSize" :fontWeight="fontWeight" :color="color" :props="props" :type="type"></columnBetweenText>
+			<columnBetweenText 
+			:isActive="String(isActive)==='true'" 
+			:tab="tab" 
+			:height="height" 
+			:fontSize="fontSize" 
+			:fontWeight="fontWeight" 
+			:color="color" 
+			:props="props" 
+			:type="type"
+			:activeColor="activeColor"></columnBetweenText>
 		</block>
 		<block v-else>
-			<def :isActive="String(isActive)==='true'" :tab="tab" :height="height" :fontSize="fontSize" :fontWeight="fontWeight" :color="color" :props="props" :type="type"></def>
+			<def 
+			:isActive="String(isActive)==='true'" 
+			:tab="tab" 
+			:height="height" 
+			:fontSize="fontSize" 
+			:fontWeight="fontWeight" 
+			:color="color" 
+			:props="props" 
+			:type="type"
+			:activeColor="activeColor"></def>
 		</block>
 	</view>
 </template>

@@ -98,7 +98,7 @@
 	import QSInputsPickerMixin from '../../js/QS-inputs-split/QSInputsPickerMixin.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-PickerCustom2/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-PickerCustom2' });
 	const QSInputsPickerMixinRes = QSInputsPickerMixin();
 
 	export default {

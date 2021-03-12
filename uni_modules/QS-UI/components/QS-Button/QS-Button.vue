@@ -10,7 +10,7 @@
 	:open-type="openType" 
 	:hover-start-time="hoverStartTime" 
 	:hover-stay-time="hoverStayTime" 
-	:hover-class="hoverClass"
+	:hover-class="getHoverClass"
 	@getuserinfo="getuserinfo($event)" 
 	@getphonenumber="getphonenumber($event)" 
 	@tap.prevent.stop="handleClick($event)"
@@ -42,7 +42,7 @@
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button' });
 	var QSButton_preId = 0;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -81,7 +81,7 @@
 				type: String,
 				default: ''
 			},
-			type: {
+			theme: {
 				type: String,
 				default: 'default'
 			},
@@ -123,7 +123,7 @@
 			},
 			hoverClass: {
 				type: String,
-				default: 'button-hover'
+				default: ''
 			},
 			preIconType: {
 				type: String,
@@ -181,34 +181,65 @@
 				return String(this.waves) === 'true';
 			},
 			QS_nCompClass() {
-				return [
-					'QS_Button--' + this.type,
+				return Object.freeze([
+					'QS_Button--' + this.theme,
 					'QS_Button-size-' + this.size,
-					this.plain ? 'QS_Button--' + this.type + '--plain' : 'not-plain',
-					this.plain ? 'QS_Button--border' : '',
-					this.disabled ? 'QS_Button--' + this.type + '--disabled' : '',
-				];
+					this.plain ? 'QS_Button--' + this.theme + '--plain' : 'not-plain',
+					// this.plain ? 'QS_Button--border' : '',
+					this.disabled ? 'QS_Button--' + this.theme + '--disabled' : '',
+				]);
+			},
+			getFontSize() {
+				if(this.fontSize) return this.fontSize;
+				let size;
+				switch(this.size) {
+					case 'large':
+						size = '34rpx';
+						break;
+					case 'mini':
+						size = '26rpx';
+						break;
+					default:
+						size = '30rpx';
+						break;
+				}
+				return size;
+			},
+			getHeight() {
+				if(this.height) return this.height;
+				let addHeight;
+				switch(this.size) {
+					case 'large':
+						addHeight = '35rpx';
+						break;
+					case 'mini':
+						addHeight = '26rpx';
+						break;
+					default:
+						addHeight = '30rpx';
+						break;
+				}
+				return (rpxUnit2px(this.getFontSize) + rpxUnit2px(addHeight) + 'px')
 			},
 			QS_nCompStyle() {
 				let style = {};
 				if (this.borderRadius) style.borderRadius = this.borderRadius;
-				if (this.height) style.height = this.height;
 				if (this.width) style.width = this.width;
 				if (this.backgroundColor) style.backgroundColor = this.backgroundColor;
-				if (this.fontSize) style.fontSize = this.fontSize;
 				if (this.padding) style.padding = this.padding;
 				if (this.background) style.background = this.background;
 				if (this.border) style.border = this.border;
 				if (this.color) style.color = this.color;
 				if (this.fontWeight) style.fontWeight = this.fontWeight;
-				if (this.size === 'mini') {
-					const lineHeight = this.height || ((rpxUnit2px(this.fontSize || '26rpx') + 10) + 'px');
-					style.height = lineHeight;
-					style.lineHeight = lineHeight;
-					style.paddingTop = 0;
-					style.paddingBottom = 0;
-				}
-				return style;
+				style.fontSize = this.getFontSize;
+				// style.height = this.getHeight;
+				style.lineHeight = this.getHeight;
+				return Object.freeze(style);
+			},
+			getHoverClass() {
+				if(this.getWaves) return '';
+				if(this.hoverClass) return this.hoverClass;
+				return `QS-hover-${this.theme}${this.plain?'-plain':''}`
 			}
 		},
 		methods: {
@@ -327,14 +358,15 @@
 		overflow: hidden;
 		border: none;
 		margin: 0;
-		font-size: 30rpx;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
+		text-align: center;
 		border-radius: 10rpx;
 		white-space: nowrap;
-		line-height: 1;
+		padding-top: 0;
+		padding-bottom: 0;
+		padding-left: 30rpx;
+		padding-right: 30rpx;
+		border-width: 1px;
+		border-style: solid;
 		// ios overflow 在父级设置圆角、定位、子元素使用transform时 hidden失效问题
 		-webkit-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
@@ -343,97 +375,93 @@
 				border: none;
 			}
 		}
-		&--border {
-			border: 1px solid #ffffff;
-		}
+		// &--border {
+		// 	border: 1px solid #ffffff;
+		// }
 		
 		
 		&--default {
-			color: $qs-btn-type-default-color;
-			background-color: $qs-btn-type-default;
+			color: $qs-theme-default-color;
+			background-color: $qs-theme-default;
+			border-color: $qs-theme-default;
 		}
 		&--default--disabled {
-			color: $qs-btn-type-default-color;
-			background-color: $qs-btn-type-default-disabled;
+			color: $qs-theme-default-color;
+			background-color: $qs-theme-default-disabled;
+			border-color: $qs-theme-default-disabled;
 		}
 		&--default--plain {
-			color: $qs-btn-type-default-color-plain;
+			color: $qs-theme-default-color-plain;
 			background-color: rgba(255,255,255,0);
-			border-color: $qs-btn-type-default;
+			border-color: $qs-theme-default;
 		}
 
 		&--primary {
-			color: $qs-btn-type-primary-color;
-			background-color: $qs-btn-type-primary;
+			color: $qs-theme-primary-color;
+			background-color: $qs-theme-primary;
+			border-color: $qs-theme-primary;
 		}
 		&--primary--disabled {
-			color: $qs-btn-type-primary-color;
-			background-color: $qs-btn-type-primary-disabled;
+			color: $qs-theme-primary-color;
+			background-color: $qs-theme-primary-disabled;
+			border-color: $qs-theme-primary-disabled;
 		}
 		&--primary--plain {
-			color: $qs-btn-type-primary-color-plain;
+			color: $qs-theme-primary-color-plain;
 			background-color: rgba(255,255,255,0);
-			border-color: $qs-btn-type-primary;
+			border-color: $qs-theme-primary;
 		}
 
 		&--success {
-			color: $qs-btn-type-success-color;
-			background-color: $qs-btn-type-success;
+			color: $qs-theme-success-color;
+			background-color: $qs-theme-success;
+			border-color: $qs-theme-success;
 		}
 		&--success--disabled {
-			color: $qs-btn-type-success-color;
-			background-color: $qs-btn-type-success-disabled;
+			color: $qs-theme-success-color;
+			background-color: $qs-theme-success-disabled;
+			border-color: $qs-theme-success-disabled;
 		}
 		&--success--plain {
-			color: $qs-btn-type-success-color-plain;
+			color: $qs-theme-success-color-plain;
 			background-color: rgba(255,255,255,0);
-			border-color: $qs-btn-type-success;
+			border-color: $qs-theme-success;
 		}
 
 		&--warning {
-			color: $qs-btn-type-warning-color;
-			background-color: $qs-btn-type-warning;
+			color: $qs-theme-warning-color;
+			background-color: $qs-theme-warning;
+			border-color: $qs-theme-warning;
 		}
 		&--warning--disabled {
-			color: $qs-btn-type-warning-color;
-			background-color: $qs-btn-type-warning-disabled;
+			color: $qs-theme-warning-color;
+			background-color: $qs-theme-warning-disabled;
+			border-color: $qs-theme-warning-disabled;
 		}
 		&--warning--plain {
-			color: $qs-btn-type-warning-color-plain;
+			color: $qs-theme-warning-color-plain;
 			background-color: rgba(255,255,255,0);
-			border-color: $qs-btn-type-warning;
+			border-color: $qs-theme-warning;
 		}
 		
 		&--danger {
-			color: $qs-btn-type-danger-color;
-			background-color: $qs-btn-type-danger;
+			color: $qs-theme-danger-color;
+			background-color: $qs-theme-danger;
+			border-color: $qs-theme-danger;
 		}
 		&--danger--disabled {
-			color: $qs-btn-type-danger-color;
-			background-color: $qs-btn-type-danger-disabled;
+			color: $qs-theme-danger-color;
+			background-color: $qs-theme-danger-disabled;
+			border-color: $qs-theme-danger-disabled;
 		}
 		&--danger--plain {
-			color: $qs-btn-type-danger-color-plain;
+			color: $qs-theme-danger-color-plain;
 			background-color: rgba(255,255,255,0);
-			border-color: $qs-btn-type-danger;
-		}
-
-		&.QS_Button-size-default {
-			font-size: 30rpx;
-			padding: 20rpx 30rpx;
-			// display: block;
+			border-color: $qs-theme-danger;
 		}
 
 		&.QS_Button-size-mini {
-			font-size: 26rpx;
-			padding: 10rpx 25rpx;
 			display: inline-block;
-		}
-
-		&.QS_Button-size-large {
-			font-size: 34rpx;
-			height: 75rpx;
-			padding: 30rpx 60rpx;
 		}
 	}
 
@@ -455,5 +483,40 @@
 
 	.btn_icon {
 		margin: 5px;
+	}
+	
+	.QS-hover-default{
+		background-color: $qs-theme-default-hover !important;
+	}
+	.QS-hover-default-plain {
+		border-color: $qs-theme-default-plain-hover !important;
+	}
+	
+	.QS-hover-primary{
+		background-color: $qs-theme-primary-hover !important;
+	}
+	.QS-hover-primary-plain {
+		border-color: $qs-theme-primary-plain-hover !important;
+	}
+	
+	.QS-hover-success{
+		background-color: $qs-theme-success-hover !important;
+	}
+	.QS-hover-success-plain {
+		border-color: $qs-theme-success-plain-hover !important;
+	}
+	
+	.QS-hover-warning{
+		background-color: $qs-theme-warning-hover !important;
+	}
+	.QS-hover-warning-plain {
+		border-color: $qs-theme-warning-plain-hover !important;
+	}
+	
+	.QS-hover-danger{
+		background-color: $qs-theme-danger-hover !important;
+	}
+	.QS-hover-danger-plain {
+		border-color: $qs-theme-danger-plain-hover !important;
 	}
 </style>

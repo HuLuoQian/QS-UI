@@ -21,7 +21,7 @@
 	import QStemplate from '../QS-InputsSplitTemplate/QS-InputsSplitTemplate.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Radio/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Radio' });
 
 	export default {
 		components: {

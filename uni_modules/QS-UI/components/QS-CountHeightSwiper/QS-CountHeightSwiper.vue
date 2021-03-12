@@ -16,7 +16,7 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import swiperPropsMixin from '../../mixins/swiperPropsMixin.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-CountHeightSwiper' });
 	const swiperPropsMixinRes = swiperPropsMixin();
 	export default {
 		mixins: [QSComponentMixinRes.mixin, swiperPropsMixinRes.mixin],

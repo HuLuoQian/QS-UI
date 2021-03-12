@@ -89,7 +89,7 @@
 	
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Uni-Swiper-list/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Uni-Swiper-list' });
 	
 	const dom = weex.requireModule('dom');
 	// 缓存每页最多

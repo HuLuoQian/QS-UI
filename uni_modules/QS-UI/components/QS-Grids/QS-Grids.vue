@@ -90,7 +90,7 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Grids/js/props.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Grids' });
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom')
 	// #endif

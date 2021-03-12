@@ -12,7 +12,7 @@
 	import icons from './icons.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Icons/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Icons' });
 	// #ifdef APP-NVUE
 	var domModule = weex.requireModule('dom');
 	var animationModule = weex.requireModule('animation');

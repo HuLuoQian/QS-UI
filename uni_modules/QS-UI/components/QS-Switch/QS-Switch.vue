@@ -14,7 +14,7 @@
 	import QStemplate from '../QS-InputsSplitTemplate/QS-InputsSplitTemplate.vue';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Switch/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Switch' });
 
 	export default {
 		components: {

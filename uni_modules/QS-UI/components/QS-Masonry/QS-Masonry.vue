@@ -22,7 +22,7 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Masonry/js/props.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Masonry' });
 
 	function getDefLists(col) {
 		const arr = [];

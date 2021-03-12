@@ -9,7 +9,7 @@
 				<view :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
 					<QS-Button 
 					:size="sizes[sizeTabIndex].value"
-					:type="types[typeTabIndex].value"
+					:theme="types[typeTabIndex].value"
 					:disabled="disabledArr[disabledTabIndex].value"
 					:loading="loadingdArr[loadingTabIndex].value"
 					:plain="plainArr[plainTabIndex].value"
@@ -17,23 +17,23 @@
 				</view>
 				<QS-P height="80rpx"></QS-P>
 				<titleLeftLine title="按钮类型"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="types" :tabIndex="typeTabIndex" width="700rpx"
+				<QS-Tabs mode="scroll" :tabs="types" :tabIndex="typeTabIndex" width="650rpx"
 					@click="typeTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="是否禁用"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="disabledArr" :tabIndex="disabledTabIndex" width="700rpx"
+				<QS-Tabs mode="scroll" :tabs="disabledArr" :tabIndex="disabledTabIndex" width="650rpx"
 					@click="disabledTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="是否启用loading"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="loadingdArr" :tabIndex="loadingTabIndex" width="700rpx"
+				<QS-Tabs mode="scroll" :tabs="loadingdArr" :tabIndex="loadingTabIndex" width="650rpx"
 					@click="loadingTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="是否镂空"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="plainArr" :tabIndex="plainTabIndex" width="700rpx"
+				<QS-Tabs mode="scroll" :tabs="plainArr" :tabIndex="plainTabIndex" width="650rpx"
 					@click="plainTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="大小"></titleLeftLine>
-				<QS-Tabs mode="scroll" height="66rpx" :tabs="sizes" :tabIndex="sizeTabIndex" width="700rpx"
+				<QS-Tabs mode="scroll" :tabs="sizes" :tabIndex="sizeTabIndex" width="650rpx"
 					@click="sizeTabIndex = $event"></QS-Tabs>
 			</view>
 			<QS-P></QS-P>

@@ -17,7 +17,7 @@
 <script>
 	import props from '@/QS-UI-CONFIG/components/QS-Animation/js/props.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Animation' });
 	class addDuration {
 		constructor() {
 			this.duration = 0;

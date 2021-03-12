@@ -70,7 +70,7 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-List/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-List' });
 	var QSComponentId = 0;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],

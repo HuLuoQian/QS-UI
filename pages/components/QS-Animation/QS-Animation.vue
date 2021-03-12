@@ -15,7 +15,7 @@
 			<QS-P height="40rpx"></QS-P>
 			<QS-Button @click="startAni">js调用动画</QS-Button>
 			<QS-P height="40rpx"></QS-P>
-			<QS-Tabs mode="center" :tabs="tabs" space="50rpx" width="700rpx" :tabIndex="tabIndex" @click="tabIndex = $event"></QS-Tabs>
+			<QS-Tabs mode="center" :tabs="tabs" width="700rpx" :tabIndex="tabIndex" @click="tabIndex = $event"></QS-Tabs>
 			<QS-P height="40rpx"></QS-P>
 			<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
 				<view class="flex_row_c_c">

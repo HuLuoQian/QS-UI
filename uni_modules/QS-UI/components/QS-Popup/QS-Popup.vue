@@ -33,7 +33,7 @@
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import props from '@/QS-UI-CONFIG/components/QS-Popup/js/props.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Popup' });
 	var NZINDEX = 0;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],

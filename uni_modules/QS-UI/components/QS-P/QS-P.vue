@@ -7,7 +7,7 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-P/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-P' });
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
 		props: {

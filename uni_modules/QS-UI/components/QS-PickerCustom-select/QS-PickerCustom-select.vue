@@ -51,7 +51,7 @@
 	import QSPicker from '../../template/QS-picker/js/QS-picker.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-PickerCustom-select/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-PickerCustom-select' });
 	const QSPickerMixinRes = QSPickerMixin();
 
 	export default {

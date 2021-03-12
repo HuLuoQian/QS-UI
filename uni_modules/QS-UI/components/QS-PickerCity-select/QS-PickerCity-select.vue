@@ -24,7 +24,7 @@
 	import QSPickerMixin from '../../template/QS-picker/js/QS-picker-mixin.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-PickerCity-select/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-PickerCity-select' });
 	const QSPickerMixinRes = QSPickerMixin();
 	
 	var provinceData = [];

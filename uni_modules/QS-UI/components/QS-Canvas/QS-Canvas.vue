@@ -16,7 +16,7 @@
 		getSharePoster
 	} from '../../js/QS-SharePoster/QS-SharePoster.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Canvas' });
 
 	var id = 0;
 	var _this;

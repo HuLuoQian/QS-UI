@@ -136,6 +136,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/components/QS-Tabs/QS-Tabs",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

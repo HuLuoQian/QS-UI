@@ -19,7 +19,8 @@ module.exports = {
 			QSAnimation: 'QS-Animation Animation',
 			QSBackTop: 'QSBackTop Backtop',
 			QSBadge: 'QSBadge Badge',
-			QSButton: 'QSButton Button'
+			QSButton: 'QSButton Button',
+			QSTabs: 'QSTabs Tabs'
 		}
 	},
 	tabbar: {

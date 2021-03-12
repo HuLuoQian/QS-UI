@@ -35,7 +35,7 @@
 	import rpxUnit2px from '@/QS-UI/js/functions/rpxUnit2px.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Image/js/props.js';
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Image' });
 	
 	const loading = '图片加载中';
 	const nullImg = '图片路径为空';

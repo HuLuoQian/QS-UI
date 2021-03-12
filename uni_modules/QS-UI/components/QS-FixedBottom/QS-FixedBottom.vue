@@ -7,12 +7,8 @@
 <script>
 	import getH5TabbarHeight from '../../js/functions/getH5TabbarHeight.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-<<<<<<< HEAD
-	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
-=======
 	import props from '@/QS-UI-CONFIG/components/QS-FixedBottom/js/props.js';
->>>>>>> 9952f9cd4c47929b0d8ce2b2dcaf95fd3667b4b8
-	const QSComponentMixinRes = QSComponentMixin();
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-FixedBottom' });
 	const Sys = uni.getSystemInfoSync();
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -39,12 +35,8 @@
 			tabbar: {
 				type: [String, Boolean],
 				default: false
-<<<<<<< HEAD
-			}
-=======
 			},
 			...props
->>>>>>> 9952f9cd4c47929b0d8ce2b2dcaf95fd3667b4b8
 		},
 		computed: {
 			getTabbar () {
