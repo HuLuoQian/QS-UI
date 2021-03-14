@@ -14,7 +14,7 @@
 	@getuserinfo="getuserinfo($event)" 
 	@getphonenumber="getphonenumber($event)" 
 	@tap.prevent.stop="handleClick($event)"
-	v-show="getClass && getStyle">
+	v-if="getClass && getStyle">
 		<block v-if="preIconType">
 			<QSIcons ref="icon" :hasAnimation="!!iconAnimationType" :animationType="iconAnimationType" :type="preIconType"
 			 :color="preIconColor" :size="preIconSize"></QSIcons>
@@ -42,6 +42,7 @@
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
+	import theme from '@/QS-UI-CONFIG/css/theme.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button' });
 	var QSButton_preId = 0;
 	export default {
@@ -67,10 +68,6 @@
 			},
 			width: {
 				type: [String, Number],
-				default: ''
-			},
-			backgroundColor: {
-				type: String,
 				default: ''
 			},
 			txt: {
@@ -182,11 +179,8 @@
 			},
 			QS_nCompClass() {
 				return Object.freeze([
-					'QS_Button--' + this.theme,
+					this.plain?'':'no-plain',
 					'QS_Button-size-' + this.size,
-					this.plain ? 'QS_Button--' + this.theme + '--plain' : 'not-plain',
-					// this.plain ? 'QS_Button--border' : '',
-					this.disabled ? 'QS_Button--' + this.theme + '--disabled' : '',
 				]);
 			},
 			getFontSize() {
@@ -210,29 +204,38 @@
 				let addHeight;
 				switch(this.size) {
 					case 'large':
-						addHeight = '35rpx';
+						addHeight = '38rpx';
 						break;
 					case 'mini':
-						addHeight = '26rpx';
+						addHeight = '28rpx';
 						break;
 					default:
-						addHeight = '30rpx';
+						addHeight = '32rpx';
 						break;
 				}
 				return (rpxUnit2px(this.getFontSize) + rpxUnit2px(addHeight) + 'px')
 			},
 			QS_nCompStyle() {
 				let style = {};
-				if (this.borderRadius) style.borderRadius = this.borderRadius;
-				if (this.width) style.width = this.width;
-				if (this.backgroundColor) style.backgroundColor = this.backgroundColor;
+				if(this.plain) {
+					style.border = `1px solid ${theme[`${this.theme}${this.disabled?'Disabled':''}`]}`;
+					style.background = 'rgba(0,0,0,0)';
+					style.color = theme[`${this.theme}ColorPlain`];
+				}else{
+					style.background = this.background || theme[`${this.theme}${this.disabled?'Disabled':''}`];
+					style.border = `none`;
+					style.color = theme[`${this.theme}Color`];
+				}
 				if (this.padding) style.padding = this.padding;
-				if (this.background) style.background = this.background;
 				if (this.border) style.border = this.border;
 				if (this.color) style.color = this.color;
 				if (this.fontWeight) style.fontWeight = this.fontWeight;
+				if (this.borderRadius) style.borderRadius = this.borderRadius;
+				if (this.width) style.width = this.width;
 				style.fontSize = this.getFontSize;
-				// style.height = this.getHeight;
+				// #ifdef MP-ALIPAY
+				style.height = this.getHeight;
+				// #endif
 				style.lineHeight = this.getHeight;
 				return Object.freeze(style);
 			},
@@ -367,102 +370,15 @@
 		padding-right: 30rpx;
 		border-width: 1px;
 		border-style: solid;
-		// ios overflow 在父级设置圆角、定位、子元素使用transform时 hidden失效问题
 		-webkit-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
-		&.not-plain{
-			&:after{
-				border: none;
-			}
+		&.no-plain::after {
+			border: none;
 		}
-		// &--border {
-		// 	border: 1px solid #ffffff;
-		// }
-		
-		
-		&--default {
-			color: $qs-theme-default-color;
-			background-color: $qs-theme-default;
-			border-color: $qs-theme-default;
-		}
-		&--default--disabled {
-			color: $qs-theme-default-color;
-			background-color: $qs-theme-default-disabled;
-			border-color: $qs-theme-default-disabled;
-		}
-		&--default--plain {
-			color: $qs-theme-default-color-plain;
-			background-color: rgba(255,255,255,0);
-			border-color: $qs-theme-default;
-		}
-
-		&--primary {
-			color: $qs-theme-primary-color;
-			background-color: $qs-theme-primary;
-			border-color: $qs-theme-primary;
-		}
-		&--primary--disabled {
-			color: $qs-theme-primary-color;
-			background-color: $qs-theme-primary-disabled;
-			border-color: $qs-theme-primary-disabled;
-		}
-		&--primary--plain {
-			color: $qs-theme-primary-color-plain;
-			background-color: rgba(255,255,255,0);
-			border-color: $qs-theme-primary;
-		}
-
-		&--success {
-			color: $qs-theme-success-color;
-			background-color: $qs-theme-success;
-			border-color: $qs-theme-success;
-		}
-		&--success--disabled {
-			color: $qs-theme-success-color;
-			background-color: $qs-theme-success-disabled;
-			border-color: $qs-theme-success-disabled;
-		}
-		&--success--plain {
-			color: $qs-theme-success-color-plain;
-			background-color: rgba(255,255,255,0);
-			border-color: $qs-theme-success;
-		}
-
-		&--warning {
-			color: $qs-theme-warning-color;
-			background-color: $qs-theme-warning;
-			border-color: $qs-theme-warning;
-		}
-		&--warning--disabled {
-			color: $qs-theme-warning-color;
-			background-color: $qs-theme-warning-disabled;
-			border-color: $qs-theme-warning-disabled;
-		}
-		&--warning--plain {
-			color: $qs-theme-warning-color-plain;
-			background-color: rgba(255,255,255,0);
-			border-color: $qs-theme-warning;
-		}
-		
-		&--danger {
-			color: $qs-theme-danger-color;
-			background-color: $qs-theme-danger;
-			border-color: $qs-theme-danger;
-		}
-		&--danger--disabled {
-			color: $qs-theme-danger-color;
-			background-color: $qs-theme-danger-disabled;
-			border-color: $qs-theme-danger-disabled;
-		}
-		&--danger--plain {
-			color: $qs-theme-danger-color-plain;
-			background-color: rgba(255,255,255,0);
-			border-color: $qs-theme-danger;
-		}
-
-		&.QS_Button-size-mini {
-			display: inline-block;
-		}
+	}
+	
+	.QS_Button-size-mini {
+		display: inline-block;
 	}
 
 	.waves-ripple {

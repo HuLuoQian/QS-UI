@@ -20,7 +20,8 @@ module.exports = {
 			QSBackTop: 'QS-BackTop 返回顶部',
 			QSBadge: 'QS-Badge 标记',
 			QSButton: 'QSButton 按钮',
-			QSTabs: 'QSTabs 标签'
+			QSTabs: 'QSTabs 标签',
+			QSticky: 'QSticky 黏贴'
 		}
 	},
 	tabbar: {

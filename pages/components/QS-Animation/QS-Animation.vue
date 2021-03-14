@@ -25,6 +25,8 @@
 				<showProps :prop="prop"></showProps>
 			</view>
 		</view>
+		
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

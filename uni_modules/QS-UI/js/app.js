@@ -57,6 +57,7 @@ import countDown from './functions/countDown.js';
 import showActionSheet from './functions/showActionSheet.js';
 import uuid from './functions/uuid.js';
 import canvas from './QS-SharePoster/QS-SharePoster.js';
+import intersectionObserver from './functions/intersectionObserver.js';
 
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
@@ -178,4 +179,5 @@ module.exports = {
 	canvas,
 	uuid,
 	pageRoots: newpageRootsObj,
+	intersectionObserver
 }

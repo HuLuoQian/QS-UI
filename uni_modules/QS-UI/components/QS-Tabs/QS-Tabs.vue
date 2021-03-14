@@ -1,12 +1,12 @@
 <template>
-	<view class="QS-Tabs" :class="getClass" :style="getStyle">
+	<view :id="id" class="QS-Tabs" :class="getClass" :style="getStyle">
 		<scroll-view 
 		ref="scrollViewX" 
 		id="scrollViewX" 
 		class="scrollViewX" 
 		:scroll="false" 
-		:scroll-x="true" 
-		:show-scrollbar="false"
+		:scroll-x="true"
+		:show-scrollbar="false" 
 		:scroll-into-view="getScrollInto" 
 		:style="{
 			height: height,
@@ -15,30 +15,29 @@
 			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
 				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
 				<block v-else-if="hasLine && !lineUseSlot">
-					<lineSeperate :currentTabInfo="getTabInfo" :theme="theme"></lineSeperate>
+					<lineSeperate :currentTabInfo="getTabInfo" :lineColor="getLineColor" :theme="theme"></lineSeperate>
 				</block>
-				<view 
-				class="tab-item" 
-				:style="{
+				<view class="tab-item" :style="{
 					'padding-left': space,
 					'padding-right': space,
-				}" 
-				v-for="(tab,index) in nTabs"
-				:key="index" 
-				:id="'tabitem'+index" 
-				:class="'tabitem'+index"
-				:ref="'tabitem'+index" 
-				:data-current="index" 
-				@click="ontabtap">
+					flex: itemFull?1:'none'
+				}" v-for="(tab,index) in nTabs" :key="index" :id="'tabitem'+index" :ref="'tabitem'+index" :data-current="index"
+					@click="ontabtap">
 					<view class="rel-item">
-						<temp :isActive="tabIndex==index" :tab="tab" :height="height" :fontSize="tabIndex==index ? activeFontSize: defFontSize"
-						 :fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''" :color="tabIndex==index ? activeColor: defColor"
-						 :activeColor="activeColor" :defColor="defColor" :props="nprops" :index="index" :tabsLen="nTabs.length" :type="type"></temp>
+						<temp :isActive="tabIndex==index" :tab="tab" :height="height"
+							:fontSize="tabIndex==index ? activeFontSize: defFontSize"
+							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
+							:color="tabIndex==index ? getActiveColor: defColor" :props="nprops" :index="index"
+							:tabsLen="nTabs.length" :type="type">
+						</temp>
 					</view>
 					<view class="abs-item">
-						<temp :isActive="tabIndex==index" :tab="tab" :height="height" :fontSize="tabIndex==index ? activeFontSize: defFontSize"
-						 :fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''" :color="tabIndex==index ? activeColor: defColor"
-						 :activeColor="activeColor" :defColor="defColor" :props="nprops" :index="index" :tabsLen="nTabs.length" :type="type"></temp>
+						<temp :isActive="tabIndex==index" :tab="tab" :height="height"
+							:fontSize="tabIndex==index ? activeFontSize: defFontSize"
+							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
+							:color="tabIndex==index ? getActiveColor: defColor" :props="nprops" :index="index"
+							:tabsLen="nTabs.length" :type="type">
+						</temp>
 					</view>
 				</view>
 			</view>
@@ -52,13 +51,17 @@
 	import props from '@/QS-UI-CONFIG/components/QS-Tabs/js/props.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import lineSeperate from '@/QS-UI-CONFIG/components/QS-Tabs/line-separate/separate.vue';
-	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Tabs' });
+	import theme from '@/QS-UI-CONFIG/css/theme.js';
+	const QSComponentMixinRes = QSComponentMixin({
+		componentType: 'QS-Tabs'
+	});
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
 	// #endif
 	const defProps = {
 		nameField: 'name'
 	};
+	var id = 0;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
 		components: {
@@ -103,7 +106,7 @@
 			},
 			activeColor: {
 				type: String,
-				default: '#ffffff'
+				default: ''
 			},
 			defColor: {
 				type: String,
@@ -116,7 +119,8 @@
 			props: {
 				type: Object,
 				default: () => {
-					return { ...defProps
+					return {
+						...defProps
 					}
 				}
 			},
@@ -164,17 +168,26 @@
 				type: Boolean,
 				default: false
 			},
+			lineColor: {
+				type: String,
+				default: ''
+			},
 			theme: {
 				type: String,
-				default: 'primary'
+				default: 'default'
+			},
+			itemFull: {
+				type: Boolean,
+				default: true
 			},
 			...props
 		},
 		data() {
 			return {
+				id: `QS-Tabs-${id++}`,
 				nTabs: [],
 				scrollInto: '',
-				nprops: { 
+				nprops: {
 					...defProps,
 					...this.props
 				},
@@ -198,7 +211,7 @@
 				})
 			},
 			props(n) {
-				this.nprops = { 
+				this.nprops = {
 					...defProps,
 					...n
 				};
@@ -209,12 +222,13 @@
 			// 	return rpxUnit2px(this.width || '750rpx');
 			// },
 			getModeClass() {
-				if(this.mode && this.mode !== 'auto') return this.mode;
+				if (this.mode && this.mode !== 'auto') return this.mode;
 				if (this.containerWidth > this.tabsWidth) return '';
 				if (this.mode == 'scroll') return '';
 				return 'center';
 			},
 			getScrollInto() {
+				if(!this.autoScrollInto) return '';
 				return 'tabitem' + this.tabIndex;
 			},
 			QS_nCompStyle() {
@@ -228,53 +242,65 @@
 				return obj;
 			},
 			getTabInfo() {
-				console.log('this.tabIndex', this.tabIndex)
-				console.log('this.tabsInfo', this.tabsInfo)
-				const d = (this.tabsInfo[this.tabIndex] || {left:0,right:0,top:0,bottom:0,width:0,height:0});
-				console.log(d);
+				const d = (this.tabsInfo[this.tabIndex] || {
+					left: 0,
+					right: 0,
+					top: 0,
+					bottom: 0,
+					width: 0,
+					height: 0
+				});
 				return d;
-			}
+			},
+			getActiveColor() {
+				return this.activeColor || theme[`${this.theme}Color`];
+			},
+			getLineColor() {
+				const color = this.lineColor || theme[this.theme];
+				console.log(color)
+				return color
+			},
 		},
 		created() {
 			this.setTabs(this.tabs);
 		},
 		mounted() {
 			this.getContainerWidth();
-			this.getQuery();
-			console.log(this);
+			// this.getQuery();
 		},
 		methods: {
 			setTabs(arr) {
 				this.nTabs = Object.freeze(arr);
-				this.$nextTick(()=>{
+				this.$nextTick(() => {
 					this.getContainerWidth();
 				})
 			},
 			ontabtap(e) {
-				this.$emit('click', e.target.dataset.current === undefined?e.currentTarget.dataset.current:e.target.dataset.current)
+				this.$emit('click', e.target.dataset.current === undefined ? e.currentTarget.dataset.current : e.target
+					.dataset.current)
 			},
 			getContainerWidth() {
 				// #ifdef APP-NVUE
 				const promiseArr = [];
 				for (let i = 0; i < this.nTabs.length; i++) {
-					promiseArr.push(new Promise((rs, rj)=>{
+					promiseArr.push(new Promise((rs, rj) => {
 						dom.getComponentRect(this.$refs[`tabitem${i}`], option => {
 							rs(option.size);
 						})
 					}))
 				}
-				
+
 				Promise.all(promiseArr)
-					.then(res=>{
+					.then(res => {
 						this.tabsInfo = Object.freeze(res);
 						this.containerWidth = res.reduce((pre, cur, obj) => {
 							return cur.width + pre;
 						}, 0);
 					})
-					.catch(err=>{
+					.catch(err => {
 						conosle.log('获取tab-item布局信息失败')
 					})
-					
+
 				// #endif
 				// #ifndef APP-NVUE
 				let view;
@@ -290,89 +316,36 @@
 					scrollOffset: true
 				})
 				for (let i = 0; i < this.nTabs.length; i++) {
-					view.select(`#tabitem${i}`).fields({
+					view.select(`#${this.id} #tabitem${i}`).fields({
 						size: true,
 						rect: true
 					})
 				}
 				view.exec(data => {
 					const scrollInfo = data.shift();
+					this.tabsWidth = scrollInfo.width;
 					console.log('tabs scroll 布局信息:', JSON.stringify(scrollInfo));
 					const res = data;
 					console.log('tabitem 布局信息:', JSON.stringify(res));
-					// if(this.getModeClass !== 'center') {
-						let diffLeft = 0;
-						for(let i = 0; i < res.length; i++) {
-							const item = res[i];
-							if(!item) return;
-								if(this.getModeClass == 'center') {
-									item.left -= scrollInfo.left;
-								}else{
-									if(!i) {
-										diffLeft = item.left;
-									}
-									item.left -= diffLeft;
-								}
+					let diffLeft = 0;
+					for (let i = 0; i < res.length; i++) {
+						const item = res[i];
+						if (!item) return;
+						if (this.getModeClass == 'center') {
+							item.left -= scrollInfo.left;
+						} else {
+							if (!i) {
+								diffLeft = item.left;
+							}
+							item.left -= diffLeft;
 						}
-					// }
+					}
 					this.tabsInfo = Object.freeze(res);
 					this.containerWidth = res.reduce((pre, cur, obj) => {
 						return cur.width + pre;
 					}, 0);
 				})
 				// #endif
-			},
-			test1() {
-				let view = uni.createSelectorQuery();
-				for (let i = 0; i < this.nTabs.length; i++) {
-					console.log(i)
-					view.select(`#tabitem${i}`).fields({
-						size: true,
-						rect: true
-					})
-				}
-				view.exec(res => {
-					console.log('tabitem 布局信息:',res);
-				})
-			},
-			test2() {
-				let view = uni.createSelectorQuery().in(this);
-				for (let i = 0; i < this.nTabs.length; i++) {
-					console.log(i)
-					view.select(`#tabitem${i}`).fields({
-						size: true,
-						rect: true
-					})
-				}
-				view.exec(res => {
-					console.log('tabitem 布局信息:',res);
-				})
-			},
-			test3() {
-				let view = uni.createSelectorQuery();
-				for (let i = 0; i < this.nTabs.length; i++) {
-					console.log(i)
-					view.select(`.tab-item`).fields({
-						size: true,
-						rect: true
-					})
-				}
-				view.exec(res => {
-					console.log('tabitem 布局信息:',res);
-				})
-			},
-			test4() {
-				let view = uni.createSelectorQuery().in(this);
-				for (let i = 0; i < this.nTabs.length; i++) {
-					console.log(i)
-					view.select(`.tab-item${i}`).fields({
-						size: true,
-						rect: true
-					})
-				}
-				view.exec(res => {
-					console.log('tabitem 布局信息:',res);
-				})
 			},
 			getQuery(cb) {
 				// #ifdef APP-NVUE
@@ -405,7 +378,6 @@
 
 <style lang="scss" scoped>
 	.QS-Tabs {
-		
 	}
 
 	.scrollViewX {

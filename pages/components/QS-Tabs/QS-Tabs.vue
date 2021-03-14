@@ -11,13 +11,11 @@
 				<QS-Tabs 
 				ref="tabs"
 				mode="scroll" 
-				hasLine
 				:tabs="tabs" 
+				:theme="themes[themeTabIndex].value"
 				width="650rpx" 
-				activeColor="#ffffff"
-				backgroundColor="#f7f7f7"
 				:tabIndex="tabIndex"
-				@click="tabIndexChange">
+				@click="tabIndex = $event">
 					<template v-slot:line="{ currentTabInfo }">
 						<view 
 						class="tab-line" 
@@ -31,11 +29,12 @@
 						</view>
 					</template>
 				</QS-Tabs>
-				<QS-P height="40rpx"></QS-P>
-				<button type="default" @tap="t(1)">1</button>
-				<button type="default" @tap="t(2)">2</button>
-				<button type="default" @tap="t(3)">3</button>
-				<button type="default" @tap="t(4)">4</button>
+				
+				<QS-P height="80rpx"></QS-P>
+				<titleLeftLine title="主题颜色"></titleLeftLine>
+				<QS-Tabs mode="scroll" :tabs="themes" :tabIndex="themeTabIndex" width="650rpx"
+					@click="themeTabIndex = $event"></QS-Tabs>
+				<QS-P></QS-P>
 			</view>
 		</view>
 		<QS-BackTop ref="QSBackTop"></QS-BackTop>
@@ -52,16 +51,29 @@
 					{ name: 'Tab 2' },
 					{ name: 'Tab 3' },
 					{ name: 'Tab 4' },
-				]
+				],
+				
+				themeTabIndex: 0,
+				themes: [{
+					name: '默认',
+					value: 'default'
+				}, {
+					name: '主色',
+					value: 'primary'
+				}, {
+					name: '成功',
+					value: 'success'
+				}, {
+					name: '警告',
+					value: 'warning'
+				}, {
+					name: '危险',
+					value: 'danger'
+				}]
 			}
 		},
 		methods: {
-			tabIndexChange(e) {
-				this.tabIndex = e;
-			},
-			t(e) {
-				this.$refs.tabs['test' + e]();
-			}
+			
 		}
 	}
 </script>

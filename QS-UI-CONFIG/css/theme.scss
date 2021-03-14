@@ -1,85 +1,85 @@
-// 主色
-$qs-theme-primary: #BC9D6F;
+// // 主色
+// $qs-theme-primary: #BC9D6F;
 $qs-theme-primary-hover: #ecc48c;
 $qs-theme-primary-plain-hover: #ecc48c;
-$qs-theme-primary-color: #ffffff;
-$qs-theme-primary-color-plain: #BC9D6F;
-$qs-theme-primary-disabled: #ecc48c;
-// 默认
-$qs-theme-default: #f8f8f8;
+// $qs-theme-primary-color: #ffffff;
+// $qs-theme-primary-color-plain: #BC9D6F;
+// $qs-theme-primary-disabled: #ecc48c;
+// // 默认
+// $qs-theme-default: #f8f8f8;
 $qs-theme-default-hover: #F2F2F2;
 $qs-theme-default-plain-hover: #F2F2F2;
-$qs-theme-default-color: #000000;
-$qs-theme-default-color-plain: #000000;
-$qs-theme-default-disabled: #F2F2F2;
-// 成功
-$qs-theme-success: #67C23A;
+// $qs-theme-default-color: #000000;
+// $qs-theme-default-color-plain: #000000;
+// $qs-theme-default-disabled: #F2F2F2;
+// // 成功
+// $qs-theme-success: #67C23A;
 $qs-theme-success-hover: #b3e19d;
 $qs-theme-success-plain-hover: #b3e19d;
-$qs-theme-success-color: #ffffff;
-$qs-theme-success-color-plain: #67C23A;
-$qs-theme-success-disabled: #b3e19d;
-// 警告
-$qs-theme-warning: #FFBF00;
+// $qs-theme-success-color: #ffffff;
+// $qs-theme-success-color-plain: #67C23A;
+// $qs-theme-success-disabled: #b3e19d;
+// // 警告
+// $qs-theme-warning: #FFBF00;
 $qs-theme-warning-hover: #f3d19e;
 $qs-theme-warning-plain-hover: #f3d19e;
-$qs-theme-warning-color: #ffffff;
-$qs-theme-warning-color-plain: #FFBF00;
-$qs-theme-warning-disabled: #f3d19e;
-// 危险
-$qs-theme-danger: #FF6010;
+// $qs-theme-warning-color: #ffffff;
+// $qs-theme-warning-color-plain: #FFBF00;
+// $qs-theme-warning-disabled: #f3d19e;
+// // 危险
+// $qs-theme-danger: #FF6010;
 $qs-theme-danger-hover: #fab6b6;
 $qs-theme-danger-plain-hover: #fab6b6;
-$qs-theme-danger-color: #ffffff;
-$qs-theme-danger-color-plain: #FF6010;
-$qs-theme-danger-disabled: #fab6b6;
+// $qs-theme-danger-color: #ffffff;
+// $qs-theme-danger-color-plain: #FF6010;
+// $qs-theme-danger-disabled: #fab6b6;
 
-$qs-size-text-small-xxx: 22rpx;
-$qs-size-text-small-xx: 24rpx;
-$qs-size-text-small-x: 26rpx;
-$qs-size-text-small: 28rpx;
-$qs-size-text-def: 30rpx;
-$qs-size-text-large: 32rpx;
-$qs-size-text-large-x: 38rpx;
-$qs-size-text-large-xx: 44rpx;
-$qs-size-text-large-xxx: 50rpx;
+// $qs-size-text-small-xxx: 22rpx;
+// $qs-size-text-small-xx: 24rpx;
+// $qs-size-text-small-x: 26rpx;
+// $qs-size-text-small: 28rpx;
+// $qs-size-text-def: 30rpx;
+// $qs-size-text-large: 32rpx;
+// $qs-size-text-large-x: 38rpx;
+// $qs-size-text-large-xx: 44rpx;
+// $qs-size-text-large-xxx: 50rpx;
 
 $qs-padding-common: 25rpx;
 
-:export {
-	// 主色
-	primary: $qs-theme-primary;
-	primaryHover: $qs-theme-primary-hover;
-	primaryPlainHover: $qs-theme-primary-plain-hover;
-	primaryColor: $qs-theme-primary-color;
-	primaryColorPlain: $qs-theme-primary-color-plain;
-	primaryDisabled: $qs-theme-primary-disabled;
-	// 默认
-	default: $qs-theme-default;
-	defaultHover: $qs-theme-default-hover;
-	defaultPlainHover: $qs-theme-default-plain-hover;
-	defaultColor: $qs-theme-default-color;
-	defaultColorPlain: $qs-theme-default-color-plain;
-	defaultDisabled: $qs-theme-default-disabled;
-	// 成功
-	success: $qs-theme-success;
-	successHover: $qs-theme-success-hover;
-	successPlainHover: $qs-theme-success-plain-hover;
-	successColor: $qs-theme-success-color;
-	successColorPlain: $qs-theme-success-color-plain;
-	successDisabled: $qs-theme-success-disabled;
-	// 警告
-	warning: $qs-theme-warning;
-	warningHover: $qs-theme-warning-hover;
-	warningPlainHover: $qs-theme-warning-plain-hover;
-	warningColor: $qs-theme-warning-color;
-	warningColorPlain: $qs-theme-warning-color-plain;
-	warningDisabled: $qs-theme-warning-disabled;
-	// 危险
-	danger: $qs-theme-danger;
-	dangerHover: $qs-theme-danger-hover;
-	dangerPlainHover: $qs-theme-danger-plain-hover;
-	dangerColor: $qs-theme-danger-color;
-	dangerColorPlain: $qs-theme-danger-color-plain;
-	dangerDisabled: $qs-theme-danger-disabled
-}
+// :export {
+// 	// 主色
+// 	primary: $qs-theme-primary;
+// 	primaryHover: $qs-theme-primary-hover;
+// 	primaryPlainHover: $qs-theme-primary-plain-hover;
+// 	primaryColor: $qs-theme-primary-color;
+// 	primaryColorPlain: $qs-theme-primary-color-plain;
+// 	primaryDisabled: $qs-theme-primary-disabled;
+// 	// 默认
+// 	default: $qs-theme-default;
+// 	defaultHover: $qs-theme-default-hover;
+// 	defaultPlainHover: $qs-theme-default-plain-hover;
+// 	defaultColor: $qs-theme-default-color;
+// 	defaultColorPlain: $qs-theme-default-color-plain;
+// 	defaultDisabled: $qs-theme-default-disabled;
+// 	// 成功
+// 	success: $qs-theme-success;
+// 	successHover: $qs-theme-success-hover;
+// 	successPlainHover: $qs-theme-success-plain-hover;
+// 	successColor: $qs-theme-success-color;
+// 	successColorPlain: $qs-theme-success-color-plain;
+// 	successDisabled: $qs-theme-success-disabled;
+// 	// 警告
+// 	warning: $qs-theme-warning;
+// 	warningHover: $qs-theme-warning-hover;
+// 	warningPlainHover: $qs-theme-warning-plain-hover;
+// 	warningColor: $qs-theme-warning-color;
+// 	warningColorPlain: $qs-theme-warning-color-plain;
+// 	warningDisabled: $qs-theme-warning-disabled;
+// 	// 危险
+// 	danger: $qs-theme-danger;
+// 	dangerHover: $qs-theme-danger-hover;
+// 	dangerPlainHover: $qs-theme-danger-plain-hover;
+// 	dangerColor: $qs-theme-danger-color;
+// 	dangerColorPlain: $qs-theme-danger-color-plain;
+// 	dangerDisabled: $qs-theme-danger-disabled
+// }

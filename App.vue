@@ -24,4 +24,13 @@
 		min-height: 100vh;
 		background-color: #EEEEEE;
 	}
+	
+	
+	::-webkit-scrollbar {
+		display: none;
+		width: 0 !important;
+		height: 0 !important;
+		-webkit-appearance: none;
+		background: transparent;
+	}
 </style>

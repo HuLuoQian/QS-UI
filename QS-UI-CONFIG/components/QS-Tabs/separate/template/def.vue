@@ -7,7 +7,7 @@
 				'line-height': height,
 				'font-size': fontSize,
 				'font-weight': fontWeight,
-				'color': isActive?activeColor:color
+				'color': color
 			}">{{tab[props.nameField] || tab}}</text>
 		</QSAnimation>
 	</view>
@@ -48,9 +48,6 @@
 			},
 			isActive: {
 				type: Boolean
-			},
-			activeColor: { 
-				type: String 
 			}
 		}
 	}

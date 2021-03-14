@@ -16,7 +16,7 @@
 					@click="click">按钮</QS-Button>
 				</view>
 				<QS-P height="80rpx"></QS-P>
-				<titleLeftLine title="按钮类型"></titleLeftLine>
+				<titleLeftLine title="主题颜色"></titleLeftLine>
 				<QS-Tabs mode="scroll" :tabs="types" :tabIndex="typeTabIndex" width="650rpx"
 					@click="typeTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>

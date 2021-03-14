@@ -145,6 +145,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/components/QS-Sticky/QS-Sticky",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

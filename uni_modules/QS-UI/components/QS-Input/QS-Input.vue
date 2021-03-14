@@ -86,6 +86,7 @@
 
 	export default {
 		mixins: [
+			QSComponentMixinRes.mixin,
 			QSInputsMixin({
 				QSInputsType: _app.typeObj.input
 			})

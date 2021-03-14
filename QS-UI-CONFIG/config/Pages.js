@@ -74,6 +74,11 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			name: '标签', //示例所需
 			url: '/pages/components/QS-Tabs/QS-Tabs',	//必须
 			key: 'components.QSTabs', //示例所需
+		},
+		QSticky: {
+			name: '黏贴', //示例所需
+			url: '/pages/components/QS-Sticky/QS-Sticky',	//必须
+			key: 'components.QSticky', //示例所需
 		}
 	}
 }
