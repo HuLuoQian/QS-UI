@@ -7,11 +7,13 @@
 				<text class="QS-text mini color_666666">请尝试点击按钮或点击图片</text>
 			</view>
 			<QS-P height="40rpx"></QS-P>
-			<view class="flex_row_c_c">
-				<QS-Animation ref="ani" :animationType="getAnimationType">
-					<image src="/static/logo.png" mode="widthFix" style="width: 300rpx;"></image>
-				</QS-Animation>
-			</view>
+			<QS-Sticky>
+				<view class="flex_row_c_c">
+					<QS-Animation ref="ani" :animationType="getAnimationType">
+						<image src="/static/logo.png" mode="widthFix" style="width: 300rpx;"></image>
+					</QS-Animation>
+				</view>
+			</QS-Sticky>
 			<QS-P height="40rpx"></QS-P>
 			<QS-Button @click="startAni">js调用动画</QS-Button>
 			<QS-P height="40rpx"></QS-P>

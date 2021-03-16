@@ -15,7 +15,7 @@
 			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
 				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
 				<block v-else-if="hasLine && !lineUseSlot">
-					<lineSeperate :currentTabInfo="getTabInfo" :lineColor="getLineColor" :theme="theme"></lineSeperate>
+					<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor" :theme="theme"></lineSeperate>
 				</block>
 				<view class="tab-item" :style="{
 					'padding-left': space,
@@ -132,30 +132,6 @@
 				type: String,
 				default: ''
 			},
-			position: {
-				type: String,
-				default: ''
-			},
-			top: {
-				type: [String, Number],
-				default: ''
-			},
-			bottom: {
-				type: [String, Number],
-				default: ''
-			},
-			zIndex: {
-				type: [String, Number],
-				default: 999
-			},
-			observeSticky: {
-				type: [String, Boolean],
-				default: true
-			},
-			observeStickyTop: {
-				type: [String, Number],
-				default: 0
-			},
 			mode: {
 				type: String,
 				default: 'auto'
@@ -163,6 +139,10 @@
 			hasLine: {
 				type: Boolean,
 				default: true
+			},
+			lineType: {
+				type: String,
+				default: ''
 			},
 			lineUseSlot: {
 				type: Boolean,
@@ -234,11 +214,6 @@
 			QS_nCompStyle() {
 				const obj = {};
 				if (this.backgroundColor) obj.backgroundColor = this.backgroundColor;
-				if (this.position) obj.position = this.position;
-				if (this.top) obj.top = this.top;
-				if (this.bottom) obj.bottom = this.bottom;
-				if (this.zIndex) obj.zIndex = this.zIndex;
-				if (this.width) obj.width = this.width;
 				return obj;
 			},
 			getTabInfo() {
@@ -257,7 +232,6 @@
 			},
 			getLineColor() {
 				const color = this.lineColor || theme[this.theme];
-				console.log(color)
 				return color
 			},
 		},
@@ -324,9 +298,9 @@
 				view.exec(data => {
 					const scrollInfo = data.shift();
 					this.tabsWidth = scrollInfo.width;
-					console.log('tabs scroll 布局信息:', JSON.stringify(scrollInfo));
+					// console.log('tabs scroll 布局信息:', JSON.stringify(scrollInfo));
 					const res = data;
-					console.log('tabitem 布局信息:', JSON.stringify(res));
+					// console.log('tabitem 布局信息:', JSON.stringify(res));
 					let diffLeft = 0;
 					for (let i = 0; i < res.length; i++) {
 						const item = res[i];

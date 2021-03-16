@@ -1,20 +1,24 @@
 <template>
 	<view class="QS page">
 		<view class="padding-rpx_25">
+			<QS-Sticky>
+				<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
+					<view class="flex_row_c_c">
+						<text class="QS-text large-xx weight">演示示例</text>
+					</view>
+					<QS-P height="80rpx"></QS-P>
+					<view class="flex_row_c_c" style="height: 50px;">
+						<QS-Badge 
+						text="99+" 
+						:color="colors[colorTabIndex].name"
+						:backgroundColor="bgColors[bgColorTabIndex].name"
+						:size="sizes[sizeTabIndex].name"
+						@click="click"></QS-Badge>
+					</view>
+				</view>
+			</QS-Sticky>
+			<QS-P height="25rpx"></QS-P>
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
-				<view class="flex_row_c_c">
-					<text class="QS-text large-xx weight">演示示例</text>
-				</view>
-				<QS-P height="80rpx"></QS-P>
-				<view class="flex_row_c_c" style="height: 50px;">
-					<QS-Badge 
-					text="99+" 
-					:color="colors[colorTabIndex].name"
-					:backgroundColor="bgColors[bgColorTabIndex].name"
-					:size="sizes[sizeTabIndex].name"
-					@click="click"></QS-Badge>
-				</view>
-				<QS-P height="80rpx"></QS-P>
 				<titleLeftLine title="字体颜色"></titleLeftLine>
 				<QS-Tabs mode="scroll" :tabs="colors" :tabIndex="colorTabIndex" width="650rpx" @click="colorTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>

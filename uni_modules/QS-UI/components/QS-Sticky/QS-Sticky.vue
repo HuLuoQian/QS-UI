@@ -31,7 +31,7 @@
 			},
 			zIndex: {
 				type: [Number, String],
-				default: 9999999999999
+				default: 1
 			}
 		},
 		data() {
@@ -72,14 +72,12 @@
 					options: { thresholds: [0] },
 					nodes: [ `#${this.componentId}`, `#content` ]
 				}, (res, i)=>{
-					console.log('intersection', i, res);
 					if(i == 1) {
 						this.fixed = true;
 						this.contentHeight = res.boundingClientRect.height;
 						this.contentWidth = res.boundingClientRect.width;
 					}
 				}, (res, i)=>{
-					console.log('unIntersection', i, res);
 					if(i == 0 && res.boundingClientRect.top >= this.top) this.fixed = false;
 				});
 			},
