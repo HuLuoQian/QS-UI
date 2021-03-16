@@ -57,7 +57,7 @@
 				fixedTop: uni.$qs.getSys().uniappPlatform === 'H5'?'44px':0,
 				offsetTop: uni.$qs.rpxUnit2px('77rpx'),
 				scrollToOffsetTop: -uni.$qs.rpxUnit2px('77rpx'),
-				nodes: [ { node: '#toast', text: 'Toast' }, { node: '#modal', text: 'Modal' }, { node: '#actionSheet', text: 'ActionSheet' } ],
+				nodes: [ { node: '#toast', name: 'Toast' }, { node: '#modal', name: 'Modal' }, { node: '#actionSheet', name: 'ActionSheet' } ],
 				toastProp: [
 					{
 						name: 'title',
@@ -193,6 +193,14 @@
 		},
 		onReady() {
 			this.$refs.QSNodeNav.init({ vm: this });
+			// uni.$qs.intersectionObserver({
+			// 	vm: this,
+			// 	nodes: this.nodes
+			// }, (i)=>{
+			// 	console.log('intersection', i)
+			// }, (i)=>{
+			// 	console.log('unIntersection', i)
+			// })
 		},
 		methods: {
 			toast() {

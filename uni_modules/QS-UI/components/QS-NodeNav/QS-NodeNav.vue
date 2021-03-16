@@ -6,14 +6,15 @@
 		opacity: isFixed?getShow:1,
 		backgroundColor: backgroundColor
 	}">
-		<view class="item" v-for="(item, index) in nodes" :key="item.node" @tap="click(item)">
+		<QSTabs :width="width" :height="height" :tabs="nodes" :tabIndex="current" @click="click"></QSTabs>
+		<!-- <view class="item" v-for="(item, index) in nodes" :key="item.node" @tap="click(item)">
 			<view class="content" :style="{ borderBottom: current === index?`1px solid ${activeColor}`:'' }">
 				<text :style="{ 
 					fontSize: fontSize,
 					color: current === index?activeColor:defColor
 				}">{{item.text}}</text>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -21,6 +22,8 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-NodeNav/js/props.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
+	import QSTabs from '../QS-Tabs/QS-Tabs.vue';
+	import intersectionObserver from '../../js/functions/intersectionObserver.js';
 
 	const QSComponentMixinRes = QSComponentMixin({
 		componentType: 'QS-NodeNav',
@@ -28,6 +31,7 @@
 	});
 	var _this;
 	export default {
+		components: { QSTabs },
 		mixins: [QSComponentMixinRes.mixin],
 		props: {
 			// #ifdef MP-ALIPAY
@@ -124,7 +128,8 @@
 			setScrollTop(e) {
 				_this.scrollTop = e;
 			},
-			click(item) {
+			click(e) {
+				const item = this.nodes[e];
 				let view;
 				// #ifndef MP-ALIPAY
 				view = uni.createSelectorQuery().in(this.$parent);
@@ -140,49 +145,14 @@
 				})
 			},
 			init(obj = {}) {
-				const Sys = uni.getSystemInfoSync();
-				// console.log(Sys)
-				let {
-					offsetTop,
-					vm
-				} = obj;
-				offsetTop = offsetTop || this.getOffsetTop;
-				offsetTop = rpxUnit2px(offsetTop);
-				const top = Number(offsetTop);
-
-				this.obsDisconnect();
-				const nodes = this.nodes;
-				const obs = [];
-				for (let i = 0; i < nodes.length; i++) {
-					const item = nodes[i];
-					const ob = uni.createIntersectionObserver(vm);
-					let bottom = -Sys.windowHeight + top + Number(this.viewportHeight);
-					
-					// 字节小程序 开发者模拟器 需要如下代码, 真机未测试
-					// #ifdef MP-TOUTIAO
-					bottom += ((String(this.hasNavigationBar) == 'true'?(44 + Sys.statusBarHeight):0));
-					// #endif
-					
-					// 支付宝小程序 开发者工具与真机表现不一致 开发者工具模拟器需要打开下面的注释, 真机不需要, 以真机为主
-					// #ifdef MP-ALIPAY
-					// bottom += ((String(this.hasNavigationBar) == 'true'?(Sys.titleBarHeight + Sys.statusBarHeight):0));
-					// #endif
-					
-					ob.relativeToViewport({
-						top: -top,
-						bottom: bottom
-					})
-					ob.observe(item.node, res => {
-						// console.log(res)
-						if (res.intersectionRatio > 0) {
-							uni.vibrateShort();
-							this.current = i;
-						}
-					});
-					obs.push(ob);
-				}
-				// console.log(obs)
-				this.obsObj = obs;
+				this.obsObj = intersectionObserver({
+					vm: obj.vm,
+					offsetTop: this.offsetTop,
+					nodes: this.nodes
+				}, (res, i)=>{
+					uni.vibrateShort();
+					this.current = i;
+				});
 			},
 			obsDisconnect() {
 				if (Array.isArray(this.obsObj)) {

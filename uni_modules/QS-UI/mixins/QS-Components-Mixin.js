@@ -13,6 +13,7 @@ const QSUI_JS_NAME = CONFIG.QSUI_JS_NAME || '$qs';
 // 	}
 // 	return str;
 // }
+var id = 0;
 module.exports = function({ componentType, setContext } = {}) {
 	var _this;
 	const props = {
@@ -37,6 +38,11 @@ module.exports = function({ componentType, setContext } = {}) {
 			},
 			beforeDestroy() {
 				if(componentType && setContext) uni[QSUI_JS_NAME].pageRoots.clearPageContext(this, componentType);
+			},
+			data() {
+				return {
+					componentId: `QS-${componentType || 'COMPONENT'}-${id++}`
+				}
 			},
 			computed: {
 				getClass() {

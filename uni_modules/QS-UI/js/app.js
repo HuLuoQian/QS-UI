@@ -58,6 +58,7 @@ import showActionSheet from './functions/showActionSheet.js';
 import uuid from './functions/uuid.js';
 import canvas from './QS-SharePoster/QS-SharePoster.js';
 import intersectionObserver from './functions/intersectionObserver.js';
+import obsDisconnect from './functions/obsDisconnect.js';
 
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
@@ -179,5 +180,6 @@ module.exports = {
 	canvas,
 	uuid,
 	pageRoots: newpageRootsObj,
-	intersectionObserver
+	intersectionObserver,
+	obsDisconnect
 }

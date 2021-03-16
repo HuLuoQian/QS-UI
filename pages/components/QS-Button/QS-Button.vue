@@ -1,20 +1,25 @@
 <template>
 	<view class="QS page">
 		<view class="padding-rpx_25">
+			<QS-Sticky>
+				<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
+					<view class="flex_row_c_c">
+						<text class="QS-text large-xx weight">演示示例</text>
+					</view>
+					<QS-P height="80rpx"></QS-P>
+					<view :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
+						<QS-Button 
+						:size="sizes[sizeTabIndex].value"
+						:theme="types[typeTabIndex].value"
+						:disabled="disabledArr[disabledTabIndex].value"
+						:loading="loadingdArr[loadingTabIndex].value"
+						:plain="plainArr[plainTabIndex].value"
+						@click="click">按钮</QS-Button>
+					</view>
+				</view>
+			</QS-Sticky>
+			<QS-P></QS-P>
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
-				<view class="flex_row_c_c">
-					<text class="QS-text large-xx weight">演示示例</text>
-				</view>
-				<QS-P height="80rpx"></QS-P>
-				<view :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
-					<QS-Button 
-					:size="sizes[sizeTabIndex].value"
-					:theme="types[typeTabIndex].value"
-					:disabled="disabledArr[disabledTabIndex].value"
-					:loading="loadingdArr[loadingTabIndex].value"
-					:plain="plainArr[plainTabIndex].value"
-					@click="click">按钮</QS-Button>
-				</view>
 				<QS-P height="80rpx"></QS-P>
 				<titleLeftLine title="主题颜色"></titleLeftLine>
 				<QS-Tabs mode="scroll" :tabs="types" :tabIndex="typeTabIndex" width="650rpx"
