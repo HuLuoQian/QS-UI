@@ -7,6 +7,7 @@ const config = {
 	log() {	//QS-UI总体控制打印信息, 注释函数内代码即可取消打印
 		return console.log('[QS-UI]:', ...arguments);
 	},
+	baseFontSize: 14,	//基础字体大小
 	launchPath: '/pages/tabbar/index/index',	//在调用关闭页面的($qs.navigateBack) api时，若第二个参数传true, 它会判断是否是最后一页，若是在最后一页调用关闭页面方法则会reLaunch至该页面
 	useBackTop: true,	//是否开启QS-BackTop功能
 	backTopShowScrollTop: 150,	//页面滑动时, QS-BackTop显示按钮阈值

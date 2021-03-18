@@ -1,6 +1,6 @@
 <template>
 	<button 
-	:id="preId" 
+	:id="componentId" 
 	class="QS_Button" 
 	:class="getClass" 
 	:style="getStyle" 
@@ -39,12 +39,13 @@
 
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
+	import props from '@/QS-UI-CONFIG/components/QS-Button/js/props.js';
 	import QSIcons from '../QS-Icons/QS-Icons.vue';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
+	import styleObj2String from '../../js/functions/styleObj2String.js';
+	import classObj2String from '../../js/functions/classObj2String.js';
 	import theme from '@/QS-UI-CONFIG/css/theme.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button' });
-	var QSButton_preId = 0;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
 		components: {
@@ -57,18 +58,6 @@
 			waves: {
 				type: [String, Boolean],
 				default: true
-			},
-			borderRadius: {
-				type: [String, Number],
-				default: '10rpx'
-			},
-			height: {
-				type: [String, Number],
-				default: ''
-			},
-			width: {
-				type: [String, Number],
-				default: ''
 			},
 			txt: {
 				type: String,
@@ -85,10 +74,6 @@
 			size: {
 				type: String,
 				default: 'default'
-			},
-			fontSize: {
-				type: [String, Number],
-				default: ''
 			},
 			disabled: {
 				type: Boolean,
@@ -138,34 +123,18 @@
 				type: [String, Boolean],
 				default: false
 			},
-			padding: {
-				type: String,
-				default: ''
-			},
-			background: {
-				type: String,
-				default: ''
-			},
-			border: {
-				type: String,
-				default: ''
-			},
 			iconAnimationType: {
 				type: String,
 				default: ''
 			},
-			color: {
-				type: String,
+			height: {
+				type: [String, Number],
 				default: ''
 			},
-			fontWeight: {
-				type: String,
-				default: ''
-			}
+			...props
 		},
 		data() {
 			return {
-				preId: 'QS_Button' + QSButton_preId++,
 				rippleTop: 0,
 				rippleLeft: 0,
 				fields: {},
@@ -178,23 +147,22 @@
 				return String(this.waves) === 'true';
 			},
 			QS_nCompClass() {
-				return Object.freeze([
+				return `${classObj2String([
 					this.plain?'':'no-plain',
 					'QS_Button-size-' + this.size,
-				]);
+				])} ${classObj2String(this.compClass.button)}`;
 			},
 			getFontSize() {
-				if(this.fontSize) return this.fontSize;
 				let size;
 				switch(this.size) {
 					case 'large':
-						size = '34rpx';
+						size = `${this.getFontSize + 2}px`;
 						break;
 					case 'mini':
-						size = '26rpx';
+						size = `${this.getFontSize - 2}px`;
 						break;
 					default:
-						size = '30rpx';
+						size = `${this.getFontSize}px`;
 						break;
 				}
 				return size;
@@ -204,19 +172,24 @@
 				let addHeight;
 				switch(this.size) {
 					case 'large':
-						addHeight = '38rpx';
+						addHeight = `${this.getFontSize + 4}px`;
 						break;
 					case 'mini':
-						addHeight = '28rpx';
+						addHeight = `${this.getFontSize}px`;
 						break;
 					default:
-						addHeight = '32rpx';
+						addHeight = `${this.getFontSize + 2}px`;
 						break;
 				}
-				return (rpxUnit2px(this.getFontSize) + rpxUnit2px(addHeight) + 'px')
+				return (this.getFontSize + rpxUnit2px(addHeight) + 'px')
 			},
 			QS_nCompStyle() {
-				let style = {};
+				const style =  {};
+				style.fontSize = this.getFontSize;
+				// #ifdef MP-ALIPAY
+				style.height = this.getHeight;
+				// #endif
+				style.lineHeight = this.getHeight;
 				if(this.plain) {
 					style.border = `1px solid ${theme[`${this.theme}${this.disabled?'Disabled':''}`]}`;
 					style.background = 'rgba(0,0,0,0)';
@@ -226,18 +199,7 @@
 					style.border = `none`;
 					style.color = theme[`${this.theme}Color`];
 				}
-				if (this.padding) style.padding = this.padding;
-				if (this.border) style.border = this.border;
-				if (this.color) style.color = this.color;
-				if (this.fontWeight) style.fontWeight = this.fontWeight;
-				if (this.borderRadius) style.borderRadius = this.borderRadius;
-				if (this.width) style.width = this.width;
-				style.fontSize = this.getFontSize;
-				// #ifdef MP-ALIPAY
-				style.height = this.getHeight;
-				// #endif
-				style.lineHeight = this.getHeight;
-				return Object.freeze(style);
+				return `${styleObj2String(style)};${styleObj2String(this.compStyle.button)}`
 			},
 			getHoverClass() {
 				if(this.getWaves) return '';
@@ -304,7 +266,7 @@
 					let id;
 					// #ifdef MP-ALIPAY
 					Query = uni.createSelectorQuery();
-					id = '#' + this.preId;
+					id = '#' + this.componentId;
 					// #endif
 					// #ifndef MP-ALIPAY
 					Query = uni.createSelectorQuery().in(this);
@@ -356,83 +318,92 @@
 
 <style scoped lang="scss">
 	@import "@/QS-UI-CONFIG/css/theme.scss";
+	
 	.QS_Button {
 		position: relative;
 		overflow: hidden;
 		border: none;
 		margin: 0;
 		text-align: center;
-		border-radius: 10rpx;
+		border-radius: 5px;
 		white-space: nowrap;
 		padding-top: 0;
 		padding-bottom: 0;
-		padding-left: 30rpx;
-		padding-right: 30rpx;
+		padding-left: 15px;
+		padding-right: 15px;
 		border-width: 1px;
 		border-style: solid;
 		-webkit-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
+		transition: background-color .3s;
+	
 		&.no-plain::after {
 			border: none;
 		}
+	
+		&-size-mini {
+			display: inline-block;
+		}
+	
+		.waves-ripple {
+			position: absolute;
+			border-radius: 100%;
+			background-clip: padding-box;
+			pointer-events: none;
+			user-select: none;
+			transform: scale(0);
+			opacity: 1;
+		}
+	
+		.waves-ripple.z-active {
+			opacity: 0;
+			transform: scale(2);
+			transition: opacity 1.2s ease-out, transform 0.6s ease-out;
+		}
+	
+		.btn_icon {
+			margin: 5px;
+		}
 	}
 	
-	.QS_Button-size-mini {
-		display: inline-block;
-	}
-
-	.waves-ripple {
-		position: absolute;
-		border-radius: 100%;
-		background-clip: padding-box;
-		pointer-events: none;
-		user-select: none;
-		transform: scale(0);
-		opacity: 1;
-	}
-
-	.waves-ripple.z-active {
-		opacity: 0;
-		transform: scale(2);
-		transition: opacity 1.2s ease-out, transform 0.6s ease-out;
-	}
-
-	.btn_icon {
-		margin: 5px;
-	}
-	
-	.QS-hover-default{
+	.QS-hover-default {
 		background-color: $qs-theme-default-hover !important;
 	}
+	
 	.QS-hover-default-plain {
 		border-color: $qs-theme-default-plain-hover !important;
 	}
 	
-	.QS-hover-primary{
+	.QS-hover-primary {
 		background-color: $qs-theme-primary-hover !important;
 	}
+	
 	.QS-hover-primary-plain {
 		border-color: $qs-theme-primary-plain-hover !important;
 	}
 	
-	.QS-hover-success{
+	.QS-hover-success {
 		background-color: $qs-theme-success-hover !important;
 	}
+	
 	.QS-hover-success-plain {
 		border-color: $qs-theme-success-plain-hover !important;
 	}
 	
-	.QS-hover-warning{
+	.QS-hover-warning {
 		background-color: $qs-theme-warning-hover !important;
 	}
+	
 	.QS-hover-warning-plain {
 		border-color: $qs-theme-warning-plain-hover !important;
 	}
 	
-	.QS-hover-danger{
+	.QS-hover-danger {
 		background-color: $qs-theme-danger-hover !important;
 	}
+	
 	.QS-hover-danger-plain {
 		border-color: $qs-theme-danger-plain-hover !important;
 	}
+	
 </style>

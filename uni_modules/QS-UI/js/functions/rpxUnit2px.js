@@ -3,6 +3,8 @@
  * @param {Object} data
  */
 module.exports = function (data) {
+	if(!data) return 0;
+	if(typeof data === 'number') return data;
 	data = String(data);
 	const rpxReg = /(\d+)rpx/;
 	const pxReg = /(\d+)px/;

@@ -1,10 +1,6 @@
-import {
-	isString,
-	isArray,
-	isObject
-} from '../js/baseUtil.js';
 import classObj2String from '../js/functions/classObj2String.js';
 import styleObj2String from '../js/functions/styleObj2String.js';
+import rpxUnit2px from '../js/functions/rpxUnit2px.js';
 import CONFIG from '@/QS-UI-CONFIG/index.js';
 const QSUI_JS_NAME = CONFIG.QSUI_JS_NAME || '$qs';
 // const styleString2Object = function (str) {
@@ -18,15 +14,20 @@ module.exports = function({ componentType, setContext } = {}) {
 	var _this;
 	const props = {
 		'compClass': {
-			type: [String, Array, Object],
-			default: ''
+			type: Object,
+			default: ()=>({})
 		},
 		'compStyle': {
-			type: [String, Array, Object],
+			type: Object,
+			default: ()=>({})
+		},
+		fontSize: {
+			type: [String, Number],
 			default: ''
 		}
 	}
 	return {
+		name: componentType || '',
 		props: props,
 		mixin: {
 			// #ifndef MP-ALIPAY
@@ -41,15 +42,19 @@ module.exports = function({ componentType, setContext } = {}) {
 			},
 			data() {
 				return {
-					componentId: `QS-${componentType || 'COMPONENT'}-${id++}`
+					componentId: `${componentType || 'QS-COMPONENT'}-${id++}`,
+					baseFontSize: CONFIG.baseFontSize
 				}
 			},
 			computed: {
+				getFontSize() {
+					return rpxUnit2px(this.fontSize) || rpxUnit2px(this.baseFontSize);
+				},
 				getClass() {
-					return `${classObj2String(this.compClass)} ${classObj2String(this.QS_nCompClass)}`
+					return `${classObj2String(this.compClass.container)} ${classObj2String(this.QS_nCompClass)}`
 				},
 				getStyle() {
-					return `${styleObj2String(this.compStyle)};${styleObj2String(this.QS_nCompStyle)};`
+					return `${styleObj2String(this.compStyle.container)};${styleObj2String(this.QS_nCompStyle)};`
 				}
 			},
 			methods: {

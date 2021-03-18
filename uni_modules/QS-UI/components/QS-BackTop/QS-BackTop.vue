@@ -1,7 +1,17 @@
 <template>
 	<view class="QS-Backtop" :class="getClass" :style="getStyle" @tap="active">
-		<image v-if="type==='image'" class="backtop-container" :src="image" mode="aspectFill"></image>
-		<view class="backtop-container" v-else-if="type==='text'">
+		<image 
+		v-if="type==='image'" 
+		class="backtop-container" 
+		:class="compClass.image"
+		:style="compStyle.image"
+		:src="image"
+		mode="aspectFill"></image>
+		<view
+		v-else-if="type==='text'"
+		class="backtop-container" 
+		:class="compClass.textContainer"
+		:style="compStyle.textContainer">
 			<text>{{text}}</text>
 		</view>
 		<slot v-else-if="type==='slot'"></slot>
@@ -13,8 +23,9 @@
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-BackTop/js/props.js';
 	import getH5TabbarHeight from '../../js/functions/getH5TabbarHeight.js';
+	import styleObj2String from '../../js/functions/styleObj2String.js';
+	import classObj2String from '../../js/functions/classObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-BackTop', setContext: true });
-	const defHeight = rpxUnit2px('80rpx');
 	var _this;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -78,14 +89,21 @@
 			isTabbar() {
 				return String(this.tabbar) === 'true';
 			},
+			QS_nCompClass() {
+				return classObj2String(this.compClass.backTop);
+			},
 			QS_nCompStyle() {
 				const style =  {
 					right: this.right,
 					bottom: this.getBottom,
 					transitionDuration: this.duration,
-					zIndex: this.zIndex
+					zIndex: this.zIndex,
+					fontSize: this.baseFontSize + 'px'
 				};
-				return style;
+				if(this.showBl) {
+					style.transform = `translateY(0)`
+				}
+				return `${styleObj2String(style)};${styleObj2String(this.compStyle.backTop)}`;
 			},
 			getBottom() {
 				const pxValue = rpxUnit2px(this.bottom);
@@ -102,7 +120,7 @@
 					value += rpxUnit2px(this.offsetBottom);
 				} else {
 					if (this.type === 'image' || this.type === 'text') {
-						value = 0 - pxValue - defHeight;
+						value = 0 - pxValue;
 					}
 
 					// #ifdef H5
@@ -140,34 +158,19 @@
 </script>
 
 <style scoped lang="scss">
-	/* #ifndef APP-NVUE */
 	.QS-Backtop {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: column;
 		position: fixed;
-		transition-property: bottom;
-
-		.backtop-container {
-			height: 80rpx;
-			width: 80rpx;
-			border-radius: 50%;
-			// background-color: #ffffff;
-			overflow: hidden;
-		}
-	}
-	/* #endif */
-	/* #ifdef APP-NVUE */
-	.QS-Backtop {
-		flex-direction: column;
-		position: fixed;
-		transition-property: bottom;
-
+		transition-property: bottom,transform;
+		transform: translateY(100%);
 	}
 	.backtop-container {
-		height: 80rpx;
-		width: 80rpx;
+		height: 40px;
+		width: 40px;
 		border-radius: 50%;
 		overflow: hidden;
 	}
-	/* #endif */
 </style>

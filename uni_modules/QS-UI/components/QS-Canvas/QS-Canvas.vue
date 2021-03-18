@@ -28,7 +28,7 @@
 			// #ifdef MP-ALIPAY
 			...QSComponentMixinRes.props,
 			// #endif
-			setGlobal: {
+			setContext: {
 				type: Boolean,
 				default: false
 			}
@@ -43,7 +43,7 @@
 			_this = this;
 			ctx = uni.createCanvasContext(_this.canvasId, _this);
 			ctx.toTempFilePath = uni.canvasToTempFilePath.bind()
-			if (_this.setGlobal) {
+			if (_this.setContext) {
 				uni.$qs.pageRoots.setPageContext(_this, 'QS-Global-Canvas');
 			}
 		},

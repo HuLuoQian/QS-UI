@@ -32,8 +32,10 @@
 	}
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
-		name: 'QSAnimation',
 		props: {
+			// #ifdef MP-ALIPAY
+			...QSComponentMixinRes.props,
+			// #endif
 			startAnimationType: {
 				type: String,
 				default: 'tap'
@@ -62,9 +64,6 @@
 				type: [Boolean, String],
 				default: false
 			},
-			// #ifdef MP-ALIPAY
-			...QSComponentMixinRes.props,
-			// #endif
 			...props
 		},
 		data() {

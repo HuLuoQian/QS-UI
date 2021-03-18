@@ -12,7 +12,7 @@
 						text="99+" 
 						:color="colors[colorTabIndex].name"
 						:backgroundColor="bgColors[bgColorTabIndex].name"
-						:size="sizes[sizeTabIndex].name"
+						:fontSize="sizes[sizeTabIndex].name"
 						@click="click"></QS-Badge>
 					</view>
 				</view>
@@ -55,7 +55,7 @@
 					{ name: 'right', value: '.3s', des: 'css right属性' },
 					{ name: 'color', value: '#ffffff', des: '字体颜色' },
 					{ name: 'backgroundColor', value: '#f1505c', des: '背景颜色' },
-					{ name: 'size', value: 22, des: '整体大小' },
+					{ name: 'size', value: 'config.baseFontSize', des: '整体大小' },
 					{ name: 'cssUnit', value: 'rpx', des: 'css单位' },
 				],
 				
@@ -65,7 +65,7 @@
 				bgColors: [ {name: '#f1505c'}, {name: '#000000'}, {name: '#2498c2'}, {name: '#ffff7f'} ],
 				bgColorTabIndex: 0,
 				
-				sizes: [ {name: 22}, {name: 30}, {name: 36} ],
+				sizes: [ {name: 12}, {name: 14}, {name: 16} ],
 				sizeTabIndex: 0
 			}
 		},

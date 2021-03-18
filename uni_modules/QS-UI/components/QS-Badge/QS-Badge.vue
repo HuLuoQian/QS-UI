@@ -5,6 +5,9 @@
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	import props from '@/QS-UI-CONFIG/components/QS-Badge/js/props.js';
+	import styleObj2String from '../../js/functions/styleObj2String.js';
+	import classObj2String from '../../js/functions/classObj2String.js';
+	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Badge' });
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -45,23 +48,18 @@
 				type: String,
 				default: '#f1505c'
 			},
-			size: {
-				type: [String, Number],
-				default: 22
-			},
-			cssUnit: {
-				type: String,
-				default: 'rpx'
-			},
 			...props
 		},
 		computed: {
+			QS_nCompClass() {
+				return classObj2String(this.compClass.badge);
+			},
 			QS_nCompStyle() {
 				const style =  {
 					width: this.getWidth,
-					height: this.getSize * 1.6 + this.cssUnit,
-					lineHeight: this.getSize * 1.6 + this.cssUnit,
-					borderRadius: this.getSize * 10 + this.cssUnit,
+					height: this.getFontSize * 1.6 + 'px',
+					lineHeight: this.getFontSize * 1.6 + 'px',
+					borderRadius: this.getFontSize * 10 + 'px',
 					position: this.position,
 					top: this.top,
 					bottom: this.bottom,
@@ -69,16 +67,13 @@
 					right: this.right,
 					color: this.color,
 					backgroundColor: this.backgroundColor,
-					fontSize: this.getSize + this.cssUnit,
-					padding: '0' + this.cssUnit + ' ' + this.getSize * .5 + this.cssUnit
+					fontSize: this.getFontSize + 'px',
+					padding: '0 ' + this.getFontSize * .5 + 'px'
 				};
-				return style;
-			},
-			getSize() {
-				return Number(this.size);
+				return `${styleObj2String(style)};${styleObj2String(this.compStyle.badge)};`;
 			},
 			getWidth() {
-				return (String(this.text).length * this.getSize * .75 + this.getSize) + this.cssUnit
+				return (String(this.text).length * this.getFontSize * .75 + this.getFontSize) + 'px'
 			}
 		},
 		methods: {
