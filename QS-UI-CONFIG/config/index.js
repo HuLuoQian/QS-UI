@@ -9,13 +9,11 @@ const config = {
 	},
 	baseFontSize: 14,	//基础字体大小
 	launchPath: '/pages/tabbar/index/index',	//在调用关闭页面的($qs.navigateBack) api时，若第二个参数传true, 它会判断是否是最后一页，若是在最后一页调用关闭页面方法则会reLaunch至该页面
-	useBackTop: true,	//是否开启QS-BackTop功能
 	backTopShowScrollTop: 150,	//页面滑动时, QS-BackTop显示按钮阈值
 	stopPullDownRefreshDuration: 1500, //刷新动画最少持续时长
 	defaultLanguage: 'zh_CN',	//默认语言, 可以配置系统语言
 	mixins: {	//全局mixins配置, 若传false则关闭所有
 		usePageScroll: true,
-		useBackTop: true,
 	
 		useNavigateTo: true,	//在全局mixins挂载uni.$qs.navigateTo方法，这样就可以直接在html代码中@tap里直接写VALUES里配置好的方法名称
 		useGetQuery: true,	//在全局mixins挂载获取布局信息方法

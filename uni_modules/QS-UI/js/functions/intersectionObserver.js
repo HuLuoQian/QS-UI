@@ -19,7 +19,7 @@ module.exports = function(obj = {}, intersection, unIntersection) {
 		console.log('请传vm为当前vue实例this');
 		console.warn('请传vm为当前vue实例this');
 	};
-	if (!nodes || !nodes.length) {
+	if (!nodes) {
 		console.log('nodes为空！');
 		console.warn('nodes为空！');
 		return;
@@ -39,16 +39,15 @@ function createIntersectionObserver(item, obj = {}, intersection, unIntersection
 		vm,
 		hasNavigationBar = false, //在原生导航栏页面头条小程序需传true
 		offsetTop = 0,
-		viewportHeight = 1,
+		viewportHeight = 0,
 		relativeToSelector = undefined,
 		margins = {},
 		options = {},
-		nodes = [],
 		Sys
 	} = obj;
 	const top = Number(offsetTop);
 	const ob = uni.createIntersectionObserver(vm, options);
-	let bottom = -Sys.windowHeight + top + Number(viewportHeight);
+	let bottom = -Sys.windowHeight + top + Number(viewportHeight || Sys.windowHeight);
 
 	// 字节小程序 开发者模拟器 需要如下代码, 真机未测试
 	// #ifdef MP-TOUTIAO
@@ -70,7 +69,6 @@ function createIntersectionObserver(item, obj = {}, intersection, unIntersection
 		})
 	}
 	ob.observe(item.node || item, res => {
-		// console.log(res)
 		if (res.intersectionRatio > 0) {
 			if (intersection && typeof intersection === 'function') intersection(res, i);
 		} else {

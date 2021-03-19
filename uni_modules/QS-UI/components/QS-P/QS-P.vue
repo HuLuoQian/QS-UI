@@ -16,11 +16,11 @@
 			// #endif
 			height: {
 				type: [Number, String],
-				default: '25rpx'
+				default: '12.5px'
 			},
 			width: {
 				type: [Number, String],
-				default: '25rpx'
+				default: '12.5px'
 			},
 			size: {
 				type: [Number, String],

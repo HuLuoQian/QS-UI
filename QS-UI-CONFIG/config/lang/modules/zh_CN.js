@@ -1,4 +1,5 @@
 module.exports = {
+	['qs-des']: '我们都如流星短暂 但谁能像它闪耀',
 	test: {
 		test:'测试多语言',
 		modifyLang: '改变语言'
@@ -13,7 +14,8 @@ module.exports = {
 			interaction: '交互反馈',
 			request: '请求接口',
 			handleAddress: '地址解析',
-			countDown: '倒计时'
+			countDown: '倒计时',
+			theme: '主题'
 		},
 		components: {
 			QSAnimation: 'QS-Animation 动画',

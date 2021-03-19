@@ -148,6 +148,7 @@
 				this.obsObj = intersectionObserver({
 					vm: obj.vm,
 					offsetTop: this.offsetTop,
+					viewportHeight: 1,
 					nodes: this.nodes
 				}, (res, i)=>{
 					uni.vibrateShort();

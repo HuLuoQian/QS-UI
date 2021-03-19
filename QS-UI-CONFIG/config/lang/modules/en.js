@@ -1,4 +1,5 @@
 module.exports = {
+	['qs-des']: 'We are all meteors for a while but who can shine like it',
 	test: {
 		test: 'test_1',
 		modifyLang: 'Modify Lang'
@@ -13,7 +14,8 @@ module.exports = {
 			interaction: 'Interaction',
 			request: 'Request',
 			handleAddress: 'Address Resolution',
-			countDown: 'Count Down'
+			countDown: 'Count Down',
+			theme: 'Theme'
 		},
 		components: {
 			QSAnimation: 'QS-Animation Animation',

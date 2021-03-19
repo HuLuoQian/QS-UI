@@ -17,7 +17,7 @@
 	v-if="getClass && getStyle">
 		<block v-if="preIconType">
 			<QSIcons ref="icon" :hasAnimation="!!iconAnimationType" :animationType="iconAnimationType" :type="preIconType"
-			 :color="preIconColor" :size="preIconSize"></QSIcons>
+			 :color="preIconColor" :fontSize="fontSize"></QSIcons>
 			<view style="width: 15rpx;"></view>
 		</block>
 		<block v-if="txt">
@@ -44,7 +44,7 @@
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import styleObj2String from '../../js/functions/styleObj2String.js';
 	import classObj2String from '../../js/functions/classObj2String.js';
-	import theme from '@/QS-UI-CONFIG/css/theme.js';
+	import store from '../../js/store/index.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button' });
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -115,10 +115,6 @@
 				type: String,
 				default: '#ffffff'
 			},
-			preIconSize: {
-				type: String,
-				default: '30rpx'
-			},
 			setTimeoutClick: {
 				type: [String, Boolean],
 				default: false
@@ -143,6 +139,9 @@
 			}
 		},
 		computed: {
+			themes() {
+				return store.getters['theme/theme'];
+			},
 			getWaves() {
 				return String(this.waves) === 'true';
 			},
@@ -152,7 +151,7 @@
 					'QS_Button-size-' + this.size,
 				])} ${classObj2String(this.compClass.button)}`;
 			},
-			getFontSize() {
+			getCurFontSize() {
 				let size;
 				switch(this.size) {
 					case 'large':
@@ -185,19 +184,19 @@
 			},
 			QS_nCompStyle() {
 				const style =  {};
-				style.fontSize = this.getFontSize;
+				style.fontSize = this.getCurFontSize;
 				// #ifdef MP-ALIPAY
 				style.height = this.getHeight;
 				// #endif
 				style.lineHeight = this.getHeight;
 				if(this.plain) {
-					style.border = `1px solid ${theme[`${this.theme}${this.disabled?'Disabled':''}`]}`;
+					style.border = `1px solid ${this.themes[`${this.theme}${this.disabled?'Disabled':''}`]}`;
 					style.background = 'rgba(0,0,0,0)';
-					style.color = theme[`${this.theme}ColorPlain`];
+					style.color = this.themes[`${this.theme}ColorPlain`];
 				}else{
-					style.background = this.background || theme[`${this.theme}${this.disabled?'Disabled':''}`];
+					style.background = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
 					style.border = `none`;
-					style.color = theme[`${this.theme}Color`];
+					style.color = this.themes[`${this.theme}Color`];
 				}
 				return `${styleObj2String(style)};${styleObj2String(this.compStyle.button)}`
 			},

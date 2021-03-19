@@ -47,8 +47,8 @@
 </template>
 
 <script>
-	import QSProgress from '@/QS-UI/components/QS-Progress/QS-Progress.vue';
-	import QSIconsJs from '@/QS-UI/components/QS-Icons/icons.js';
+	import QSProgress from '@/uni_modules/QS-UI/components/QS-Progress/QS-Progress.vue';
+	import QSIconsJs from '@/uni_modules/QS-UI/components/QS-Icons/icons.js';
     export default {
 		components: {QSProgress},
 		props: {

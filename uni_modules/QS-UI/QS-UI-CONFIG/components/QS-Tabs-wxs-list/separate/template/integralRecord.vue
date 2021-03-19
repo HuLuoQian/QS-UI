@@ -44,7 +44,7 @@
 	import {
 		doPageDemand
 	} from '@/QS-UI-CONFIG/js/pageDemand.js';
-	import QSButton from '@/QS-UI/components/QS-Button/QS-Button.vue';
+	import QSButton from '@/uni_modules/QS-UI/components/QS-Button/QS-Button.vue';
 	export default {
 		components: {
 			QSButton

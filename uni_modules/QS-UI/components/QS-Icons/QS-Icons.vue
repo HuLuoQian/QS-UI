@@ -36,10 +36,6 @@
 				type: String,
 				default: '#333333'
 			},
-			size: {
-				type: [Number, String],
-				default: '16px'
-			},
 			backgroundColor: {
 				type: String,
 				default: 'rgba(255,255,255,0)'
@@ -99,7 +95,7 @@
 			QS_nCompStyle() {
 				const style = { 
 					color: this.color, 
-					fontSize: this.fontSize, 
+					fontSize: this.getFontSize + 'px', 
 					backgroundColor: this.backgroundColor,
 					padding: this.padding,
 					borderRadius: this.borderRadius,
@@ -107,9 +103,6 @@
 				}
 				return style;
 			},
-			fontSize() {
-				return this.size;
-			}
 		},
 		methods: {
 			setAnimationTypes() {

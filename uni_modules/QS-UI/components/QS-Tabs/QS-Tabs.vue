@@ -51,7 +51,7 @@
 	import props from '@/QS-UI-CONFIG/components/QS-Tabs/js/props.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import lineSeperate from '@/QS-UI-CONFIG/components/QS-Tabs/line-separate/separate.vue';
-	import theme from '@/QS-UI-CONFIG/css/theme.js';
+	import store from '../../js/store/index.js';
 	const QSComponentMixinRes = QSComponentMixin({
 		componentType: 'QS-Tabs'
 	});
@@ -201,6 +201,9 @@
 			// getTabsWidth() {
 			// 	return rpxUnit2px(this.width || '750rpx');
 			// },
+			themes() {
+				return store.getters['theme/theme'];
+			},
 			getModeClass() {
 				if (this.mode && this.mode !== 'auto') return this.mode;
 				if (this.containerWidth > this.tabsWidth) return '';
@@ -228,10 +231,10 @@
 				return d;
 			},
 			getActiveColor() {
-				return this.activeColor || theme[`${this.theme}Color`];
+				return this.activeColor || this.themes[`${this.theme}Color`];
 			},
 			getLineColor() {
-				const color = this.lineColor || theme[this.theme];
+				const color = this.lineColor || this.themes[this.theme];
 				return color
 			},
 		},

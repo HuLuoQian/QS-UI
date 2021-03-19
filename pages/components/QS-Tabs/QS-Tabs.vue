@@ -5,8 +5,6 @@
 				<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
 					<view class="flex_column_c_c">
 						<text class="QS-text large weight">演示示例</text>
-						<QS-P></QS-P>
-						<text class="QS-text mini color_666666">请尝试点击按钮或点击图片</text>
 					</view>
 					<QS-P height="40rpx"></QS-P>
 					<QS-Tabs ref="tabs" mode="scroll" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"

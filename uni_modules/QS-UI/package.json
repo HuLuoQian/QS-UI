@@ -2,19 +2,23 @@
 	"id": "QS-UI",
 	"displayName": "QS-UI",
 	"version": "1.0.0",
-	"description": "QS-UI",
+	"description": "我们都如流星短暂 但谁能像它闪耀",
 	"keywords": [
-		"QS-UI",
-		"ui库"
-	],
-	"repository": "",
+        "QS-UI",
+        "",
+        "框架",
+        "js",
+        "组件",
+        "QS"
+    ],
+	"repository": "https://github.com/HuLuoQian/QS-UI",
 	"engines": {
 		"HBuilderX": "^3.1.2"
 	},
 	"dcloudext": {
 		"category": [
-			"前端组件",
-			"通用组件"
+			"uni-app前端模板",
+			"前端页面模板"
 		],
 		"sale": {
 			"regular": {
@@ -28,9 +32,9 @@
 			"qq": ""
 		},
 		"declaration": {
-			"ads": "",
-			"data": "",
-			"permissions": ""
+			"ads": "无",
+			"data": "无",
+			"permissions": "无"
 		},
 		"npmurl": ""
 	},
@@ -39,37 +43,37 @@
 		"encrypt": [],
 		"platforms": {
 			"cloud": {
-				"tcb": "u",
-				"aliyun": "u"
+				"tcb": "y",
+				"aliyun": "y"
 			},
 			"client": {
 				"App": {
-					"app-vue": "u",
-					"app-nvue": "u"
+					"app-vue": "y",
+					"app-nvue": "n"
 				},
 				"H5-mobile": {
-					"Safari": "u",
-					"Android Browser": "u",
-					"微信浏览器(Android)": "u",
-					"QQ浏览器(Android)": "u"
+					"Safari": "y",
+					"Android Browser": "y",
+					"微信浏览器(Android)": "y",
+					"QQ浏览器(Android)": "y"
 				},
 				"H5-pc": {
-					"Chrome": "u",
-					"IE": "u",
-					"Edge": "u",
-					"Firefox": "u",
-					"Safari": "u"
+					"Chrome": "y",
+					"IE": "y",
+					"Edge": "y",
+					"Firefox": "y",
+					"Safari": "y"
 				},
 				"小程序": {
-					"微信": "u",
-					"阿里": "u",
-					"百度": "u",
-					"字节跳动": "u",
-					"QQ": "u"
+					"微信": "y",
+					"阿里": "y",
+					"百度": "y",
+					"字节跳动": "y",
+					"QQ": "y"
 				},
 				"快应用": {
-					"华为": "u",
-					"联盟": "u"
+					"华为": "n",
+					"联盟": "n"
 				}
 			}
 		}

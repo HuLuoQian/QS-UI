@@ -1,18 +1,22 @@
 <template>
-	<view class="container">
-		<view class="line" v-if="isActive"></view>
-		<text class="tab-item-title" :style="{
-			'height': height,
-			'line-height': height,
-			'font-size': fontSize,
-			'font-weight': fontWeight,
-			'color': color
-		}">{{tab[props.nameField] || tab}}</text>
+	<view class="container" :class="{ active: isActive }">
+		<!-- <view class="line" v-if="isActive"></view> -->
+		<QSAnimation>
+			<text class="tab-item-title" :class="{ active: isActive }" :style="{
+				'height': height,
+				'line-height': height,
+				'font-size': fontSize,
+				'font-weight': fontWeight,
+				'color': color
+			}">{{tab[props.nameField] || tab}}</text>
+		</QSAnimation>
 	</view>
 </template>
 
 <script>
+	import QSAnimation from '@/uni_modules/QS-UI/components/QS-Animation/QS-Animation.vue';
 	export default {
+		components: {QSAnimation},
 		props: {
 			tab: {
 				type: [String, Number, Object, Array, Boolean],
@@ -49,7 +53,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.container {
 		position: relative;
 		display: flex;
@@ -59,6 +63,10 @@
 		/* flex: 1; */
 		height: 100%;
 		width: 100%;
+		border-radius: 10rpx;
+		&.active {
+			// background-color: #BC9D6F;
+		}
 	}
 	.line{
 		position: absolute;
@@ -76,5 +84,8 @@
 		white-space: nowrap;
 		/* #endif */
 		z-index: 30;
+		&.active{
+			transform: scale(1.2);
+		}
 	}
 </style>

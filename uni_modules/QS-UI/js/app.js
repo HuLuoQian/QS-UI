@@ -50,7 +50,6 @@ import dateFormat from './functions/dateFormat.js';
 import toLine from './functions/toLine.js';
 import toHump from './functions/toHump.js';
 import getH5TabbarHeight from './functions/getH5TabbarHeight.js';
-import toProject from './functions/toProject.js';
 import acc from './functions/acc.js';
 import deepClone from './functions/deepClone.js';
 import countDown from './functions/countDown.js';
@@ -59,61 +58,15 @@ import uuid from './functions/uuid.js';
 import canvas from './QS-SharePoster/QS-SharePoster.js';
 import intersectionObserver from './functions/intersectionObserver.js';
 import obsDisconnect from './functions/obsDisconnect.js';
+import pageRootsClass from './functions/pageRoots.js';
+import store from './store/index.js';
 
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
 
-class pageRootsObj {
-	constructor(arg) {
-		this.pageRoots = {};
-	}
 
-	setPageContext(vm, ContextType) {
-		if(ContextType === 'QS-Global-Canvas') {
-			this.pageRoots['QS-Global-Canvas'] = vm;
-			return;
-		}
-		const id = this.getParentId(vm);
-		if (!this.pageRoots[id]) this.pageRoots[id] = {};
-		this.pageRoots[id][ContextType] = vm;
-	}
 
-	clearPageContext(vm, ContextType) {
-		const id = this.getParentId(vm);
-		if (this.pageRoots[id]) {
-			if (this.pageRoots[id][ContextType]) this.pageRoots[id][ContextType] = null;
-			if (!Object.keys(this.pageRoots[id]).length) this.pageRoots[id] = null;
-		}
-	}
-
-	getPage(page, ContextType) {
-		if(ContextType === 'QS-Global-Canvas') {
-			return this.pageRoots['QS-Global-Canvas'];
-		}
-		const id = this.getId(page);
-		return this.pageRoots[id] && this.pageRoots[id][ContextType];
-	}
-
-	getParentId(vm) {
-		// #ifdef H5
-		return vm.$parent.__page__.id;
-		// #endif
-		// #ifndef H5
-		return vm.$parent._uid;
-		// #endif
-	}
-
-	getId(page) {
-		// #ifdef H5
-		return page.__page__.id;
-		// #endif
-		// #ifndef H5
-		return page.$vm._uid;
-		// #endif
-	}
-}
-
-const newpageRootsObj = new pageRootsObj();
+const newpageRootsObj = new pageRootsClass();
 
 module.exports = {
 	...$qs,
@@ -173,7 +126,6 @@ module.exports = {
 	toHump,
 	apis,
 	getH5TabbarHeight,
-	toProject,
 	acc,
 	deepClone,
 	countDown,
@@ -181,5 +133,6 @@ module.exports = {
 	uuid,
 	pageRoots: newpageRootsObj,
 	intersectionObserver,
-	obsDisconnect
+	obsDisconnect,
+	store
 }

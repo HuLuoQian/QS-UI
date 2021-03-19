@@ -18,7 +18,7 @@ switch (STATUS) {	//筛选接口前缀
 }
 
 const interfaces = { //接口列表
-
+	
 }
 
 module.exports = {

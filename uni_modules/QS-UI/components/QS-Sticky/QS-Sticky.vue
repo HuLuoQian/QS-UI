@@ -1,11 +1,13 @@
 <template>
-	<view :id="componentId" class="getClass" :style="getStyle">
-		<!-- <view id="placeholder"></view> -->
-		<!-- 
-			height: contentHeight + 'px',
-			width: contentWidth + 'px' -->
-		<view id="content" :style="getFixedStyle">
-			<slot></slot>
+	<view :id="componentId + 'box'" :class="getClass" :style="getStyle">
+		<view :id="componentId">
+			<!-- <view id="placeholder"></view> -->
+			<!-- 
+				height: contentHeight + 'px',
+				width: contentWidth + 'px' -->
+			<view id="content" :style="getFixedStyle">
+				<slot></slot>
+			</view>
 		</view>
 	</view>
 </template>
@@ -69,8 +71,13 @@
 				this.obsObj = intersectionObserver({
 					vm: this,
 					offSetTop: this.top,
-					options: { thresholds: [0] },
-					nodes: [ `#${this.componentId}`, `#content` ]
+					viewportHeight: 1,
+					// #ifdef MP
+					nodes: [ `#${this.componentId + 'box'}`, `#content` ],
+					// #endif
+					// #ifndef MP
+					nodes: [ `#${this.componentId}`, `#content` ],
+					// #endif
 				}, (res, i)=>{
 					if(i == 1) {
 						this.fixed = true;
