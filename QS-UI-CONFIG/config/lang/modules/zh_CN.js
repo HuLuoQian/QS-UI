@@ -23,7 +23,8 @@ module.exports = {
 			QSBadge: 'QS-Badge 标记',
 			QSButton: 'QSButton 按钮',
 			QSTabs: 'QSTabs 标签',
-			QSticky: 'QSticky 黏贴'
+			QSticky: 'QSticky 黏贴',
+			QSComponentReading: 'QS组件须知'
 		}
 	},
 	tabbar: {

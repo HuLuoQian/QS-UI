@@ -14,8 +14,8 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 
 		if (CONFIG.mixins.useOnPullDownRefresh) {
 			mixin.onPullDownRefresh = function() {
-				if (isFn(this[VALUES.mixinsName.pullDownRefreshFnName])) {
-					const result = this[VALUES.mixinsName.pullDownRefreshFnName]();
+				if (isFn(this[VALUES.mixins.pullDownRefreshFnName])) {
+					const result = this[VALUES.mixins.pullDownRefreshFnName]();
 					let oldTime = +new Date();
 					if (isPromise(result)) {
 						result
@@ -38,7 +38,7 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 						console.log(`刷新函数请return一个Promise对象`);
 					}
 				} else {
-					console.log(`页面上没有找到${VALUES.mixinsName.pullDownRefreshFnName}方法, 请手动创建并return一个Promise对象`);
+					console.log(`页面上没有找到${VALUES.mixins.pullDownRefreshFnName}方法, 请手动创建并return一个Promise对象`);
 				}
 			}
 		}
@@ -46,7 +46,7 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 
 		// methods
 		if (CONFIG.mixins.useNavigateTo) {
-			methods[VALUES.mixinsName.navigateTo] = function() {
+			methods[VALUES.mixins.navigateTo] = function() {
 				const filterArguments = []
 				for (let i = 0; i < arguments.length; i++) {
 					if (arguments[i] === undefined) break;
@@ -64,7 +64,7 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 		}
 
 		if (CONFIG.mixins.useGetQuery) {
-			methods[VALUES.mixinsName.getQuery] = function(elements, fields = {
+			methods[VALUES.mixins.getQuery] = function(elements, fields = {
 				size: true
 			}) {
 				let view;
@@ -116,6 +116,11 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 		}
 		
 		mixin.methods = methods;
+		
+		if(CONFIG.mixins.useOnShareAppMessage)
+			mixin.onShareAppMessage = function () {
+				return this[VALUES.mixins.onShareAppMessageData];
+			}
 		//exports
 		m['exports'] = mixin;
 	} else {

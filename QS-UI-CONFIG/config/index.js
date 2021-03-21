@@ -19,6 +19,8 @@ const config = {
 		useGetQuery: true,	//在全局mixins挂载获取布局信息方法
 		
 		useOnPullDownRefresh: true,	//页面刷新
+		
+		useOnShareAppMessage: true, //小程序分享
 	},
 	filters: {	//Vue-filter 配置
 		useDateFormat: true,	//是否使用日期格式化功能

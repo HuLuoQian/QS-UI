@@ -105,11 +105,6 @@
 						des: '按钮大小'
 					},
 					{
-						name: 'fontSize',
-						value: '',
-						des: '字体大小'
-					},
-					{
 						name: 'disabled',
 						value: false,
 						des: '是否禁用'

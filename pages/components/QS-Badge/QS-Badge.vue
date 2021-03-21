@@ -55,7 +55,6 @@
 					{ name: 'right', value: '.3s', des: 'css right属性' },
 					{ name: 'color', value: '#ffffff', des: '字体颜色' },
 					{ name: 'backgroundColor', value: '#f1505c', des: '背景颜色' },
-					{ name: 'size', value: 'config.baseFontSize', des: '整体大小' },
 					{ name: 'cssUnit', value: 'rpx', des: 'css单位' },
 				],
 				

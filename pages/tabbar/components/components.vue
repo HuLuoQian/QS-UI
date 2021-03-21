@@ -31,8 +31,7 @@
 	export default {
 		data() {
 			return {
-				JSRoutes: 
-				 Object.keys(uni.$qs.Pages.components).map(item => ({
+				JSRoutes: Object.keys(uni.$qs.Pages.components).map(item => ({
 				 	...uni.$qs.Pages.components[item]
 				 })).filter(item => item.hide === undefined).sort((ite)=>ite.type).reduce((pre, cur) => {
 				 	if (cur.type) {

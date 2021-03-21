@@ -2,10 +2,8 @@ module.exports = {	//各种名称配置，方便名称重复时修改, 或者改
 	mixinsName: {	//全局mixins名称
 		navigateTo: 'QS_navigateTo',	//跳转页面
 		getQuery: 'QS_getQuery',	//获取布局信息
-		QS_globalData: 'QS_globalData',	//uni.$qs.globalData 在页面中的变量名称
-		QSBackTopScroll: 'QSBackTopScroll',
-		QSBackTopScroll_checkShow: 'QSBackTopScroll_checkShow',
-		pullDownRefreshFnName: 'QS_pullDownRefreshFn'
+		pullDownRefreshFnName: 'QS_pullDownRefreshFn',
+		onShareAppMessageData: 'onShareAppMessageData'
 	},
 	H5BrowserType: {	//H5浏览器环境判断, 该值会被uni.$qs.getSys中的H5BrowserType使用
 		weixin: 'weixin',	//微信浏览器

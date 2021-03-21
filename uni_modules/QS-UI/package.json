@@ -1,7 +1,7 @@
 {
 	"id": "QS-UI",
 	"displayName": "QS-UI",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "我们都如流星短暂 但谁能像它闪耀",
 	"keywords": [
         "QS-UI",
@@ -18,7 +18,7 @@
 	"dcloudext": {
 		"category": [
 			"uni-app前端模板",
-			"前端页面模板"
+			"vue 页面模板"
 		],
 		"sale": {
 			"regular": {

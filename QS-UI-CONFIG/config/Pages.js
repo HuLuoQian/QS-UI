@@ -65,6 +65,11 @@ const Pages = {	//配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 		}
 	},
 	components: {
+		QSComponentReading: {
+			name: 'QS组件须知', //示例所需
+			url: '/pages/components/QS-Component-Reading/QS-Component-Reading',	//必须
+			key: 'components.QSComponentReading', //示例所需
+		},
 		QSAnimation: {
 			name: '动画', //示例所需
 			url: '/pages/components/QS-Animation/QS-Animation',	//必须

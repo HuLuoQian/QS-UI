@@ -9,7 +9,7 @@
 		:show-scrollbar="false" 
 		:scroll-into-view="getScrollInto" 
 		:style="{
-			height: height,
+			height: getHeight,
 			width: width
 		}">
 			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
@@ -18,22 +18,22 @@
 					<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor" :theme="theme"></lineSeperate>
 				</block>
 				<view class="tab-item" :style="{
-					'padding-left': space,
-					'padding-right': space,
+					'padding-left': getSpace,
+					'padding-right': getSpace,
 					flex: itemFull?1:'none'
 				}" v-for="(tab,index) in nTabs" :key="index" :id="'tabitem'+index" :ref="'tabitem'+index" :data-current="index"
 					@click="ontabtap">
 					<view class="rel-item">
-						<temp :isActive="tabIndex==index" :tab="tab" :height="height"
-							:fontSize="tabIndex==index ? activeFontSize: defFontSize"
+						<temp :isActive="tabIndex==index" :tab="tab" :height="getHeight"
+							:fontSize="tabIndex==index ? getActiveFontSize: getDefFontSize"
 							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
 							:color="tabIndex==index ? getActiveColor: defColor" :props="nprops" :index="index"
 							:tabsLen="nTabs.length" :type="type">
 						</temp>
 					</view>
 					<view class="abs-item">
-						<temp :isActive="tabIndex==index" :tab="tab" :height="height"
-							:fontSize="tabIndex==index ? activeFontSize: defFontSize"
+						<temp :isActive="tabIndex==index" :tab="tab" :height="getHeight"
+							:fontSize="tabIndex==index ? getActiveFontSize: getDefFontSize"
 							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
 							:color="tabIndex==index ? getActiveColor: defColor" :props="nprops" :index="index"
 							:tabsLen="nTabs.length" :type="type">
@@ -78,7 +78,7 @@
 			},
 			height: {
 				type: [String, Number],
-				default: '88rpx'
+				default: ''
 			},
 			tabs: {
 				type: Array,
@@ -86,7 +86,7 @@
 			},
 			space: {
 				type: [String, Number],
-				default: '50rpx'
+				default: ''
 			},
 			autoScrollInto: {
 				type: [String, Boolean],
@@ -94,11 +94,11 @@
 			},
 			activeFontSize: {
 				type: [String, Number],
-				default: '30rpx'
+				default: ''
 			},
 			defFontSize: {
 				type: [String, Number],
-				default: '30rpx'
+				default: ''
 			},
 			activeFontBold: {
 				type: [String, Boolean],
@@ -237,6 +237,22 @@
 				const color = this.lineColor || this.themes[this.theme];
 				return color
 			},
+			getDefFontSize() {
+				if(this.defFontSize) return this.defFontSize;
+				return this.getFontSize + 'px';
+			},
+			getActiveFontSize() {
+				if(this.activeFontSize) return this.activeFontSize;
+				return this.getFontSize + 'px';
+			},
+			getHeight() {
+				if(this.height) return this.height;
+				return (this.getFontSize + 25) + 'px';
+			},
+			getSpace() {
+				if(this.space) return this.space;
+				return '20px';
+			}
 		},
 		created() {
 			this.setTabs(this.tabs);

@@ -9,7 +9,7 @@
 		{
 			"path": "pages/tabbar/index/index",
 			"style": {
-				
+                "enablePullDownRefresh": false
 			}
 		}
 	    ,{
@@ -152,6 +152,15 @@
             "path" : "pages/js/theme/theme",
             "style" :                                                                                    
             {
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/components/QS-Component-Reading/QS-Component-Reading",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

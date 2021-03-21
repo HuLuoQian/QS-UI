@@ -23,7 +23,8 @@ module.exports = {
 			QSBadge: 'QSBadge Badge',
 			QSButton: 'QSButton Button',
 			QSTabs: 'QSTabs Tabs',
-			QSticky: 'QSticky sticky'
+			QSticky: 'QSticky sticky',
+			QSComponentReading: 'QSComponentReading'
 		}
 	},
 	tabbar: {

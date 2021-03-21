@@ -7,14 +7,12 @@
 			width: imageObj.width + 'px',
 			top: imageObj.top + 'px',
 			left: imageObj.left + 'px',
-			opacity: opacity
 		}"></image>
 		<text 
 		class="text-des" 
 		:style="{
 			top: textObj.top + 'px',
 			left: textObj.left + 'px',
-			opacity: opacity
 		}">{{$qst('qs-des')}}</text>
 	</view>
 </template>
@@ -56,7 +54,6 @@
 				id: `q_${uni.$qs.uuid()}`,
 				imageObj: {...originImageObj},
 				textObj: {...originTextObj},
-				opacity: 0,
 				bgOpacity: 0
 			}
 		},
@@ -70,7 +67,6 @@
 				},
 				viewportHeight: Sys.windowHeight
 			}, (res)=>{
-				if(!this.opacity) this.opacity = 1;
 				const size = targetImageObj.height + (originImageObj.height - targetImageObj.height) * res.intersectionRatio;
 				const imgdiffw = (halfWidth - size/2);
 				this.imageObj.height = size;
