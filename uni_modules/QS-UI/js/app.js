@@ -60,6 +60,7 @@ import intersectionObserver from './functions/intersectionObserver.js';
 import obsDisconnect from './functions/obsDisconnect.js';
 import pageRootsClass from './functions/pageRoots.js';
 import store from './store/index.js';
+import mixin from '../mixins/mixin.js';
 
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
@@ -134,5 +135,6 @@ module.exports = {
 	pageRoots: newpageRootsObj,
 	intersectionObserver,
 	obsDisconnect,
-	store
+	store,
+	mixin
 }

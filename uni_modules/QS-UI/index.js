@@ -8,7 +8,7 @@ const install = (Vue, options = {}) => {
 	}
 	if(typeof uni == 'object' && config.SETIN_UNI) uni[config.QSUI_JS_NAME || '$qs'] = QSUIJS;	//挂在uni对象下
 	if(config.SETIN_VUE) Vue.prototype[config.QSUI_JS_NAME] = QSUIJS;	//挂在Vue原型上
-	if(config.mixins) Vue.mixin(mixins);
+	if(config.mixins) Vue.mixin(mixins());
 	if(config.filters) {
 		if(config.filters.useDateFormat) {
 			Vue.filter(QSUIJS.VALUES.filterName.dateFormat, QSUIJS.dateFormat)

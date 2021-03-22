@@ -7,10 +7,12 @@ import {
 } from '@/QS-UI-CONFIG/config/index.js';
 import VALUES from '@/QS-UI-CONFIG/config/values.js';
 import CONFIG from '@/QS-UI-CONFIG/index.js';
+import multiLang from '../js/functions/multiLang.js'
 (function(m) {
 	if (CONFIG.mixins) {
 		const mixin = {};
 		const methods = {};
+		const filters = {};
 
 		if (CONFIG.mixins.useOnPullDownRefresh) {
 			mixin.onPullDownRefresh = function() {
@@ -95,7 +97,7 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 			const pages = getCurrentPages();
 			const page = pages[pages.length - 1];
 			let backTopVm = uni.$qs.pageRoots.getPage(page, 'QS-BackTop');
-			if(backTopVm) {
+			if (backTopVm) {
 				// backTopVm = backTopVm.getRoot();
 				// if (backTopVm)
 				if (scrollTop > CONFIG.backTopShowScrollTop) {
@@ -105,7 +107,7 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 				}
 			}
 			let nodeNavVm = uni.$qs.pageRoots.getPage(page, 'QS-NodeNav');
-			if(nodeNavVm) {
+			if (nodeNavVm) {
 				nodeNavVm.setScrollTop(scrollTop);
 			}
 		}
@@ -114,16 +116,26 @@ import CONFIG from '@/QS-UI-CONFIG/index.js';
 		if (CONFIG.mixins.usePageScroll) {
 			mixin.onPageScroll = onPageScroll;
 		}
-		
+
 		mixin.methods = methods;
-		
-		if(CONFIG.mixins.useOnShareAppMessage)
-			mixin.onShareAppMessage = function () {
+
+		if (CONFIG.mixins.useOnShareAppMessage)
+			mixin.onShareAppMessage = function() {
 				return this[VALUES.mixins.onShareAppMessageData];
 			}
 		//exports
-		m['exports'] = mixin;
+		m['exports'] = function(isNvue) {
+			if (isNvue) {
+				if (CONFIG.multiLang.NVUE_SETIN_FILTER) {
+					filters[VALUES.multiLang.filterName] = multiLang.getLang;
+				}
+				mixin.filters = filters;
+			}else{
+				mixin.filters = {};
+			}
+			return mixin
+		};
 	} else {
-		m['exports'] = {};
+		m['exports'] = function () { return {} };
 	}
 })(module)

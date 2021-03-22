@@ -28,7 +28,9 @@ const config = {
 	},
 	multiLang: {	//多语言配置，建议挂在Vue原型上，使用方式和 i18n一致, 使用名称可在config/values.js中配置
 		SETIN_VUE: true,	//多语言是否使用Vue原型上的方法, 例如: {{ $qst('test.a') }}
-		SETIN_FILTER: false	//多语言是否使用filter方式, 例如: {{ 'test.a' | qst }}
+		SETIN_FILTER: false,	//多语言是否使用filter方式, 例如: {{ 'test.a' | qst }}
+		
+		NVUE_SETIN_FILTER: true, //nvue多语言是否使用filter方式, 例如: {{ 'test.a' | qst }}
 	}
 }
 
