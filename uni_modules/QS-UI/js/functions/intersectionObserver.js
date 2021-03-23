@@ -5,6 +5,7 @@ module.exports = function(obj = {}, intersection, unIntersection) {
 	// console.log(Sys)
 	let {
 		vm,
+		ob,
 		hasNavigationBar = false, //在原生导航栏页面头条小程序需传true
 		offsetTop = 0,
 		viewportHeight = 1,
@@ -15,9 +16,10 @@ module.exports = function(obj = {}, intersection, unIntersection) {
 	} = obj;
 	obj.Sys = Sys;
 	obj.offsetTop = rpxUnit2px(offsetTop);
-	if (!vm) {
+	if (!vm && !ob) {
 		console.log('请传vm为当前vue实例this');
 		console.warn('请传vm为当前vue实例this');
+		return;
 	};
 	if (!nodes) {
 		console.log('nodes为空！');
@@ -37,6 +39,7 @@ module.exports = function(obj = {}, intersection, unIntersection) {
 function createIntersectionObserver(item, obj = {}, intersection, unIntersection, i) {
 	let {
 		vm,
+		ob,
 		hasNavigationBar = false, //在原生导航栏页面头条小程序需传true
 		offsetTop = 0,
 		viewportHeight = 0,
@@ -46,7 +49,7 @@ function createIntersectionObserver(item, obj = {}, intersection, unIntersection
 		Sys
 	} = obj;
 	const top = Number(offsetTop);
-	const ob = uni.createIntersectionObserver(vm, options);
+	ob = ob || uni.createIntersectionObserver(obj.vm, options);
 	let bottom = -Sys.windowHeight + top + Number(viewportHeight || Sys.windowHeight);
 
 	// 字节小程序 开发者模拟器 需要如下代码, 真机未测试

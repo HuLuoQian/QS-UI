@@ -67,6 +67,7 @@
 		},
 		methods: {
 			init() {
+				// #ifndef APP-NVUE
 				obsDisconnect(this.obsObj);
 				this.obsObj = intersectionObserver({
 					vm: this,
@@ -87,6 +88,7 @@
 				}, (res, i)=>{
 					if(i == 0 && res.boundingClientRect.top >= this.top) this.fixed = false;
 				});
+				// #endif
 			},
 		}
 	}

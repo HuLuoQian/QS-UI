@@ -1,0 +1,39 @@
+	.QS-hover-default {
+		background-color: $qs-theme-default-hover !important;
+	}
+	
+	.QS-hover-default-plain {
+		border-color: $qs-theme-default-plain-hover !important;
+	}
+	
+	.QS-hover-primary {
+		background-color: $qs-theme-primary-hover !important;
+	}
+	
+	.QS-hover-primary-plain {
+		border-color: $qs-theme-primary-plain-hover !important;
+	}
+	
+	.QS-hover-success {
+		background-color: $qs-theme-success-hover !important;
+	}
+	
+	.QS-hover-success-plain {
+		border-color: $qs-theme-success-plain-hover !important;
+	}
+	
+	.QS-hover-warning {
+		background-color: $qs-theme-warning-hover !important;
+	}
+	
+	.QS-hover-warning-plain {
+		border-color: $qs-theme-warning-plain-hover !important;
+	}
+	
+	.QS-hover-danger {
+		background-color: $qs-theme-danger-hover !important;
+	}
+	
+	.QS-hover-danger-plain {
+		border-color: $qs-theme-danger-plain-hover !important;
+	}

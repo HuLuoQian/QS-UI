@@ -21,7 +21,9 @@
 			<view style="width: 15rpx;"></view>
 		</block>
 		<block v-if="txt">
-			{{txt}}
+			<text>
+				{{txt}}
+			</text>
 		</block>
 		<block v-else>
 			<slot></slot>
@@ -190,11 +192,24 @@
 				// #endif
 				style.lineHeight = this.getHeight;
 				if(this.plain) {
+					// #ifndef APP-NVUE
 					style.border = `1px solid ${this.themes[`${this.theme}${this.disabled?'Disabled':''}`]}`;
 					style.background = 'rgba(0,0,0,0)';
+					// #endif
+					// #ifdef APP-NVUE
+					style['border-style'] = 'solide';
+					style['border-width'] = '1px';
+					style['border-color'] = this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					style.backgroundColor = 'rgba(0,0,0,0)';
+					// #endif
 					style.color = this.themes[`${this.theme}ColorPlain`];
 				}else{
+					// #ifndef APP-NVUE
 					style.background = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					// #endif
+					// #ifdef APP-NVUE
+					style.backgroundColor = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					// #endif
 					style.border = `none`;
 					style.color = this.themes[`${this.theme}Color`];
 				}
@@ -315,8 +330,8 @@
 	}
 </script>
 
-<style scoped lang="scss">
-	@import "@/QS-UI-CONFIG/css/theme.scss";
+<style scoped>
+	@import "@/QS-UI-CONFIG/css/theme.css";
 	
 	.QS_Button {
 		position: relative;
@@ -334,75 +349,43 @@
 		border-style: solid;
 		-webkit-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
-		transition: background-color .3s;
-	
-		&.no-plain::after {
-			border: none;
-		}
-	
-		&-size-mini {
-			display: inline-block;
-		}
-	
-		.waves-ripple {
-			position: absolute;
-			border-radius: 100%;
-			background-clip: padding-box;
-			pointer-events: none;
-			user-select: none;
-			transform: scale(0);
-			opacity: 1;
-		}
-	
-		.waves-ripple.z-active {
-			opacity: 0;
-			transform: scale(2);
-			transition: opacity 1.2s ease-out, transform 0.6s ease-out;
-		}
-	
-		.btn_icon {
-			margin: 5px;
-		}
+		transition-property: background-color;
+		transition-duration: .3s;
 	}
 	
-	.QS-hover-default {
-		background-color: $qs-theme-default-hover !important;
+	/* #ifndef APP-NVUE */
+	.no-plain::after {
+		border: none;
+	}
+	/* #endif */
+	/* #ifdef APP-NVUE */
+	.no-plain {
+		border: none;
+	}
+	/* #endif */
+		
+	.QS_Button-size-mini {
+		display: inline-block;
+	}
+		
+	.waves-ripple {
+		position: absolute;
+		border-radius: 9999999px;
+		background-clip: padding-box;
+		pointer-events: none;
+		user-select: none;
+		transform: scale(0);
+		opacity: 1;
+	}
+	.waves-ripple.z-active {
+		opacity: 0;
+		transform: scale(2);
+		transition-property: opacity, transform;
+		transition-duration: 1.2s;
 	}
 	
-	.QS-hover-default-plain {
-		border-color: $qs-theme-default-plain-hover !important;
-	}
-	
-	.QS-hover-primary {
-		background-color: $qs-theme-primary-hover !important;
-	}
-	
-	.QS-hover-primary-plain {
-		border-color: $qs-theme-primary-plain-hover !important;
-	}
-	
-	.QS-hover-success {
-		background-color: $qs-theme-success-hover !important;
-	}
-	
-	.QS-hover-success-plain {
-		border-color: $qs-theme-success-plain-hover !important;
-	}
-	
-	.QS-hover-warning {
-		background-color: $qs-theme-warning-hover !important;
-	}
-	
-	.QS-hover-warning-plain {
-		border-color: $qs-theme-warning-plain-hover !important;
-	}
-	
-	.QS-hover-danger {
-		background-color: $qs-theme-danger-hover !important;
-	}
-	
-	.QS-hover-danger-plain {
-		border-color: $qs-theme-danger-plain-hover !important;
+	.btn_icon {
+		margin: 5px;
 	}
 	
 </style>

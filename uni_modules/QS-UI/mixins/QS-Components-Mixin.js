@@ -1,4 +1,5 @@
 import classObj2String from '../js/functions/classObj2String.js';
+import classString2Array from '../js/functions/classString2Array.js';
 import styleObj2String from '../js/functions/styleObj2String.js';
 import rpxUnit2px from '../js/functions/rpxUnit2px.js';
 import CONFIG from '@/QS-UI-CONFIG/index.js';
@@ -51,7 +52,13 @@ module.exports = function({ componentType, setContext } = {}) {
 					return rpxUnit2px(this.fontSize) || rpxUnit2px(this.baseFontSize);
 				},
 				getClass() {
-					return `${classObj2String(this.compClass.container)} ${classObj2String(this.QS_nCompClass)}`
+					const c = `${classObj2String(this.compClass.container)} ${classObj2String(this.QS_nCompClass)}`;
+					// #ifndef APP-NVUE
+					return c
+					// #endif
+					// #ifdef APP-NVUE
+					return classString2Array(c);
+					// #endif
 				},
 				getStyle() {
 					return `${styleObj2String(this.compStyle.container)};${styleObj2String(this.QS_nCompStyle)};`

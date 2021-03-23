@@ -54,6 +54,7 @@
 	originImageObj.top += 44;
 	originTextObj.top += 44;
 	// #endif
+	var _this;
 	export default {
 		// #ifdef APP-NVUE
 		mixins: [uni.$qs.mixin(true)],
@@ -71,6 +72,9 @@
 				bgHeight: (35 + uni.upx2px(50)) + 'px'
 			}
 		},
+		created() {
+			_this = this;
+		},
 		async mounted() {
 			await new Promise(rs => this.$nextTick(() => {
 				setTimeout(() => {
@@ -79,10 +83,13 @@
 			}));
 			this.obs = uni.$qs.intersectionObserver({
 				vm: this,
-				nodes: '#logo',
-				options: {
+				ob: uni.createIntersectionObserver(this, {
 					thresholds: Array(1001).fill('').map((ite, index) => (index / 1000))
-				},
+				}),
+				nodes: '#logo',
+				// options: {
+				// 	thresholds: Array(1001).fill('').map((ite, index) => (index / 1000))
+				// },
 				viewportHeight: Sys.windowHeight
 			}, (res) => {
 				const size = targetImageObj.height + (originImageObj.height - targetImageObj.height) * res
