@@ -61,7 +61,9 @@ module.exports = function({ componentType, setContext } = {}) {
 					// #endif
 				},
 				getStyle() {
-					return `${styleObj2String(this.compStyle.container)};${styleObj2String(this.QS_nCompStyle)};`
+					const s = `${styleObj2String(this.compStyle.container)};${styleObj2String(this.QS_nCompStyle)};`;
+					if(componentType == 'QS-Button-nvue') console.log(s);
+					return s
 				}
 			},
 			methods: {

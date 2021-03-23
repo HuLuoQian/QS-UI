@@ -3,7 +3,7 @@
 		<!-- #ifdef H5 -->
 		<QS-P height="44px"></QS-P>
 		<!-- #endif -->
-		<logo></logo>
+		<!-- <logo></logo> -->
 		<view class="flex_column padding-rpx_25 a">
 			<block v-for="(item, index) in JSRoutes" :key="index">
 				<block v-if="item.isTitle">
@@ -21,8 +21,10 @@
 				</block>
 			</block>
 		</view>
+		<QS-P height="20px"></QS-P>
+		<QS-Button-nvue >{{nvueBtnText}}</QS-Button-nvue>
+		<button type="default" style="height: 60px;background-color: #007AFF;" @click="changenvueBtnText">2</button>
 		<QS-P height="500px"></QS-P>
-
 		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
@@ -32,6 +34,7 @@
 		mixins: [uni.$qs.mixin(true)],
 		data() {
 			return {
+				nvueBtnText: '测试按钮1',
 				JSRoutes: Object.keys(uni.$qs.Pages.js).map(item => ({
 					...uni.$qs.Pages.js[item]
 				})).filter(item => item.hide === undefined).sort((ite)=>ite.type).reduce((pre, cur) => {
@@ -49,6 +52,11 @@
 		},
 		onShow() {
 			uni.$qs.changeTabbarItemLang(); //该方法在QS-UI-CONFIG/config/$qs.js 中拓展在$qs核心js中的
+		},
+		methods: {
+			changenvueBtnText() {
+				this.nvueBtnText = '测试按钮1-改'
+			}
 		}
 	}
 </script>

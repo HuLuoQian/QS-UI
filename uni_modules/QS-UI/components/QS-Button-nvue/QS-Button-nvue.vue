@@ -1,39 +1,7 @@
 <template>
-	<button 
-	:id="componentId" 
-	class="QS_Button" 
-	:class="getClass" 
-	:style="getStyle" 
-	:loading="loading" 
-	:plain="plain" 
-	:form-type="formType"
-	:open-type="openType" 
-	:hover-start-time="hoverStartTime" 
-	:hover-stay-time="hoverStayTime" 
-	:hover-class="getHoverClass"
-	@getuserinfo="getuserinfo($event)" 
-	@getphonenumber="getphonenumber($event)" 
-	@tap.prevent.stop="handleClick($event)"
-	v-if="getClass && getStyle">
-		<block v-if="preIconType">
-			<QSIcons ref="icon" :hasAnimation="!!iconAnimationType" :animationType="iconAnimationType" :type="preIconType"
-			 :color="preIconColor" :fontSize="fontSize"></QSIcons>
-			<view style="width: 15rpx;"></view>
-		</block>
-		<!-- #ifdef APP-NVUE -->
-		<text :style="textStyle">{{txt || $slots.default[0].children[0].text || ''}}</text>
-		<!-- #endif -->
-		<!-- #ifndef APP-NVUE -->
-		<block v-if="txt">
-			<text :style="textStyle">
-				{{txt}}
-			</text>
-		</block>
-		<block v-else>
-			<text :style="textStyle">
-				<slot></slot>
-			</text>
-		</block>
+	<button class="QS_Button" type="default" :style="getStyle"
+	@tap.prevent.stop="handleClick($event)">
+		<text :style="textStyle">{{$slots.default[0].children[0].text}}</text>
 		<view v-if="getWaves" class="waves-ripple" :class="{'z-active':active}" :style="{
 			'top': rippleTop + 'px',
 			'left': rippleLeft + 'px',
@@ -42,109 +10,29 @@
 			'background-color':(wavesColor||'rgba(0, 0, 0, .15)')
 		}">
 		</view>
-		<!-- #endif -->
 	</button>
 </template>
 
 <script>
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
-	import props from '@/QS-UI-CONFIG/components/QS-Button/js/props.js';
-	import QSIcons from '../QS-Icons/QS-Icons.vue';
+	import store from '../../js/store/index.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import styleObj2String from '../../js/functions/styleObj2String.js';
 	import classObj2String from '../../js/functions/classObj2String.js';
-	import store from '../../js/store/index.js';
-	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button' });
+	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button-nvue' });
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
-		components: {
-			QSIcons
-		},
 		props: {
-			// #ifdef MP-ALIPAY
-			...QSComponentMixinRes.props,
-			// #endif
-			waves: {
-				type: [String, Boolean],
-				default: true
-			},
-			txt: {
-				type: String,
-				default: ''
-			},
-			wavesColor: {
-				type: String,
-				default: ''
-			},
 			theme: {
 				type: String,
-				default: 'default'
+				default: 'primary'
 			},
-			size: {
-				type: String,
-				default: 'default'
-			},
-			disabled: {
-				type: Boolean,
-				default: false
-			},
-			loading: {
-				type: Boolean,
-				default: false
-			},
-			plain: {
-				type: Boolean,
-				default: false
-			},
-			formType: {
-				type: String,
-				default: ''
-			},
-			openType: {
-				type: String,
-				default: ''
-			},
-			hoverStartTime: {
-				type: Number,
-				default: 20
-			},
-			hoverStayTime: {
-				type: Number,
-				default: 70
-			},
-			hoverClass: {
-				type: String,
-				default: ''
-			},
-			preIconType: {
-				type: String,
-				default: ''
-			},
-			preIconColor: {
-				type: String,
-				default: '#ffffff'
-			},
-			setTimeoutClick: {
-				type: [String, Boolean],
-				default: false
-			},
-			iconAnimationType: {
-				type: String,
-				default: ''
-			},
-			height: {
-				type: [String, Number],
-				default: ''
-			},
-			...props
 		},
 		data() {
 			return {
 				rippleTop: 0,
 				rippleLeft: 0,
 				fields: {},
-				active: Boolean,
-				query: null,
 			}
 		},
 		computed: {
@@ -152,7 +40,7 @@
 				return store.getters['theme/theme'];
 			},
 			getWaves() {
-				return String(this.waves) === 'true';
+				return true;
 			},
 			QS_nCompClass() {
 				return `${classObj2String([
@@ -193,6 +81,7 @@
 			},
 			QS_nCompStyle() {
 				const style =  {};
+				style.fontSize = this.getCurFontSize;
 				// #ifdef MP-ALIPAY || APP-NVUE
 				style.height = this.getHeight;
 				// #endif
@@ -208,14 +97,16 @@
 					style['border-color'] = this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
 					style.backgroundColor = 'rgba(0,0,0,0)';
 					// #endif
+					style.color = this.themes[`${this.theme}ColorPlain`];
 				}else{
 					// #ifndef APP-NVUE
 					style.background = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
-					style.border = `none`;
 					// #endif
 					// #ifdef APP-NVUE
 					style.backgroundColor = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
 					// #endif
+					style.border = `none`;
+					style.color = this.themes[`${this.theme}Color`];
 				}
 				return `${styleObj2String(style)};${styleObj2String(this.compStyle.button)}`
 			},
@@ -258,9 +149,9 @@
 				})
 			},
 			activeFc(e) {
-				// console.log('点击事件:' + JSON.stringify(e));
+				console.log('点击事件:' + JSON.stringify(e));
 				this.getFields().then(res => {
-					// console.log('得到数据:' + JSON.stringify(data));
+					console.log('得到数据:' + JSON.stringify(data));
 					let data = res[0]
 					if (!data.height) return;
 					data.finalWidth = (data.height > data.width ? data.height : data.width);
@@ -306,7 +197,7 @@
 						rect: true
 					});
 					Query.exec((data) => {
-						// console.log(data);
+						console.log(data);
 						if (data[0] === null) {
 							this.retryGetFields().then(res => {
 								if (data[0] === null) {
@@ -329,25 +220,17 @@
 						rect: true
 					});
 					Query.exec((data) => {
-						// console.log('返回节点信息:' + JSON.stringify(data))
+						console.log('返回节点信息:' + JSON.stringify(data))
 						rs(data)
 					});
 				})
 			},
-			getuserinfo(e) {
-				this.$emit('getuserinfo', e)
-			},
-			getphonenumber(e) {
-				this.$emit('getphonenumber', e)
-			}
 		}
-
+		
 	}
 </script>
 
 <style scoped>
-	@import "@/QS-UI-CONFIG/css/theme.css";
-	
 	.QS_Button {
 		position: relative;
 		overflow: hidden;
@@ -370,43 +253,25 @@
 		/* #endif */
 	}
 	
-	/* #ifndef APP-NVUE */
-	.no-plain::after {
-		border: none;
-	}
-	/* #endif */
-	/* #ifdef APP-NVUE */
-	.no-plain {
-		border: none;
-	}
-	/* #endif */
-		
-	.QS_Button-size-mini {
-		/* #ifndef APP-NVUE */
-		display: inline-block;
-		/* #endif */
-	}
-		
-	/* #ifndef APP-NVUE */
 	.waves-ripple {
 		position: absolute;
 		border-radius: 9999999px;
+		/* #ifndef APP-NVUE */
 		background-clip: padding-box;
 		pointer-events: none;
 		user-select: none;
+		/* #endif */
 		transform: scale(0);
 		opacity: 1;
 	}
-	.waves-ripple.z-active {
+	.z-active {
 		opacity: 0;
 		transform: scale(2);
 		transition-property: opacity, transform;
 		transition-duration: 1.2s;
 	}
-	/* #endif */
 	
 	.btn_icon {
 		margin: 5px;
 	}
-	
 </style>
