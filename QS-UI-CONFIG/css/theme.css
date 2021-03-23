@@ -1,39 +1,39 @@
-	.QS-hover-default {
-		background-color: $qs-theme-default-hover !important;
+.QS-hover-default {
+		background-color: #F2F2F2 !important;
 	}
-	
+
 	.QS-hover-default-plain {
-		border-color: $qs-theme-default-plain-hover !important;
+		border-color: #F2F2F2 !important;
 	}
-	
+
 	.QS-hover-primary {
-		background-color: $qs-theme-primary-hover !important;
+		background-color: #ecc48c !important;
 	}
-	
+
 	.QS-hover-primary-plain {
-		border-color: $qs-theme-primary-plain-hover !important;
+		border-color: #ecc48c !important;
 	}
-	
+
 	.QS-hover-success {
-		background-color: $qs-theme-success-hover !important;
+		background-color: #b3e19d !important;
 	}
-	
+
 	.QS-hover-success-plain {
-		border-color: $qs-theme-success-plain-hover !important;
+		border-color: #b3e19d !important;
 	}
-	
+
 	.QS-hover-warning {
-		background-color: $qs-theme-warning-hover !important;
+		background-color: #f3d19e !important;
 	}
-	
+
 	.QS-hover-warning-plain {
-		border-color: $qs-theme-warning-plain-hover !important;
+		border-color: #f3d19e !important;
 	}
-	
+
 	.QS-hover-danger {
-		background-color: $qs-theme-danger-hover !important;
+		background-color: #fab6b6 !important;
 	}
-	
+
 	.QS-hover-danger-plain {
-		border-color: $qs-theme-danger-plain-hover !important;
+		border-color: #fab6b6 !important;
 	}
