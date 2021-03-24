@@ -1,28 +1,26 @@
 <template>
 	<view :id="id" class="QS-Tabs" :class="getClass" :style="getStyle">
-		<scroll-view 
-		ref="scrollViewX" 
-		id="scrollViewX" 
-		class="scrollViewX" 
-		:scroll="false" 
-		:scroll-x="true"
-		:show-scrollbar="false" 
-		:scroll-into-view="getScrollInto" 
-		:style="{
+		<scroll-view ref="scrollViewX" id="scrollViewX" class="scrollViewX" :scroll="false" :scroll-x="true"
+			:show-scrollbar="false" :scroll-into-view="getScrollInto" :style="{
 			height: getHeight,
 			width: width
 		}">
 			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
-				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
-				<block v-else-if="hasLine && !lineUseSlot">
-					<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor" :theme="theme"></lineSeperate>
-				</block>
+				
+				<view class="" style="flex: 1;position: absolute;">
+					<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
+					<block v-else-if="hasLine && !lineUseSlot">
+						<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor"
+							:theme="theme"></lineSeperate>
+					</block>
+				</view>
+				
 				<view class="tab-item" :style="{
 					'padding-left': getSpace,
 					'padding-right': getSpace,
 					flex: itemFull?1:'none'
-				}" v-for="(tab,index) in nTabs" :key="index" :id="'tabitem'+index" :ref="'tabitem'+index" :data-current="index"
-					@click="ontabtap">
+				}" v-for="(tab,index) in nTabs" :key="index" :id="'tabitem'+index" ref="tabitem" :data-current="index"
+					@click="ontabtap($event, index)">
 					<view class="rel-item">
 						<temp :isActive="tabIndex==index" :tab="tab" :height="getHeight"
 							:fontSize="tabIndex==index ? getActiveFontSize: getDefFontSize"
@@ -211,7 +209,7 @@
 				return 'center';
 			},
 			getScrollInto() {
-				if(!this.autoScrollInto) return '';
+				if (!this.autoScrollInto) return '';
 				return 'tabitem' + this.tabIndex;
 			},
 			QS_nCompStyle() {
@@ -220,6 +218,9 @@
 				return obj;
 			},
 			getTabInfo() {
+				console.log('getTabInfo tabsInfo', this.tabsInfo);
+				console.log('getTabInfo tabIndex', this.tabIndex);
+				
 				const d = (this.tabsInfo[this.tabIndex] || {
 					left: 0,
 					right: 0,
@@ -238,19 +239,19 @@
 				return color
 			},
 			getDefFontSize() {
-				if(this.defFontSize) return this.defFontSize;
+				if (this.defFontSize) return this.defFontSize;
 				return this.getFontSize + 'px';
 			},
 			getActiveFontSize() {
-				if(this.activeFontSize) return this.activeFontSize;
+				if (this.activeFontSize) return this.activeFontSize;
 				return this.getFontSize + 'px';
 			},
 			getHeight() {
-				if(this.height) return this.height;
+				if (this.height) return this.height;
 				return (this.getFontSize + 25) + 'px';
 			},
 			getSpace() {
-				if(this.space) return this.space;
+				if (this.space) return this.space;
 				return '20px';
 			}
 		},
@@ -268,16 +269,31 @@
 					this.getContainerWidth();
 				})
 			},
-			ontabtap(e) {
-				this.$emit('click', e.target.dataset.current === undefined ? e.currentTarget.dataset.current : e.target
-					.dataset.current)
+			ontabtap(e, index) {
+				let current;
+				if (index !== undefined) current = index;
+				else if (e?.target?.dataset?.current !== undefined) current = e.target.dataset.current;
+				else if (e?.currentTarget?.dataset?.current !== undefined) current = e.currentTarget.dataset.current;
+				else if (e?.currentTarget?.attr?.dataCurrent !== undefined) current = e.currentTarget.attr.dataCurrent;
+				this.$emit('click', current)
 			},
-			getContainerWidth() {
+			async getContainerWidth() {
+				console.log('getContainerWidth')
+				await new Promise(rs => {
+					this.$nextTick(() => {
+						rs()
+					})
+				})
 				// #ifdef APP-NVUE
-				const promiseArr = [];
+				const promiseArr = [new Promise((rs, rj) => {
+					dom.getComponentRect(this.$refs[`scrollViewX-row`], option => {
+						rs(option.size);
+					})
+				})];
 				for (let i = 0; i < this.nTabs.length; i++) {
 					promiseArr.push(new Promise((rs, rj) => {
-						dom.getComponentRect(this.$refs[`tabitem${i}`], option => {
+						dom.getComponentRect(this.$refs.tabitem[i], option => {
+							console.log('tabitem, option', JSON.stringify(option))
 							rs(option.size);
 						})
 					}))
@@ -285,13 +301,16 @@
 
 				Promise.all(promiseArr)
 					.then(res => {
+						// console.log('布局信息:', JSON.stringify(res));
+						const scrollInfo = res.shift();
+						this.tabsWidth = scrollInfo.width;
 						this.tabsInfo = Object.freeze(res);
 						this.containerWidth = res.reduce((pre, cur, obj) => {
 							return cur.width + pre;
 						}, 0);
 					})
 					.catch(err => {
-						conosle.log('获取tab-item布局信息失败')
+						console.log('获取tab-item布局信息失败')
 					})
 
 				// #endif
@@ -369,9 +388,8 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-	.QS-Tabs {
-	}
+<style scoped>
+	.QS-Tabs {}
 
 	.scrollViewX {
 		/* #ifndef APP-NVUE */
@@ -387,6 +405,9 @@
 		height: 100%;
 		display: flex;
 		/* #endif */
+		/* #ifdef APP-NVUE */
+		flex: 1;
+		/* #endif */
 		flex-direction: column;
 	}
 
@@ -397,11 +418,14 @@
 		height: 100%;
 		display: flex;
 		/* #endif */
+		/* #ifdef APP-NVUE */
+		flex: 1;
+		/* #endif */
 		flex-direction: row;
+	}
 
-		&.center {
-			justify-content: center;
-		}
+	.center {
+		justify-content: center;
 	}
 
 	.scrollViewX-container {

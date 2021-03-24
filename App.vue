@@ -28,10 +28,6 @@
 		background-color: #EEEEEE;
 	}
 
-	/* #endif */
-
-
-	/* #ifndef APP-NVUE */
 	::-webkit-scrollbar {
 		display: none;
 		width: 0 !important;
@@ -40,9 +36,6 @@
 		background: transparent;
 	}
 
-	/* #endif */
-
-	/* #ifndef APP-NVUE */
 	view,
 	scroll-view,
 	swiper,
@@ -71,8 +64,18 @@
 	picker-view-column {
 		box-sizing: border-box;
 	}
-
+	
+	image {
+		will-change: transform;
+	}
 	/* #endif */
+
+	.QS {
+		/* #ifdef APP-NVUE */
+		background-color: #f7f7f7;
+		flex: 1;
+		/* #endif */
+	}
 
 	.fixed-bottom-center {
 		position: fixed;
@@ -118,13 +121,6 @@
 		align-items: center;
 		font-size: 30rpx;
 	}
-
-	/* #ifndef APP-NVUE */
-	image {
-		will-change: transform;
-	}
-
-	/* #endif */
 
 	.width-rpx_750 {
 		width: 750rpx;

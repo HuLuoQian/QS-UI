@@ -3,7 +3,7 @@
 		<!-- #ifdef H5 -->
 		<QS-P height="44px"></QS-P>
 		<!-- #endif -->
-		<logo></logo>
+		<!-- <logo></logo> -->
 		<view class="flex_column padding-rpx_25">
 			<block v-for="(item, index) in JSRoutes" :key="index">
 				<block v-if="item.isTitle">
