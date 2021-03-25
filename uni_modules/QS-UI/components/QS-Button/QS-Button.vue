@@ -6,7 +6,6 @@
 	:style="getStyle" 
 	:loading="loading" 
 	:plain="plain" 
-	:form-type="formType"
 	:open-type="openType" 
 	:hover-start-time="hoverStartTime" 
 	:hover-stay-time="hoverStayTime" 
@@ -53,7 +52,6 @@
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import styleObj2String from '../../js/functions/styleObj2String.js';
 	import classObj2String from '../../js/functions/classObj2String.js';
-	import store from '../../js/store/index.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Button' });
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -148,9 +146,6 @@
 			}
 		},
 		computed: {
-			themes() {
-				return store.getters['theme/theme'];
-			},
 			getWaves() {
 				return String(this.waves) === 'true';
 			},
@@ -203,10 +198,9 @@
 					style.background = 'rgba(0,0,0,0)';
 					// #endif
 					// #ifdef APP-NVUE
-					style['border-style'] = 'solide';
+					style['border-style'] = 'solid';
 					style['border-width'] = '1px';
 					style['border-color'] = this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
-					style.backgroundColor = 'rgba(0,0,0,0)';
 					// #endif
 				}else{
 					// #ifndef APP-NVUE
@@ -214,7 +208,7 @@
 					style.border = `none`;
 					// #endif
 					// #ifdef APP-NVUE
-					style.backgroundColor = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					style['background-color'] = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
 					// #endif
 				}
 				return `${styleObj2String(style)};${styleObj2String(this.compStyle.button)}`
@@ -246,6 +240,7 @@
 					return;
 				}
 				if (this.iconAnimationType) this.$refs.icon[this.iconAnimationType]();
+				// #ifndef APP-NVUE
 				this.$nextTick(() => {
 					if (this.getWaves) this.activeFc(e);
 					if (String(this.setTimeoutClick) === 'true') {
@@ -256,6 +251,10 @@
 						this.$emit('click');
 					}
 				})
+				// #endif
+				// #ifdef APP-NVUE
+				this.$emit('click');
+				// #endif
 			},
 			activeFc(e) {
 				// console.log('点击事件:' + JSON.stringify(e));
@@ -360,13 +359,13 @@
 		padding-right: 15px;
 		border-width: 1px;
 		border-style: solid;
+		transition-property: background-color;
+		transition-duration: .3s;
 		/* #ifndef APP-NVUE */
 		border: none;
 		white-space: nowrap;
 		-webkit-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
-		transition-property: background-color;
-		transition-duration: .3s;
 		/* #endif */
 	}
 	

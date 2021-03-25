@@ -56,10 +56,18 @@
 				type: [String, Number],
 				default: 0
 			},
+			// #ifndef APP-NVUE
 			subsection: {
 				type: [Boolean, String],
 				default: true
 			},
+			// #endif
+			// #ifdef APP-NVUE
+			subsection: {
+				type: [Boolean, String],
+				default: false
+			},
+			// #endif
 			disabled: {
 				type: [Boolean, String],
 				default: false
@@ -149,7 +157,7 @@
 				this.animationing = true;
 				const fn = this[animationType || this.animationType];
 				if (fn && typeof fn === 'function') {
-					await fn();
+					await ((fn()).P);
 					this.animationing = false;
 					if (cb && typeof cb === 'function') cb();
 				} else {
@@ -584,6 +592,8 @@
 
 <style scoped>
 	.QS-Animation {
+		/* #ifndef APP-NVUE */
 		display: inline-block;
+		/* #endif */
 	}
 </style>

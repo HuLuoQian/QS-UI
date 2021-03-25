@@ -21,7 +21,8 @@
 				</block>
 			</block>
 		</view>
-		<QS-P height="500px"></QS-P>
+		<QS-P height="1000px"></QS-P>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

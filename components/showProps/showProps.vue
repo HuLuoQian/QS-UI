@@ -1,5 +1,10 @@
 <template>
+	<!-- #ifndef APP-NVUE -->
 	<view class="QS">
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	<view>
+	<!-- #endif -->
 		<view class="flex_column">
 			<block v-if="showAttributesText">
 				<text class="QS-text large-xx weight">Attributes</text>
@@ -8,16 +13,28 @@
 			<view class="flex_row">
 				<QS-P width="25rpx"></QS-P>
 				<view class="flex_column">
-					{{wrap[0]}}
+					<text>{{wrap[0]}}</text>
 					<view class="flex_row">
 						<QS-P width="25rpx"></QS-P>
 						<view class="flex_column">
 							<view class="flex_row" v-for="(item, index) in prop" :key="index">
+								<!-- #ifndef APP-NVUE -->
 								<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 margin-left-rpx_10 flex-wrap_wrap">{{item.value | filterValue}}</text></text></text>
+								<!-- #endif -->
+								<!-- #ifdef APP-NVUE -->
+								
+								<view class="flex_column">
+									<text class="QS-text weight">{{item.name}}:</text>
+									<view class="flex_row">
+										<QS-P width="25rpx"></QS-P>
+										<text class="QS-text color_666666 margin-left-rpx_10 flex-wrap_wrap" style="width: 500rpx;">{{item.value | filterValue}}</text>
+									</view>
+								</view>
+								<!-- #endif -->
 							</view>
 						</view>
 					</view>
-					{{wrap[1]}}
+					<text>{{wrap[1]}}</text>
 				</view>
 				<!-- <text class="QS-text color_666666 flex-wrap_wrap" decode>
 					{{getProps}}
@@ -36,9 +53,22 @@
 		<view class="flex_row" v-if="showDes">
 			<view class="flex_column">
 				<QS-P height="25rpx"></QS-P>
-				<view class="flex_row" :class="index?'margin-top-rpx_15':''" v-for="(item, index) in prop" :key="index">
-					<QS-P width="25rpx">·</QS-P>
+				<view class="flex_row" :class="[index?'margin-top-rpx_15':'']" v-for="(item, index) in prop" :key="index">
+					<QS-P width="25rpx">
+						<text>·</text>
+					</QS-P>
+					<!-- #ifndef APP-NVUE -->
 					<text><text class="QS-text weight colon">{{item.name}}</text><text class="QS-text color_666666 flex-wrap_wrap margin-left-rpx_10">{{item.des}}</text></text>
+					<!-- #endif -->
+					<!-- #ifdef APP-NVUE -->
+					<view class="flex_column">
+						<text class="QS-text weight">{{item.name}}:</text>
+						<view class="flex_row">
+							<QS-P width="25rpx"></QS-P>
+							<text class="QS-text color_666666 flex-wrap_wrap margin-left-rpx_10" style="width: 500rpx;">{{item.des}}</text>
+						</view>
+					</view>
+					<!-- #endif -->
 				</view>
 			</view>
 			<text class="QS-text color_666666 flex-wrap_wrap" decode>

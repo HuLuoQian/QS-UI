@@ -7,15 +7,23 @@
 		}">
 			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
 				
-				<view class="" style="flex: 1;position: absolute;">
-					<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
-					<block v-else-if="hasLine && !lineUseSlot">
-						<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor"
-							:theme="theme"></lineSeperate>
-					</block>
-				</view>
-				
-				<view class="tab-item" :style="{
+				<!-- #ifndef APP-NVUE -->
+				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
+				<block v-else-if="hasLine && !lineUseSlot">
+					<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor"
+						:theme="theme"></lineSeperate>
+				</block>
+				<!-- #endif -->
+				<!-- #ifdef APP-NVUE -->
+				<view class="tab-line" :style="{
+					top: getTabInfo.height * .1 + 'px',
+					left: (getTabInfo.left + (getTabInfo.width * .1)) + 'px',
+					height: getTabInfo.height * .8 + 'px',
+					width: getTabInfo.width * .8 + 'px',
+					backgroundColor: getLineColor
+				}"></view>
+				<!-- #endif -->
+				<view v-if="hasLine" class="tab-item" :style="{
 					'padding-left': getSpace,
 					'padding-right': getSpace,
 					flex: itemFull?1:'none'
@@ -29,7 +37,9 @@
 							:tabsLen="nTabs.length" :type="type">
 						</temp>
 					</view>
-					<view class="abs-item">
+					<!-- #ifndef APP-NVUE -->
+					<view 
+					class="abs-item">
 						<temp :isActive="tabIndex==index" :tab="tab" :height="getHeight"
 							:fontSize="tabIndex==index ? getActiveFontSize: getDefFontSize"
 							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
@@ -37,6 +47,21 @@
 							:tabsLen="nTabs.length" :type="type">
 						</temp>
 					</view>
+					<!-- #endif -->
+					<!-- #ifdef APP-NVUE -->
+					<view 
+					class="abs-item"
+					:style="{
+						left: ((tabsInfo[index] && tabsInfo[index].width/2) || 0) + 'px'
+					}">
+						<temp :isActive="tabIndex==index" :tab="tab" :height="getHeight"
+							:fontSize="tabIndex==index ? getActiveFontSize: getDefFontSize"
+							:fontWeight="String(activeFontBold)==='true'? (tabIndex==index ?'bold':''):''"
+							:color="tabIndex==index ? getActiveColor: defColor" :props="nprops" :index="index"
+							:tabsLen="nTabs.length" :type="type">
+						</temp>
+					</view>
+					<!-- #endif -->
 				</view>
 			</view>
 		</scroll-view>
@@ -154,10 +179,18 @@
 				type: String,
 				default: 'default'
 			},
+			// #ifndef APP-NVUE
 			itemFull: {
 				type: Boolean,
 				default: true
 			},
+			// #endif
+			// #ifdef APP-NVUE
+			itemFull: {
+				type: Boolean,
+				default: false
+			},
+			// #endif
 			...props
 		},
 		data() {
@@ -172,6 +205,7 @@
 				containerWidth: 0,
 				tabsWidth: 0,
 				tabsInfo: [],
+				mounted: false
 			}
 		},
 		watch: {
@@ -215,12 +249,13 @@
 			QS_nCompStyle() {
 				const obj = {};
 				if (this.backgroundColor) obj.backgroundColor = this.backgroundColor;
+				// #ifdef APP-NVUE
+				obj.opacity = this.mounted?1:0;
+				// #endif
+				
 				return obj;
 			},
 			getTabInfo() {
-				console.log('getTabInfo tabsInfo', this.tabsInfo);
-				console.log('getTabInfo tabIndex', this.tabIndex);
-				
 				const d = (this.tabsInfo[this.tabIndex] || {
 					left: 0,
 					right: 0,
@@ -229,6 +264,7 @@
 					width: 0,
 					height: 0
 				});
+				// console.log('getTabInfo', d)
 				return d;
 			},
 			getActiveColor() {
@@ -261,6 +297,9 @@
 		mounted() {
 			this.getContainerWidth();
 			// this.getQuery();
+			this.$nextTick(()=>{
+				this.mounted = true;
+			})
 		},
 		methods: {
 			setTabs(arr) {
@@ -278,7 +317,6 @@
 				this.$emit('click', current)
 			},
 			async getContainerWidth() {
-				console.log('getContainerWidth')
 				await new Promise(rs => {
 					this.$nextTick(() => {
 						rs()
@@ -293,7 +331,7 @@
 				for (let i = 0; i < this.nTabs.length; i++) {
 					promiseArr.push(new Promise((rs, rj) => {
 						dom.getComponentRect(this.$refs.tabitem[i], option => {
-							console.log('tabitem, option', JSON.stringify(option))
+							// console.log('tabitem, option', JSON.stringify(option))
 							rs(option.size);
 						})
 					}))
@@ -301,9 +339,24 @@
 
 				Promise.all(promiseArr)
 					.then(res => {
-						// console.log('布局信息:', JSON.stringify(res));
 						const scrollInfo = res.shift();
+					// console.log('tabs scroll 布局信息:', JSON.stringify(scrollInfo));
 						this.tabsWidth = scrollInfo.width;
+						// console.log('布局信息:', JSON.stringify(res));
+						let diffLeft = 0;
+						for (let i = 0; i < res.length; i++) {
+							const item = res[i];
+							if (!item) return;
+							// if (this.getModeClass == 'center') {
+							// 	item.left -= scrollInfo.left;
+							// } else {
+								if (!i) {
+									diffLeft = item.left;
+								}
+								item.left -= diffLeft;
+							// }
+						}
+						// console.log('布局信息2:', JSON.stringify(res));
 						this.tabsInfo = Object.freeze(res);
 						this.containerWidth = res.reduce((pre, cur, obj) => {
 							return cur.width + pre;
@@ -406,7 +459,7 @@
 		display: flex;
 		/* #endif */
 		/* #ifdef APP-NVUE */
-		flex: 1;
+		/* flex: 1; */
 		/* #endif */
 		flex-direction: column;
 	}
@@ -419,7 +472,7 @@
 		display: flex;
 		/* #endif */
 		/* #ifdef APP-NVUE */
-		flex: 1;
+		/* flex: 1; */
 		/* #endif */
 		flex-direction: row;
 	}
@@ -464,6 +517,14 @@
 		/* #endif */
 		/* #ifdef APP-NVUE */
 		flex: 1;
+		transform: translateX(-50%);
 		/* #endif */
+	}
+	
+	.tab-line {
+		position: absolute;
+		border-radius: 5px;
+		/* transition-property: left;
+		transition-duration: 300; */
 	}
 </style>

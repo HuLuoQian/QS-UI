@@ -29,7 +29,7 @@
 <style scoped>
 	.tab-line {
 		position: absolute;
-		border-radius: 10rpx;
+		border-radius: 5px;
 		transition-property: left;
 		transition-duration: .3s;
 	}

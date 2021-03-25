@@ -29,6 +29,7 @@
 
 <script>
 	export default {
+		mixins: [uni.$qs.mixin(true)],
 		data() {
 			return {
 				countDownObj: null,

@@ -1,27 +1,15 @@
 <template>
 	<view class="QS">
 		<view class="padding-rpx_25">
-			<QS-Sticky>
-				<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
-					<view class="flex_column_c_c">
-						<text class="QS-text large weight">演示示例</text>
-					</view>
-					<QS-P height="40rpx"></QS-P>
-					<QS-Tabs ref="tabs" mode="scroll" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"
-						:tabIndex="tabIndex" @click="tabIndex = $event">
-						<template v-slot:line="{ currentTabInfo }">
-							<view class="tab-line" :style="{ 
-								top: currentTabInfo.height * .1 + 'px',
-								left: (currentTabInfo.left + (currentTabInfo.width * .1)) + 'px',
-								height: currentTabInfo.height * .8 + 'px',
-								width: currentTabInfo.width * .8 + 'px',
-								backgroundColor: '#f1505c'
-							}">
-							</view>
-						</template>
-					</QS-Tabs>
+			<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
+				<view class="flex_column_c_c">
+					<text class="QS-text large weight">演示示例</text>
 				</view>
-			</QS-Sticky>
+				<QS-P height="40rpx"></QS-P>
+				<QS-Tabs ref="tabs" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"
+					:tabIndex="tabIndex" @click="tabIndex = $event">
+				</QS-Tabs>
+			</view>
 			<QS-P></QS-P>
 			<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
 				<titleLeftLine title="主题颜色"></titleLeftLine>
@@ -44,6 +32,7 @@
 
 <script>
 	export default {
+		mixins: [uni.$qs.mixin(true)],
 		data() {
 			return {
 				tabIndex: 0,
@@ -68,6 +57,15 @@
 				}, {
 					name: '主色',
 					value: 'primary'
+				}, {
+					name: '成功',
+					value: 'success'
+				}, {
+					name: '警告',
+					value: 'warning'
+				}, {
+					name: '危险',
+					value: 'danger'
 				}, {
 					name: '成功',
 					value: 'success'

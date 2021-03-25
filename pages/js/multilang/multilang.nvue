@@ -4,11 +4,11 @@
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<QS-P height="100rpx"></QS-P>
 				<view class="flex_row_c_c">
-					<text>{{$qst('test.test')}}</text>
+					<text>{{'test.test' | qst}}</text>
 				</view>
 				<QS-P height="300rpx"></QS-P>
 				<view class="flex_row_c_c">
-					<QS-Button @click="modify">{{$qst('test.modifyLang')}}</QS-Button>
+					<QS-Button @click="modify">{{'test.modifyLang' | qst}}</QS-Button>
 				</view>
 				<QS-P height="100rpx"></QS-P>
 				<view class="flex_column_c_c">
@@ -26,6 +26,7 @@
 <script>
 	import langs from '@/QS-UI-CONFIG/config/lang/languages.js';
 	export default {
+		mixins: [uni.$qs.mixin(true)],
 		data() {
 			return {
 				languages: Object.keys(langs).map(item=>({...langs[item]}))

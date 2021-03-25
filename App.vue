@@ -19,12 +19,7 @@
 <style>
 	/* #ifndef APP-NVUE */
 	page {
-		/* #ifndef APP-NVUE */
 		min-height: 100vh;
-		/* #endif */
-		/* #ifdef APP-NVUE */
-		flex: 1;
-		/* #endif */
 		background-color: #EEEEEE;
 	}
 
@@ -73,7 +68,7 @@
 	.QS {
 		/* #ifdef APP-NVUE */
 		background-color: #f7f7f7;
-		flex: 1;
+		/* flex: 1; */
 		/* #endif */
 	}
 

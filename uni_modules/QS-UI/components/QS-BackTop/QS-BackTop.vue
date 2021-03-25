@@ -102,10 +102,13 @@
 				};
 				if(this.showBl) {
 					style.transform = `translateY(0)`
+				}else{
+					style.transform = `translateY(100%)`
 				}
 				return `${styleObj2String(style)};${styleObj2String(this.compStyle.backTop)}`;
 			},
 			getBottom() {
+				// return 0;
 				const pxValue = rpxUnit2px(this.bottom);
 				let value = 0;
 				if (this.showBl) {
@@ -134,14 +137,14 @@
 		methods: {
 			
 			setShow(bl) {
-				if(_this.isTabbar) _this.tabbarHeight = getH5TabbarHeight();
-				if (_this.showBl !== bl) _this.showBl = bl;
+				if(this.isTabbar) this.tabbarHeight = getH5TabbarHeight();
+				if (this.showBl !== bl) this.showBl = bl;
 			},
 			show() {
-				_this.setShow(true);
+				this.setShow(true);
 			},
 			hide() {
-				_this.setShow(false);
+				this.setShow(false);
 			},
 			active() {
 				if (_this.backTopType === 'page') {
@@ -157,7 +160,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	.QS-Backtop {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -165,7 +168,13 @@
 		flex-direction: column;
 		position: fixed;
 		transition-property: bottom,transform;
+		/* #ifndef APP-NVUE */
 		transform: translateY(100%);
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		transform: translateY(100%);
+		/* #endif */
+		
 	}
 	.backtop-container {
 		height: 40px;

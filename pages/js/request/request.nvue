@@ -41,6 +41,7 @@
 <script>
 	import { agilityDemoTest } from '@/apis/agilityDemo.js';
 	export default {
+		mixins: [uni.$qs.mixin(true)],
 		data() {
 			return {
 				prop: [{

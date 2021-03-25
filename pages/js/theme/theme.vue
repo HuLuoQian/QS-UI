@@ -14,7 +14,7 @@
 					</view>
 				</view>
 				<QS-P height="100rpx"></QS-P>
-				<QS-Button @click="changeTheme">改变颜色</QS-Button>
+				<QS-Button theme="primary" @click="changeTheme">改变颜色</QS-Button>
 			</view>
 		</view>
 		<QS-BackTop></QS-BackTop>

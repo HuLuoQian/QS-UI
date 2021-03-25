@@ -97,19 +97,22 @@ import multiLang from '../js/functions/multiLang.js'
 			const pages = getCurrentPages();
 			const page = pages[pages.length - 1];
 			let backTopVm = uni.$qs.pageRoots.getPage(page, 'QS-BackTop');
+			// let backTopVm = uni.$qs.pageRoots.getCurrentPageContext('QS-BackTop');
 			if (backTopVm) {
-				// backTopVm = backTopVm.getRoot();
-				// if (backTopVm)
+				backTopVm = backTopVm.getRoot();
+				if (backTopVm)
 				if (scrollTop > CONFIG.backTopShowScrollTop) {
 					if (!backTopVm.showBl) backTopVm.show();
 				} else {
 					if (backTopVm.showBl) backTopVm.hide();
 				}
 			}
+			// #ifndef APP-NVUE
 			let nodeNavVm = uni.$qs.pageRoots.getPage(page, 'QS-NodeNav');
 			if (nodeNavVm) {
 				nodeNavVm.setScrollTop(scrollTop);
 			}
+			// #endif
 		}
 
 

@@ -1,13 +1,18 @@
 module.exports = class pageRootsObj {
 	constructor(arg) {
 		this.pageRoots = {};
+		this.currentVm = null;
+	}
+
+	setCurrentVm(vm) {
+		this.currentVm = vm;
+	}
+	
+	getCurrentVm() {
+		return this.currentVm;
 	}
 
 	setPageContext(vm, ContextType) {
-		if(ContextType === 'QS-Global-Canvas') {
-			this.pageRoots['QS-Global-Canvas'] = vm;
-			return;
-		}
 		const id = this.getParentId(vm);
 		if (!this.pageRoots[id]) this.pageRoots[id] = {};
 		this.pageRoots[id][ContextType] = vm;
@@ -21,15 +26,21 @@ module.exports = class pageRootsObj {
 		}
 	}
 
+	getCurrentPageContext(ContextType) {
+		return this.getPage(this.getCurrentVm(), ContextType);
+	}
+
 	getPage(page, ContextType) {
-		if(ContextType === 'QS-Global-Canvas') {
-			return this.pageRoots['QS-Global-Canvas'];
-		}
+		if(!page) return;
 		const id = this.getId(page);
-		return this.pageRoots[id] && this.pageRoots[id][ContextType];
+		const r = this.pageRoots[id] && this.pageRoots[id][ContextType];
+		return r;
 	}
 
 	getParentId(vm) {
+		// #ifdef APP-NVUE
+		return vm.$parent.route;
+		// #endif
 		// #ifdef H5
 		return vm.$parent.__page__.id;
 		// #endif
@@ -39,6 +50,9 @@ module.exports = class pageRootsObj {
 	}
 
 	getId(page) {
+		// #ifdef APP-NVUE
+		return page.route;
+		// #endif
 		// #ifdef H5
 		return page.__page__.id;
 		// #endif
