@@ -1,7 +1,9 @@
 <template>
+	<!-- #ifndef APP-NVUE -->
 	<button 
 	:id="componentId" 
 	class="QS_Button" 
+	ref="QSButton"
 	:class="getClass" 
 	:style="getStyle" 
 	:loading="loading" 
@@ -14,10 +16,25 @@
 	@getphonenumber="getphonenumber($event)" 
 	@tap.prevent.stop="handleClick($event)"
 	v-if="getClass && getStyle">
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	<view 
+	:id="componentId" 
+	class="QS_Button" 
+	ref="QSButton"
+	:class="getClass" 
+	:style="getStyle"
+	:hover-class="getHoverClass"
+	@touchstart="touchstart"
+	@touchend="touchend"
+	@tap.prevent.stop="handleClick($event)"
+	v-if="getClass && getStyle">
+	<!-- #endif -->
 		<block v-if="preIconType">
-			<QSIcons ref="icon" :hasAnimation="!!iconAnimationType" :animationType="iconAnimationType" :type="preIconType"
-			 :color="preIconColor" :fontSize="fontSize"></QSIcons>
-			<view style="width: 15rpx;"></view>
+			<view class="icon">
+				<QSIcons ref="icon" :hasAnimation="!!iconAnimationType" :animationType="iconAnimationType" :type="preIconType"
+				 :color="getPreIconColor" :fontSize="getCurFontSize"></QSIcons>
+			</view>
 		</block>
 		<!-- #ifdef APP-NVUE -->
 		<text :style="textStyle">{{txt || $slots.default[0].children[0].text || ''}}</text>
@@ -42,7 +59,12 @@
 		}">
 		</view>
 		<!-- #endif -->
+	<!-- #ifndef APP-NVUE -->
 	</button>
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	</view>
+	<!-- #endif -->
 </template>
 
 <script>
@@ -120,7 +142,7 @@
 			},
 			preIconColor: {
 				type: String,
-				default: '#ffffff'
+				default: ''
 			},
 			setTimeoutClick: {
 				type: [String, Boolean],
@@ -143,6 +165,7 @@
 				fields: {},
 				active: Boolean,
 				query: null,
+				touch: false
 			}
 		},
 		computed: {
@@ -200,7 +223,15 @@
 					// #ifdef APP-NVUE
 					style['border-style'] = 'solid';
 					style['border-width'] = '1px';
-					style['border-color'] = this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					// style['border-color'] = this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					style['background-color'] = 'rgba(0,0,0,0)';
+					if(this.disabled) {
+						style['border-color'] = this.themes[`${this.theme}Disabled`]
+					}else if(this.touch) {
+						style['border-color'] = this.themes[`${this.theme}Hover`]
+					}else{
+						style['border-color'] = this.themes[this.theme]
+					}
 					// #endif
 				}else{
 					// #ifndef APP-NVUE
@@ -208,7 +239,20 @@
 					style.border = `none`;
 					// #endif
 					// #ifdef APP-NVUE
-					style['background-color'] = this.background || this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
+					style['border-width'] = '1px';
+					style['border-style'] = 'solid';
+					style['border-color'] = 'rgba(0,0,0,0)';
+					if(this.background) {
+						style['background-color'] = this.background
+					}else{
+						if(this.disabled) {
+							style['background-color'] = this.themes[`${this.theme}Disabled`]
+						}else if(this.touch) {
+							style['background-color'] = this.themes[`${this.theme}Hover`]
+						}else{
+							style['background-color'] = this.themes[this.theme]
+						}
+					}
 					// #endif
 				}
 				return `${styleObj2String(style)};${styleObj2String(this.compStyle.button)}`
@@ -224,6 +268,14 @@
 				}
 				return `${styleObj2String(style)}`
 			},
+			getPreIconColor() {
+				if(this.preIconColor) return this.preIconColor
+				if(this.plain) {
+					return this.themes[`${this.theme}ColorPlain`];
+				}
+				
+				return this.themes[`${this.theme}Color`];
+			},
 			getHoverClass() {
 				if(this.getWaves) return '';
 				if(this.hoverClass) return this.hoverClass;
@@ -231,6 +283,14 @@
 			}
 		},
 		methods: {
+			// #ifdef APP-NVUE
+			touchstart() {
+				this.touch = true;
+			},
+			touchend() {
+				this.touch = false;
+			},
+			// #endif
 			handleClick(e) {
 				this.active = false;
 				if (this.disabled) {
@@ -357,8 +417,6 @@
 		padding-bottom: 0;
 		padding-left: 15px;
 		padding-right: 15px;
-		border-width: 1px;
-		border-style: solid;
 		transition-property: background-color;
 		transition-duration: .3s;
 		/* #ifndef APP-NVUE */
@@ -366,6 +424,15 @@
 		white-space: nowrap;
 		-webkit-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgba(0,0,0,0);
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: nowrap;
 		/* #endif */
 	}
 	
@@ -376,9 +443,9 @@
 	/* #endif */
 	/* #ifdef APP-NVUE */
 	.no-plain {
-		border-style: solid;
+		/* border-style: solid;
 		border-width: 1px;
-		border-color: rgba(255,255,255,0);
+		border-color: rgba(255,255,255,0); */
 	}
 	/* #endif */
 		
@@ -406,6 +473,9 @@
 	}
 	/* #endif */
 	
+	.icon{
+		margin-right: 5px;
+	}
 	.btn_icon {
 		margin: 5px;
 	}

@@ -7,7 +7,7 @@ module.exports = {
 	primaryColorPlain: '#BC9D6F',
 	primaryDisabled: '#ecc48c',
 	// 默认
-	default: '#f8f8f8',
+	'default': '#f8f8f8',
 	defaultHover: '#F2F2F2',
 	defaultPlainHover: '#F2F2F2',
 	defaultColor: '#000000',

@@ -9,6 +9,7 @@
 					<QS-P height="80rpx"></QS-P>
 					<view :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
 						<QS-Button 
+						preIconType="scan"
 						:size="sizes[sizeTabIndex].value"
 						:theme="types[typeTabIndex].value"
 						:disabled="disabledArr[disabledTabIndex].value"

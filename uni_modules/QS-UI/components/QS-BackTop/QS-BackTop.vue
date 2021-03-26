@@ -1,5 +1,8 @@
 <template>
 	<view class="QS-Backtop" :class="getClass" :style="getStyle" @tap="active">
+		<!-- #ifdef APP-NVUE -->
+		<view class="nvue-placeholder" ref="nvuePlaceholder"></view>
+		<!-- #endif -->
 		<image 
 		v-if="type==='image'" 
 		class="backtop-container" 
@@ -26,6 +29,9 @@
 	import styleObj2String from '../../js/functions/styleObj2String.js';
 	import classObj2String from '../../js/functions/classObj2String.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-BackTop', setContext: true });
+	// #ifdef APP-NVUE
+	const dom = weex.requireModule('dom');
+	// #endif
 	var _this;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
@@ -148,10 +154,15 @@
 			},
 			active() {
 				if (_this.backTopType === 'page') {
+					// #ifndef APP-NVUE
 					uni.pageScrollTo({
 						scrollTop: 0,
 						duration: 300
 					})
+					// #endif
+					// #ifdef APP-NVUE
+					dom.scrollToElement(this.$refs.nvuePlaceholder)
+					// #endif
 				} else {
 					_this.$emit('backTop');
 				}
@@ -181,5 +192,14 @@
 		width: 40px;
 		border-radius: 50%;
 		overflow: hidden;
+	}
+	
+	.nvue-placeholder{
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 0;
+		width: 0;
+		opacity: 0;
 	}
 </style>

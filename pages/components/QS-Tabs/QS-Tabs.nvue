@@ -66,15 +66,6 @@
 				}, {
 					name: '危险',
 					value: 'danger'
-				}, {
-					name: '成功',
-					value: 'success'
-				}, {
-					name: '警告',
-					value: 'warning'
-				}, {
-					name: '危险',
-					value: 'danger'
 				}],
 				
 				prop: [

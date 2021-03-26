@@ -1,5 +1,5 @@
 <template>
-	<view :id="id" class="QS-Tabs" :class="getClass" :style="getStyle">
+	<view :id="componentId" ref="QSTabs" class="QS-Tabs" :class="getClass" :style="getStyle">
 		<scroll-view ref="scrollViewX" id="scrollViewX" class="scrollViewX" :scroll="false" :scroll-x="true"
 			:show-scrollbar="false" :scroll-into-view="getScrollInto" :style="{
 			height: getHeight,
@@ -15,15 +15,14 @@
 				</block>
 				<!-- #endif -->
 				<!-- #ifdef APP-NVUE -->
-				<view class="tab-line" :style="{
+				<view v-if="hasLine" ref="tabLine" class="tab-line" :style="{
 					top: getTabInfo.height * .1 + 'px',
-					left: (getTabInfo.left + (getTabInfo.width * .1)) + 'px',
 					height: getTabInfo.height * .8 + 'px',
 					width: getTabInfo.width * .8 + 'px',
 					backgroundColor: getLineColor
 				}"></view>
 				<!-- #endif -->
-				<view v-if="hasLine" class="tab-item" :style="{
+				<view class="tab-item" :style="{
 					'padding-left': getSpace,
 					'padding-right': getSpace,
 					flex: itemFull?1:'none'
@@ -74,17 +73,16 @@
 	import props from '@/QS-UI-CONFIG/components/QS-Tabs/js/props.js';
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import lineSeperate from '@/QS-UI-CONFIG/components/QS-Tabs/line-separate/separate.vue';
-	import store from '../../js/store/index.js';
 	const QSComponentMixinRes = QSComponentMixin({
 		componentType: 'QS-Tabs'
 	});
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
+	const animation = weex.requireModule('animation');
 	// #endif
 	const defProps = {
 		nameField: 'name'
 	};
-	var id = 0;
 	export default {
 		mixins: [QSComponentMixinRes.mixin],
 		components: {
@@ -195,7 +193,6 @@
 		},
 		data() {
 			return {
-				id: `QS-Tabs-${id++}`,
 				nTabs: [],
 				scrollInto: '',
 				nprops: {
@@ -205,7 +202,7 @@
 				containerWidth: 0,
 				tabsWidth: 0,
 				tabsInfo: [],
-				mounted: false
+				mountedBl: false
 			}
 		},
 		watch: {
@@ -233,9 +230,6 @@
 			// getTabsWidth() {
 			// 	return rpxUnit2px(this.width || '750rpx');
 			// },
-			themes() {
-				return store.getters['theme/theme'];
-			},
 			getModeClass() {
 				if (this.mode && this.mode !== 'auto') return this.mode;
 				if (this.containerWidth > this.tabsWidth) return '';
@@ -249,10 +243,6 @@
 			QS_nCompStyle() {
 				const obj = {};
 				if (this.backgroundColor) obj.backgroundColor = this.backgroundColor;
-				// #ifdef APP-NVUE
-				obj.opacity = this.mounted?1:0;
-				// #endif
-				
 				return obj;
 			},
 			getTabInfo() {
@@ -264,7 +254,6 @@
 					width: 0,
 					height: 0
 				});
-				// console.log('getTabInfo', d)
 				return d;
 			},
 			getActiveColor() {
@@ -291,6 +280,31 @@
 				return '20px';
 			}
 		},
+		// #ifdef APP-NVUE
+		watch: {
+			getTabInfo: {
+				handler(n) {
+					if(n!=undefined && n.left!=undefined && n.width!=undefined) {
+						animation.transition(this.$refs.tabLine, {
+							styles: {
+								transform: `translateX(${(n.left + (n.width * .1))}px)`
+							},
+							duration: 300
+						})
+					}
+				},
+				immediate: true
+			},
+			mountedBl(n) {
+				if(n) animation.transition(this.$refs.QSTabs, {
+							styles: {
+								opacity: 1
+							},
+							duration: 300
+						})
+			}
+		},
+		// #endif
 		created() {
 			this.setTabs(this.tabs);
 		},
@@ -298,7 +312,7 @@
 			this.getContainerWidth();
 			// this.getQuery();
 			this.$nextTick(()=>{
-				this.mounted = true;
+				this.mountedBl = true;
 			})
 		},
 		methods: {
@@ -381,7 +395,7 @@
 					scrollOffset: true
 				})
 				for (let i = 0; i < this.nTabs.length; i++) {
-					view.select(`#${this.id} #tabitem${i}`).fields({
+					view.select(`#${this.componentId} #tabitem${i}`).fields({
 						size: true,
 						rect: true
 					})
@@ -442,7 +456,11 @@
 </script>
 
 <style scoped>
-	.QS-Tabs {}
+	.QS-Tabs {
+		/* #ifdef APP-NVUE */
+		opacity: 0;
+		/* #endif */
+	}
 
 	.scrollViewX {
 		/* #ifndef APP-NVUE */
@@ -504,7 +522,9 @@
 
 	.rel-item {
 		opacity: 0;
+		/* #ifndef APP-NVUE */
 		pointer-events: none;
+		/* #endif */
 	}
 
 	.abs-item {
@@ -523,8 +543,7 @@
 	
 	.tab-line {
 		position: absolute;
+		left: 0;
 		border-radius: 5px;
-		/* transition-property: left;
-		transition-duration: 300; */
 	}
 </style>

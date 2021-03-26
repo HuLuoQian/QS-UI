@@ -65,12 +65,6 @@ module.exports = function({ componentType, setContext } = {}) {
 				},
 				getStyle() {
 					return `${styleObj2String(this.compStyle.container)};${styleObj2String(this.QS_nCompStyle)};`;
-					// #ifndef APP-NVUE
-					return s;
-					// #endif
-					// #ifdef APP-NVUE
-					return styleString2Object(s);
-					// #endif
 				}
 			},
 			methods: {
