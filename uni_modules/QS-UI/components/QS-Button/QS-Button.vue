@@ -2,7 +2,7 @@
 	<!-- #ifndef APP-NVUE -->
 	<button 
 	:id="componentId" 
-	class="QS_Button" 
+	class="QS_Button HD-inline-block" 
 	ref="QSButton"
 	:class="getClass" 
 	:style="getStyle" 
@@ -41,14 +41,10 @@
 		<!-- #endif -->
 		<!-- #ifndef APP-NVUE -->
 		<block v-if="txt">
-			<text :style="textStyle">
-				{{txt}}
-			</text>
+			{{txt}}
 		</block>
 		<block v-else>
-			<text :style="textStyle">
-				<slot></slot>
-			</text>
+			<slot></slot>
 		</block>
 		<view v-if="getWaves" class="waves-ripple" :class="{'z-active':active}" :style="{
 			'top': rippleTop + 'px',
@@ -174,8 +170,10 @@
 			},
 			QS_nCompClass() {
 				return `${classObj2String([
-					this.plain?'':'no-plain',
+					this.getPlain?'':'no-plain',
+					// #ifndef APP-NVUE
 					'QS_Button-size-' + this.size,
+					// #endif
 				])} ${classObj2String(this.compClass.button)}`;
 			},
 			getCurFontSize() {
@@ -215,23 +213,13 @@
 				style.height = this.getHeight;
 				// #endif
 				style.lineHeight = this.getHeight;
-				if(this.plain) {
+				if(this.getPlain) {
 					// #ifndef APP-NVUE
 					style.border = `1px solid ${this.themes[`${this.theme}${this.disabled?'Disabled':''}`]}`;
 					style.background = 'rgba(0,0,0,0)';
 					// #endif
 					// #ifdef APP-NVUE
-					style['border-style'] = 'solid';
-					style['border-width'] = '1px';
-					// style['border-color'] = this.themes[`${this.theme}${this.disabled?'Disabled':''}`];
 					style['background-color'] = 'rgba(0,0,0,0)';
-					if(this.disabled) {
-						style['border-color'] = this.themes[`${this.theme}Disabled`]
-					}else if(this.touch) {
-						style['border-color'] = this.themes[`${this.theme}Hover`]
-					}else{
-						style['border-color'] = this.themes[this.theme]
-					}
 					// #endif
 				}else{
 					// #ifndef APP-NVUE
@@ -239,29 +227,38 @@
 					style.border = `none`;
 					// #endif
 					// #ifdef APP-NVUE
-					style['border-width'] = '1px';
-					style['border-style'] = 'solid';
-					style['border-color'] = 'rgba(0,0,0,0)';
 					if(this.background) {
 						style['background-color'] = this.background
 					}else{
-						if(this.disabled) {
-							style['background-color'] = this.themes[`${this.theme}Disabled`]
-						}else if(this.touch) {
-							style['background-color'] = this.themes[`${this.theme}Hover`]
-						}else{
-							style['background-color'] = this.themes[this.theme]
-						}
+						style['background-color'] = this.getThemeColor;
 					}
 					// #endif
 				}
-				return `${styleObj2String(style)};${styleObj2String(this.compStyle.button)}`
+				// #ifdef APP-NVUE
+				style['border-color'] = 'rgba(0,0,0,0)';
+				return `${styleObj2String(style)};${styleObj2String(this.compStyle?.button)}`
+				// #endif
+				// #ifndef APP-NVUE
+				style['border-color'] = this.getThemeColor;
+				return `${this.textStyle};${styleObj2String(style)};${styleObj2String(this.compStyle?.button)}`
+				// #endif
+			},
+			getPlain() {
+				// #ifdef APP-NVUE
+				return false;
+				// #endif
+				return String(this.plain) == 'true';
+			},
+			getThemeColor() {
+				if(this.disabled) return this.themes[`${this.theme}Disabled`];
+				if(this.touch) return this.themes[`${this.theme}Hover`]
+				return this.themes[this.theme];
 			},
 			textStyle() {
 				const style =  {};
 				style.fontSize = this.getCurFontSize;
 				style.lineHeight = this.getHeight;
-				if(this.plain) {
+				if(this.getPlain) {
 					style.color = this.themes[`${this.theme}ColorPlain`];
 				}else{
 					style.color = this.themes[`${this.theme}Color`];
@@ -270,7 +267,7 @@
 			},
 			getPreIconColor() {
 				if(this.preIconColor) return this.preIconColor
-				if(this.plain) {
+				if(this.getPlain) {
 					return this.themes[`${this.theme}ColorPlain`];
 				}
 				
@@ -279,7 +276,7 @@
 			getHoverClass() {
 				if(this.getWaves) return '';
 				if(this.hoverClass) return this.hoverClass;
-				return `QS-hover-${this.theme}${this.plain?'-plain':''}`
+				return `QS-hover-${this.theme}${this.getPlain?'-plain':''}`
 			}
 		},
 		methods: {
@@ -428,12 +425,16 @@
 		/* #ifdef APP-NVUE */
 		border-width: 1px;
 		border-style: solid;
-		border-color: rgba(0,0,0,0);
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
 		flex-wrap: nowrap;
 		/* #endif */
+	}
+	@media screen and (min-width: 560px) {
+		.HD-inline-block {
+			display: inline-block;
+		}
 	}
 	
 	/* #ifndef APP-NVUE */

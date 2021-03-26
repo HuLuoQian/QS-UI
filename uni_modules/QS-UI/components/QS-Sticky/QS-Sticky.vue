@@ -1,4 +1,5 @@
 <template>
+	<!-- #ifndef APP-NVUE -->
 	<view :id="componentId + 'box'" :class="getClass" :style="getStyle">
 		<view :id="componentId">
 			<!-- <view id="placeholder"></view> -->
@@ -10,9 +11,16 @@
 			</view>
 		</view>
 	</view>
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	<view class="QS-Sticky" :style="{ top: top }">
+		<slot></slot>
+	</view>
+	<!-- #endif -->
 </template>
 
 <script>
+	// #ifndef APP-NVUE
 	import intersectionObserver from '../../js/functions/intersectionObserver.js';
 	import obsDisconnect from '../../js/functions/obsDisconnect.js';
 	import styleObj2String from '../../js/functions/styleObj2String.js'
@@ -92,7 +100,23 @@
 			},
 		}
 	}
+	// #endif
+	// #ifdef APP-NVUE
+	export default {
+		props: {
+			top: {
+				type: [Number, String],
+				default: 0
+			},
+		}
+	}
+	// #endif
 </script>
 
 <style scoped lang="scss">
+	.QS-Sticky{
+		/* #ifdef APP-NVUE */
+		position: sticky;
+		/* #endif */
+	}
 </style>

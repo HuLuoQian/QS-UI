@@ -7,7 +7,7 @@
 						<text class="QS-text large-xx weight">演示示例</text>
 					</view>
 					<QS-P height="80rpx"></QS-P>
-					<view :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
+					<view class="HD-flex_row_c_c" :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
 						<QS-Button 
 						:size="sizes[sizeTabIndex].value"
 						:theme="types[typeTabIndex].value"
@@ -257,6 +257,13 @@
 	}
 </script>
 
-<style>
-
+<style scoped>
+	@media screen and (min-width: 560px) {
+		.HD-flex_row_c_c{
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+	}
 </style>

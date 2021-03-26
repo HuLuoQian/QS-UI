@@ -49,6 +49,7 @@
 	.block{
 		height: 150rpx;
 		width: 150rpx;
-		transition: .3s;
+		transition-property: background-color;
+		transition-duration: .3s;
 	}
 </style>

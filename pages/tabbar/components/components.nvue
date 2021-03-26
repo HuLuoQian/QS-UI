@@ -31,9 +31,10 @@
 	export default {
 		mixins: [uni.$qs.mixin(true)],
 		data() {
+			const nvueRouters = {...uni.$qs.Pages.components, ...uni.$qs.Pages.nvueComponents};
 			return {
-				JSRoutes: Object.keys(uni.$qs.Pages.components).map(item => ({
-				 	...uni.$qs.Pages.components[item]
+				JSRoutes: Object.keys(nvueRouters).map(item => ({
+				 	...nvueRouters[item]
 				 })).filter(item => item.hide === undefined).sort((ite)=>ite.type).reduce((pre, cur) => {
 				 	if (cur.type) {
 				 		if(-1 == pre.findIndex(ite=>ite.isTitle==cur.type))

@@ -9,12 +9,9 @@
 					<QS-P height="80rpx"></QS-P>
 					<view :class="sizes[sizeTabIndex].value=='mini'?'flex_row_c_c':''">
 						<QS-Button 
-						preIconType="scan"
 						:size="sizes[sizeTabIndex].value"
 						:theme="types[typeTabIndex].value"
 						:disabled="disabledArr[disabledTabIndex].value"
-						:loading="loadingdArr[loadingTabIndex].value"
-						:plain="plainArr[plainTabIndex].value"
 						@click="click">按钮</QS-Button>
 					</view>
 				</view>
@@ -30,14 +27,14 @@
 				<QS-Tabs mode="scroll" :tabs="disabledArr" :tabIndex="disabledTabIndex" width="650rpx"
 					@click="disabledTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
-				<titleLeftLine title="是否启用loading"></titleLeftLine>
+				<!-- <titleLeftLine title="是否启用loading"></titleLeftLine>
 				<QS-Tabs mode="scroll" :tabs="loadingdArr" :tabIndex="loadingTabIndex" width="650rpx"
 					@click="loadingTabIndex = $event"></QS-Tabs>
-				<QS-P></QS-P>
-				<titleLeftLine title="是否镂空"></titleLeftLine>
+				<QS-P></QS-P> -->
+				<!-- <titleLeftLine title="是否镂空"></titleLeftLine>
 				<QS-Tabs mode="scroll" :tabs="plainArr" :tabIndex="plainTabIndex" width="650rpx"
 					@click="plainTabIndex = $event"></QS-Tabs>
-				<QS-P></QS-P>
+				<QS-P></QS-P> -->
 				<titleLeftLine title="大小"></titleLeftLine>
 				<QS-Tabs mode="scroll" :tabs="sizes" :tabIndex="sizeTabIndex" width="650rpx"
 					@click="sizeTabIndex = $event"></QS-Tabs>
@@ -72,34 +69,14 @@
 						des: '波纹颜色'
 					},
 					{
-						name: 'borderRadius',
-						value: '10rpx',
-						des: '圆角值'
-					},
-					{
-						name: 'height',
-						value: '',
-						des: '高度'
-					},
-					{
-						name: 'width',
-						value: '',
-						des: '宽度'
-					},
-					{
-						name: 'backgroundColor',
-						value: '',
-						des: '背景颜色'
-					},
-					{
 						name: 'txt',
 						value: '',
 						des: '按钮文字'
 					},
 					{
-						name: 'type',
+						name: 'theme',
 						value: 'default',
-						des: '按钮类型'
+						des: '主题'
 					},
 					{
 						name: 'size',
@@ -111,36 +88,36 @@
 						value: false,
 						des: '是否禁用'
 					},
-					{
-						name: 'loading',
-						value: false,
-						des: '是否开启loading动画'
-					},
-					{
-						name: 'plain',
-						value: false,
-						des: '是否镂空'
-					},
-					{
-						name: 'openType',
-						value: '',
-						des: '开放能力'
-					},
-					{
-						name: 'hoverStartTime',
-						value: 20,
-						des: 'hover效果延时时间'
-					},
-					{
-						name: 'hoverStayTime',
-						value: 70,
-						des: 'hover效果延时时间'
-					},
-					{
-						name: 'hoverClass',
-						value: 'button-hover',
-						des: 'hover效果延时时间'
-					},
+					// {
+					// 	name: 'loading',
+					// 	value: false,
+					// 	des: '是否开启loading动画'
+					// },
+					// {
+					// 	name: 'plain',
+					// 	value: false,
+					// 	des: '是否镂空'
+					// },
+					// {
+					// 	name: 'openType',
+					// 	value: '',
+					// 	des: '开放能力'
+					// },
+					// {
+					// 	name: 'hoverStartTime',
+					// 	value: 20,
+					// 	des: 'hover效果延时时间'
+					// },
+					// {
+					// 	name: 'hoverStayTime',
+					// 	value: 70,
+					// 	des: 'hover效果延时时间'
+					// },
+					// {
+					// 	name: 'hoverClass',
+					// 	value: 'button-hover',
+					// 	des: 'hover效果延时时间'
+					// },
 					{
 						name: 'preIconType',
 						value: '',
@@ -162,34 +139,9 @@
 						des: '是否波纹动画后触发点击事件'
 					},
 					{
-						name: 'padding',
-						value: '',
-						des: 'css padding值'
-					},
-					{
-						name: 'background',
-						value: '',
-						des: 'css background值'
-					},
-					{
-						name: 'border',
-						value: '',
-						des: 'css border值'
-					},
-					{
 						name: 'iconAnimationType',
 						value: '',
 						des: '图标动画类型'
-					},
-					{
-						name: 'color',
-						value: '',
-						des: '按钮文字颜色'
-					},
-					{
-						name: 'fontWeight',
-						value: '',
-						des: '按钮文字字重'
 					},
 				],
 

@@ -106,7 +106,6 @@
 				this.textObj.left = targetTextObj.left + (originTextObj.left - targetTextObj.left) * res
 					.intersectionRatio;
 				this.bgOpacity = 1 - res.intersectionRatio;
-				// * res.intersectionRatio;
 			})
 		}
 	}

@@ -18,6 +18,9 @@
 	import props from '@/QS-UI-CONFIG/components/QS-Animation/js/props.js';
 	import QSComponentMixin from '../../mixins/QS-Components-Mixin.js';
 	const QSComponentMixinRes = QSComponentMixin({ componentType: 'QS-Animation' });
+	// #ifdef APP-NVUE
+	const animationModule = weex.requireModule('animation');
+	// #endif
 	class addDuration {
 		constructor() {
 			this.duration = 0;
@@ -56,18 +59,10 @@
 				type: [String, Number],
 				default: 0
 			},
-			// #ifndef APP-NVUE
 			subsection: {
 				type: [Boolean, String],
 				default: true
 			},
-			// #endif
-			// #ifdef APP-NVUE
-			subsection: {
-				type: [Boolean, String],
-				default: false
-			},
-			// #endif
 			disabled: {
 				type: [Boolean, String],
 				default: false
@@ -125,6 +120,7 @@
 				this.touchEnd = e.touches[0];
 			},
 			touchend(e) {
+				console.log('touchend')
 				if (!this.getSubsection) return;
 				if (this.touchendanimationing) return;
 				this.touchendanimationing = true;
@@ -186,62 +182,54 @@
 				}, R.D * this.getAnimationFinishClickDurationScale)
 			},
 			preAnimation(type, preAnimationFn, animationType, AddDur) {
-				// #ifdef APP-NVUE
-				async function doPreAnimationFn () {
-					for(let i = 0; i < preAnimationFn.length; i++) {
-						await preAnimationFn[i];
-					}
-					this.preanimationing = false;
-					if (this.touchended) {
-						this.doR(this[this.animationType]());
-					}
-				}
-				// #endif
 				if (this.getSubsection) {
 					if (type === 'start') {
 						this.preanimationing = true;
-						// #ifndef APP-NVUE
 						preAnimationFn(AddDur);
+						// #ifndef APP-NVUE
 						this.Animation = this.Ani.export();
+						// #endif
 						setTimeout(() => {
 							this.preanimationing = false;
 							if (this.touchended) {
 								this.doR(this[this.animationType]());
 							}
 						}, AddDur.getDuration());
-						// #endif
-						// #ifdef APP-NVUE
-						doPreAnimationFn();
-						// #endif
 						
 						return false;
 					}
 				} else {
-					// #ifndef APP-NVUE
 					preAnimationFn(AddDur);
-					// #endif
-					// #ifdef APP-NVUE
-					doPreAnimationFn();
-					// #endif
 				}
 			},
 			jump(type) {
 				const AddDur = new addDuration();
+				let preAnimationFn;
 				// #ifdef APP-NVUE
-				const promiseArr = [];
 				let s = this.iconTransition;
-				promiseArr.push(s({ styles: { transform: 'scale(.5)' }, duration: AddDur.addDuration(50)} ));
-				const bl = this.preAnimation(type, promiseArr, 'jump', AddDur);
+				preAnimationFn = async ()=>{
+					await s({ styles: { transform: 'scale(.5)' }, duration: AddDur.addDuration(50)} )
+				}
+				const bl = this.preAnimation(type, preAnimationFn, 'jump', AddDur);
 				if (bl === false) return;
-				promiseArr.push(s({ styles: { transform: 'scale(1.3)' }, duration: AddDur.addDuration(150)} ));
-				promiseArr.push(s({ styles: { transform: 'scale(.75)' }, duration: AddDur.addDuration(100)} ));
-				promiseArr.push(s({ styles: { transform: 'scale(1.15)' }, duration: AddDur.addDuration(100)} ));
-				promiseArr.push(s({ styles: { transform: 'scale(.9)' }, duration: AddDur.addDuration(100)} ));
-				promiseArr.push(s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(50)} ));
+				const posAnimation = async (cb)=>{
+					await s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(150)} );
+					await s({ styles: { transform: 'scale(.75)' }, duration: AddDur.addDuration(100)} );
+					await s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(100)} );
+					await s({ styles: { transform: 'scale(.9)' }, duration: AddDur.addDuration(100)} );
+					await s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(50)} );
+					if(cb && typeof cb == 'function') cb();
+				}
+				// const promiseArr = [];
+				// promiseArr.push(s({ styles: { transform: 'scale(1.3)' }, duration: AddDur.addDuration(150)} ));
+				// promiseArr.push(s({ styles: { transform: 'scale(.75)' }, duration: AddDur.addDuration(100)} ));
+				// promiseArr.push(s({ styles: { transform: 'scale(1.15)' }, duration: AddDur.addDuration(100)} ));
+				// promiseArr.push(s({ styles: { transform: 'scale(.9)' }, duration: AddDur.addDuration(100)} ));
+				// promiseArr.push(s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(50)} ));
 				// #endif
 				// #ifndef APP-NVUE
 				this.Animation = {};
-				let preAnimationFn = () => {
+				preAnimationFn = () => {
 					this.Ani.scale(.5).step({
 						duration: AddDur.addDuration(50)
 					});
@@ -268,32 +256,9 @@
 					D: AddDur.getDuration(),
 					P: new Promise(async (rs, rj) => {
 						// #ifdef APP-NVUE
-						let s = this.iconTransition;
-						await s({
-							styles: {
-								transform: 'scale(.5)'
-							},
-							duration: 100
-						});
-						await s({
-							styles: {
-								transform: 'scale(1.2)'
-							},
-							duration: 300
-						});
-						await s({
-							styles: {
-								transform: 'scale(.8)'
-							},
-							duration: 200
-						});
-						await s({
-							styles: {
-								transform: 'scale(1)'
-							},
-							duration: 100
-						});
-						rs();
+						posAnimation(()=>{
+							rs();
+						})
 						// #endif
 						// #ifndef APP-NVUE
 						this.$nextTick(() => {

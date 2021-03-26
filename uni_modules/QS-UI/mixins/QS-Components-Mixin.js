@@ -4,12 +4,12 @@ import styleObj2String from '../js/functions/styleObj2String.js';
 import rpxUnit2px from '../js/functions/rpxUnit2px.js';
 import CONFIG from '@/QS-UI-CONFIG/index.js';
 const QSUI_JS_NAME = CONFIG.QSUI_JS_NAME || '$qs';
-const styleString2Object = function (str) {
-	if(typeof str === 'string') {
-		str = str.split(';').filter(i=>!!i).map(item=>{ const ite = item.split(':').map(it=>it.trim()); return { [ite[0]]: ite[1] }  });
-	}
-	return str;
-}
+// const styleString2Object = function (str) {
+// 	if(typeof str === 'string') {
+// 		str = str.split(';').filter(i=>!!i).map(item=>{ const ite = item.split(':').map(it=>it.trim()); return { [ite[0]]: ite[1] }  });
+// 	}
+// 	return str;
+// }
 var id = 0;
 module.exports = function({ componentType, setContext } = {}) {
 	var _this;

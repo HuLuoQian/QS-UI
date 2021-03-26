@@ -1,19 +1,21 @@
 <template>
 	<view class="QS">
 		<view class="padding-rpx_25">
-			<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
-				<view class="flex_column_c_c">
-					<text class="QS-text large weight">演示示例</text>
+			<QS-Sticky>
+				<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
+					<view class="flex_column_c_c">
+						<text class="QS-text large weight">演示示例</text>
+					</view>
+					<QS-P height="40rpx"></QS-P>
+					<QS-Tabs ref="tabs" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"
+						:tabIndex="tabIndex" @click="tabIndex = $event">
+					</QS-Tabs>
 				</view>
-				<QS-P height="40rpx"></QS-P>
-				<QS-Tabs ref="tabs" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"
-					:tabIndex="tabIndex" @click="tabIndex = $event">
-				</QS-Tabs>
-			</view>
+			</QS-Sticky>
 			<QS-P></QS-P>
 			<view class="bgColor_ffffff border-radius-rpx_10 padding-rpx_25">
 				<titleLeftLine title="主题颜色"></titleLeftLine>
-				<QS-Tabs mode="scroll" :tabs="themes" :tabIndex="themeTabIndex" width="650rpx"
+				<QS-Tabs :tabs="themes" :tabIndex="themeTabIndex" width="650rpx"
 					@click="themeTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 			</view>
@@ -26,7 +28,7 @@
 				<showProps :prop="prop"></showProps>
 			</view>
 		</view>
-		<QS-BackTop ref="QSBackTop"></QS-BackTop>
+		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

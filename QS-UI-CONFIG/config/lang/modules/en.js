@@ -1,5 +1,5 @@
 module.exports = {
-	['qs-des']: 'We are all meteors for a while but who can shine like it',
+	'qs-des': 'We are all meteors for a while but who can shine like it',
 	test: {
 		test: 'test_1',
 		modifyLang: 'Modify Lang'
@@ -24,7 +24,16 @@ module.exports = {
 			QSButton: 'QSButton Button',
 			QSTabs: 'QSTabs Tabs',
 			QSticky: 'QSticky sticky',
-			QSComponentReading: 'QSComponentReading'
+			QSComponentReading: 'QSComponentReading',
+			
+		},
+		nvueComponents: {
+			// nvue
+			QSAnimation_n: 'QS-Animation Animation',
+			QSBackTop_n: 'QSBackTop Backtop',
+			QSBadge_n: 'QSBadge Badge',
+			QSButton_n: 'QSButton Button',
+			QSTabs_n: 'QSTabs Tabs',
 		}
 	},
 	tabbar: {
