@@ -76,20 +76,19 @@
 			_this = this;
 		},
 		async mounted() {
+			// #ifndef MP-BAIDU
 			await new Promise(rs => this.$nextTick(() => {
 				setTimeout(() => {
 					rs()
-				}, 1000)
+				}, 0)
 			}));
+			// #endif
 			this.obs = uni.$qs.intersectionObserver({
 				vm: this,
-				ob: uni.createIntersectionObserver(this, {
-					thresholds: Array(1001).fill('').map((ite, index) => (index / 1000))
-				}),
 				nodes: '#logo',
-				// options: {
-				// 	thresholds: Array(1001).fill('').map((ite, index) => (index / 1000))
-				// },
+				options: {
+					thresholds: Array(1001).fill('').map((ite, index) => (index / 1000))
+				},
 				viewportHeight: Sys.windowHeight
 			}, (res) => {
 				const size = targetImageObj.height + (originImageObj.height - targetImageObj.height) * res

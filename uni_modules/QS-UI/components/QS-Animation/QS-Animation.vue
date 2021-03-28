@@ -120,7 +120,6 @@
 				this.touchEnd = e.touches[0];
 			},
 			touchend(e) {
-				console.log('touchend')
 				if (!this.getSubsection) return;
 				if (this.touchendanimationing) return;
 				this.touchendanimationing = true;

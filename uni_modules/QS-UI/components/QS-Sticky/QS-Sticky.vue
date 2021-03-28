@@ -1,11 +1,7 @@
 <template>
 	<!-- #ifndef APP-NVUE -->
-	<view :id="componentId + 'box'" :class="getClass" :style="getStyle">
+	<view :id="componentId + 'box'" class="QS-Sticky" :class="getClass" :style="getStyle">
 		<view :id="componentId">
-			<!-- <view id="placeholder"></view> -->
-			<!-- 
-				height: contentHeight + 'px',
-				width: contentWidth + 'px' -->
 			<view id="content" :style="getFixedStyle">
 				<slot></slot>
 			</view>
@@ -30,7 +26,7 @@
 	});
 	var id = 0;
 	export default {
-		mixins: [ QSComponentMixinRes.mixin ],
+		mixins: [QSComponentMixinRes.mixin],
 		props: {
 			// #ifdef MP-ALIPAY
 			...QSComponentMixinRes.props,
@@ -54,7 +50,7 @@
 		},
 		computed: {
 			getFixedStyle() {
-				if(this.fixed) return styleObj2String({
+				if (this.fixed) return styleObj2String({
 					position: 'fixed',
 					top: this.top,
 					zIndex: this.zIndex,
@@ -65,38 +61,44 @@
 			},
 			QS_nCompStyle() {
 				return {
-					height: this.contentHeight?(this.contentHeight + 'px'):'auto',
-					width: this.contentWidth?(this.contentWidth + 'px'):'auto'
+					height: this.contentHeight ? (this.contentHeight + 'px') : 'auto',
+					width: this.contentWidth ? (this.contentWidth + 'px') : 'auto'
 				}
 			}
 		},
 		mounted() {
 			this.init();
 		},
+		beforeDestroy() {
+			obsDisconnect(this.obsObj);
+		},
 		methods: {
 			init() {
-				// #ifndef APP-NVUE
 				obsDisconnect(this.obsObj);
 				this.obsObj = intersectionObserver({
 					vm: this,
 					offSetTop: this.top,
-					viewportHeight: 1,
-					// #ifdef MP
-					nodes: [ `#${this.componentId + 'box'}`, `#content` ],
+					viewportHeight: 5,
+					// #ifdef MP-BAIDU
+					nodes: [`.QS-Sticky`, `#content`],
 					// #endif
-					// #ifndef MP
-					nodes: [ `#${this.componentId}`, `#content` ],
+					// #ifndef MP-BAIDU
+						// #ifdef MP
+						nodes: [`#${this.componentId + 'box'}`, `#content`],
+						// #endif
+						// #ifndef MP
+						nodes: [`#${this.componentId}`, `#content`],
+						// #endif
 					// #endif
-				}, (res, i)=>{
-					if(i == 1) {
+				}, (res, i) => {
+					if (i == 1) {
 						this.fixed = true;
 						this.contentHeight = res.boundingClientRect.height;
 						this.contentWidth = res.boundingClientRect.width;
 					}
-				}, (res, i)=>{
-					if(i == 0 && res.boundingClientRect.top >= this.top) this.fixed = false;
+				}, (res, i) => {
+					if (i == 0 && res.boundingClientRect.top >= this.top) this.fixed = false;
 				});
-				// #endif
 			},
 		}
 	}
@@ -114,7 +116,7 @@
 </script>
 
 <style scoped lang="scss">
-	.QS-Sticky{
+	.QS-Sticky {
 		/* #ifdef APP-NVUE */
 		position: sticky;
 		/* #endif */

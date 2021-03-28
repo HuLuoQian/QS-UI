@@ -1,12 +1,10 @@
 <template>
-	<view class="tab-line" :style="{
-					top: currentTabInfo.height * .1 + 'px',
-					left: (currentTabInfo.left + (currentTabInfo.width * .1)) + 'px',
-					height: currentTabInfo.height * .8 + 'px',
-					width: currentTabInfo.width * .8 + 'px',
+	<view class="tab-line" :style="{top: (currentTabInfo.height * 0.1) + 'px',
+					left: (currentTabInfo.left + (currentTabInfo.width * 0.1)) + 'px',
+					height: (currentTabInfo.height * 0.8) + 'px',
+					width: (currentTabInfo.width * 0.8) + 'px',
 					backgroundColor: lineColor
-				}">
-	</view>
+				}"></view>
 </template>
 
 <script>
