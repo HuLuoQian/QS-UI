@@ -344,19 +344,19 @@
 				// #ifdef APP-NVUE
 				let s = this.iconTransition;
 				preAnimationFn = async ()=>{
-					await s({ styles: { transform: 'rotateY(-15deg),translateX(-10%),scaleY(.7)', transformOrigin: '50% 50%' }, duration: AddDur.addDuration(50)} )
+					await s({ styles: { transform: 'rotateY(-15deg) translateX(-10%) scaleY(.7)', transformOrigin: '50% 50%' }, duration: AddDur.addDuration(50)} )
 				}
 				const bl = this.preAnimation(type, preAnimationFn, 'shook', AddDur);
 				if (bl === false) return;
 				const posAnimation = async (cb)=>{
-					await s({ styles: { transform: 'rotateY(15deg),translateX(10%),scaleY(.73)' }, duration: AddDur.addDuration(50)} );
-					await s({ styles: { transform: 'rotateY(-12deg),translateX(-10%),scaleY(.75)' }, duration: AddDur.addDuration(45)} );
-					await s({ styles: { transform: 'rotateY(12deg),translateX(10%),scaleY(.78)' }, duration: AddDur.addDuration(45)} );
-					await s({ styles: { transform: 'rotateY(-7deg),translateX(-10%),scaleY(.81)' }, duration: AddDur.addDuration(35)} );
-					await s({ styles: { transform: 'rotateY(7deg),translateX(10%),scaleY(.85)' }, duration: AddDur.addDuration(35)} );
-					await s({ styles: { transform: 'rotateY(4deg),translateX(-10%),scaleY(.88)' }, duration: AddDur.addDuration(35)} );
-					await s({ styles: { transform: 'rotateY(-4deg),translateX(10%),scaleY(.93)' }, duration: AddDur.addDuration(30)} );
-					await s({ styles: { transform: 'rotateY(0),translateX(0),scaleY(1)' }, duration: AddDur.addDuration(10)} );
+					await s({ styles: { transform: 'rotateY(15deg) translateX(10%) scaleY(.73)' }, duration: AddDur.addDuration(50)} );
+					// await s({ styles: { transform: 'rotateY(-12deg) translateX(-10%) scaleY(.75)' }, duration: AddDur.addDuration(45)} );
+					// await s({ styles: { transform: 'rotateY(12deg) translateX(10%) scaleY(.78)' }, duration: AddDur.addDuration(45)} );
+					await s({ styles: { transform: 'rotateY(-7deg) translateX(-10%) scaleY(.81)' }, duration: AddDur.addDuration(35)} );
+					await s({ styles: { transform: 'rotateY(7deg) translateX(10%) scaleY(.85)' }, duration: AddDur.addDuration(35)} );
+					// await s({ styles: { transform: 'rotateY(4deg) translateX(-10%) scaleY(.88)' }, duration: AddDur.addDuration(35)} );
+					// await s({ styles: { transform: 'rotateY(-4deg) translateX(10%) scaleY(.93)' }, duration: AddDur.addDuration(30)} );
+					await s({ styles: { transform: 'rotateY(0) translateX(0) scaleY(1)' }, duration: AddDur.addDuration(10)} );
 					if(cb && typeof cb == 'function') cb();
 				}
 				// #endif
@@ -419,17 +419,18 @@
 				// #ifdef APP-NVUE
 				let s = this.iconTransition;
 				preAnimationFn = async ()=>{
-					await s({ styles: { transform: 'rotateZ(.3)', transformOrigin: '0 0' }, duration: AddDur.addDuration(100)} )
+					await s({ styles: { transform: 'scaleY(.5)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(100)} )
 				}
-				const bl = this.preAnimation(type, preAnimationFn, 'pendant', AddDur);
+				const bl = this.preAnimation(type, preAnimationFn, 'elasticity_Y', AddDur);
 				if (bl === false) return;
 				const posAnimation = async (cb)=>{
-					await s({ styles: { transform: 'rotateZ(-0.3)' }, duration: AddDur.addDuration(90)} );
-					await s({ styles: { transform: 'rotateZ(0.25)' }, duration: AddDur.addDuration(80)} );
-					await s({ styles: { transform: 'rotateZ(-0.25)' }, duration: AddDur.addDuration(70)} );
-					await s({ styles: { transform: 'rotateZ(0.08)' }, duration: AddDur.addDuration(60)} );
-					await s({ styles: { transform: 'rotateZ(-0.08)' }, duration: AddDur.addDuration(50)} );
-					await s({ styles: { transform: 'rotateZ(0)' }, duration: AddDur.addDuration(40)} );
+					await s({ styles: { transform: 'scaleY(1)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(90)} );
+					await s({ styles: { transform: 'scaleY(.7)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(80)} );
+					await s({ styles: { transform: 'scaleY(1)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(70)} );
+					await s({ styles: { transform: 'scaleY(.9)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(60)} );
+					await s({ styles: { transform: 'scaleY(1)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(50)} );
+					await s({ styles: { transform: 'scaleY(.95)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(40)} );
+					await s({ styles: { transform: 'scaleY(1)', transformOrigin: '0 100%' }, duration: AddDur.addDuration(30)} );
 					if(cb && typeof cb == 'function') cb();
 				}
 				// #endif

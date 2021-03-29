@@ -78,7 +78,7 @@
 				this.obsObj = intersectionObserver({
 					vm: this,
 					offSetTop: this.top,
-					viewportHeight: 5,
+					viewportHeight: 1,
 					// #ifdef MP-BAIDU
 					nodes: [`.QS-Sticky`, `#content`],
 					// #endif
