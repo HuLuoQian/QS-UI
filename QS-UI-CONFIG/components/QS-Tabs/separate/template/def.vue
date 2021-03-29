@@ -50,11 +50,11 @@
 <style scoped>
 	.container {
 		position: relative;
-		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		/* #ifndef APP-NVUE */
+		display: flex;
 		height: 100%;
 		width: 100%;
 		/* #endif */

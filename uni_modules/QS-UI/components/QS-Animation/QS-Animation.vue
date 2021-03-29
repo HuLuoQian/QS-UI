@@ -207,7 +207,7 @@
 				// #ifdef APP-NVUE
 				let s = this.iconTransition;
 				preAnimationFn = async ()=>{
-					await s({ styles: { transform: 'scale(.5)' }, duration: AddDur.addDuration(50)} )
+					await s({ styles: { transform: 'scale(.5)', transformOrigin: '50% 50%' }, duration: AddDur.addDuration(50)} )
 				}
 				const bl = this.preAnimation(type, preAnimationFn, 'jump', AddDur);
 				if (bl === false) return;
@@ -219,12 +219,6 @@
 					await s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(50)} );
 					if(cb && typeof cb == 'function') cb();
 				}
-				// const promiseArr = [];
-				// promiseArr.push(s({ styles: { transform: 'scale(1.3)' }, duration: AddDur.addDuration(150)} ));
-				// promiseArr.push(s({ styles: { transform: 'scale(.75)' }, duration: AddDur.addDuration(100)} ));
-				// promiseArr.push(s({ styles: { transform: 'scale(1.15)' }, duration: AddDur.addDuration(100)} ));
-				// promiseArr.push(s({ styles: { transform: 'scale(.9)' }, duration: AddDur.addDuration(100)} ));
-				// promiseArr.push(s({ styles: { transform: 'scale(1)' }, duration: AddDur.addDuration(50)} ));
 				// #endif
 				// #ifndef APP-NVUE
 				this.Animation = {};
@@ -271,10 +265,28 @@
 				}
 			},
 			pendant(type) {
-				// #ifndef APP-NVUE
 				const AddDur = new addDuration();
+				let preAnimationFn;
+				// #ifdef APP-NVUE
+				let s = this.iconTransition;
+				preAnimationFn = async ()=>{
+					await s({ styles: { transform: 'rotateZ(.3)', transformOrigin: '0 0' }, duration: AddDur.addDuration(100)} )
+				}
+				const bl = this.preAnimation(type, preAnimationFn, 'pendant', AddDur);
+				if (bl === false) return;
+				const posAnimation = async (cb)=>{
+					await s({ styles: { transform: 'rotateZ(-0.3)' }, duration: AddDur.addDuration(90)} );
+					await s({ styles: { transform: 'rotateZ(0.25)' }, duration: AddDur.addDuration(80)} );
+					await s({ styles: { transform: 'rotateZ(-0.25)' }, duration: AddDur.addDuration(70)} );
+					await s({ styles: { transform: 'rotateZ(0.08)' }, duration: AddDur.addDuration(60)} );
+					await s({ styles: { transform: 'rotateZ(-0.08)' }, duration: AddDur.addDuration(50)} );
+					await s({ styles: { transform: 'rotateZ(0)' }, duration: AddDur.addDuration(40)} );
+					if(cb && typeof cb == 'function') cb();
+				}
+				// #endif
+				// #ifndef APP-NVUE
 				this.Animation = {};
-				const preAnimationFn = () => {
+				preAnimationFn = () => {
 					this.Ani.rotateZ(3).step({
 						duration: AddDur.addDuration(100),
 						transformOrigin: '-100% -100%'
@@ -311,29 +323,9 @@
 					D: AddDur.getDuration(),
 					P: new Promise(async (rs, rj) => {
 						// #ifdef APP-NVUE
-						let s = this.iconTransition;
-						await s({
-							styles: {
-								transform: 'rotateZ(3deg)',
-								transformOrigin: '-100% -100%'
-							},
-							duration: 100
-						});
-						await s({
-							styles: {
-								transform: 'rotateZ(-3deg)',
-								transformOrigin: '-100% -100%'
-							},
-							duration: 100
-						});
-						await s({
-							styles: {
-								transform: 'rotateZ(0deg)',
-								transformOrigin: '-100% -100%'
-							},
-							duration: 100
-						});
-						rs();
+						posAnimation(()=>{
+							rs();
+						})
 						// #endif
 						// #ifndef APP-NVUE
 						this.$nextTick(() => {
@@ -347,10 +339,30 @@
 				}
 			},
 			shook(type) {
-				// #ifndef APP-NVUE
 				const AddDur = new addDuration();
+				let preAnimationFn;
+				// #ifdef APP-NVUE
+				let s = this.iconTransition;
+				preAnimationFn = async ()=>{
+					await s({ styles: { transform: 'rotateY(-15deg),translateX(-10%),scaleY(.7)', transformOrigin: '50% 50%' }, duration: AddDur.addDuration(50)} )
+				}
+				const bl = this.preAnimation(type, preAnimationFn, 'shook', AddDur);
+				if (bl === false) return;
+				const posAnimation = async (cb)=>{
+					await s({ styles: { transform: 'rotateY(15deg),translateX(10%),scaleY(.73)' }, duration: AddDur.addDuration(50)} );
+					await s({ styles: { transform: 'rotateY(-12deg),translateX(-10%),scaleY(.75)' }, duration: AddDur.addDuration(45)} );
+					await s({ styles: { transform: 'rotateY(12deg),translateX(10%),scaleY(.78)' }, duration: AddDur.addDuration(45)} );
+					await s({ styles: { transform: 'rotateY(-7deg),translateX(-10%),scaleY(.81)' }, duration: AddDur.addDuration(35)} );
+					await s({ styles: { transform: 'rotateY(7deg),translateX(10%),scaleY(.85)' }, duration: AddDur.addDuration(35)} );
+					await s({ styles: { transform: 'rotateY(4deg),translateX(-10%),scaleY(.88)' }, duration: AddDur.addDuration(35)} );
+					await s({ styles: { transform: 'rotateY(-4deg),translateX(10%),scaleY(.93)' }, duration: AddDur.addDuration(30)} );
+					await s({ styles: { transform: 'rotateY(0),translateX(0),scaleY(1)' }, duration: AddDur.addDuration(10)} );
+					if(cb && typeof cb == 'function') cb();
+				}
+				// #endif
+				// #ifndef APP-NVUE
 				this.Animation = {};
-				const preAnimationFn = () => {
+				preAnimationFn = () => {
 					this.Ani.rotateY(-15).translateX('-10%').scaleY(.7).step({
 						duration: AddDur.addDuration(50)
 					});
@@ -378,18 +390,6 @@
 				this.Ani.rotateY(4).translateX('10%').scaleY(.93).step({
 					duration: AddDur.addDuration(30)
 				});
-				// this.Ani.rotateY(-7).translateX('-10%').scaleY(.95).step({
-				// 	duration: AddDur.addDuration(25)
-				// });
-				// this.Ani.rotateY(7).translateX('10%').scaleY(.98).step({
-				// 	duration: AddDur.addDuration(25)
-				// });
-				// this.Ani.rotateY(-3).translateX('-10%').scaleY(1).step({
-				// 	duration: AddDur.addDuration(20)
-				// });
-				// this.Ani.rotateY(3).translateX('10%').scaleY(1).step({
-				// 	duration: AddDur.addDuration(20)
-				// });
 				this.Ani.rotateY(0).translateX('0').scaleY(1).step({
 					duration: AddDur.addDuration(10)
 				});
@@ -398,38 +398,9 @@
 					D: AddDur.getDuration(),
 					P: new Promise(async (rs, rj) => {
 						// #ifdef APP-NVUE
-						let s = this.iconTransition;
-						await s({
-							styles: {
-								transform: 'rotateY(-15deg) translateX(-10%) scaleY(.8)'
-							},
-							duration: 50
-						});
-						await s({
-							styles: {
-								transform: 'rotateY(15deg) translateX(10%) scaleY(.8)'
-							},
-							duration: 50
-						});
-						await s({
-							styles: {
-								transform: 'rotateY(-15deg) translateX(-10%) scaleY(.8)'
-							},
-							duration: 50
-						});
-						await s({
-							styles: {
-								transform: 'rotateY(15deg) translateX(10%) scaleY(.8)'
-							},
-							duration: 50
-						});
-						await s({
-							styles: {
-								transform: 'rotateY(0deg) translateX(0) scaleY(1)'
-							},
-							duration: 50
-						});
-						rs();
+						posAnimation(()=>{
+							rs();
+						})
 						// #endif
 						// #ifndef APP-NVUE
 						this.$nextTick(() => {
@@ -443,10 +414,28 @@
 				}
 			},
 			elasticity_Y(type) {
-				// #ifndef APP-NVUE
 				const AddDur = new addDuration();
+				let preAnimationFn;
+				// #ifdef APP-NVUE
+				let s = this.iconTransition;
+				preAnimationFn = async ()=>{
+					await s({ styles: { transform: 'rotateZ(.3)', transformOrigin: '0 0' }, duration: AddDur.addDuration(100)} )
+				}
+				const bl = this.preAnimation(type, preAnimationFn, 'pendant', AddDur);
+				if (bl === false) return;
+				const posAnimation = async (cb)=>{
+					await s({ styles: { transform: 'rotateZ(-0.3)' }, duration: AddDur.addDuration(90)} );
+					await s({ styles: { transform: 'rotateZ(0.25)' }, duration: AddDur.addDuration(80)} );
+					await s({ styles: { transform: 'rotateZ(-0.25)' }, duration: AddDur.addDuration(70)} );
+					await s({ styles: { transform: 'rotateZ(0.08)' }, duration: AddDur.addDuration(60)} );
+					await s({ styles: { transform: 'rotateZ(-0.08)' }, duration: AddDur.addDuration(50)} );
+					await s({ styles: { transform: 'rotateZ(0)' }, duration: AddDur.addDuration(40)} );
+					if(cb && typeof cb == 'function') cb();
+				}
+				// #endif
+				// #ifndef APP-NVUE
 				this.Animation = {};
-				const preAnimationFn = () => {
+				preAnimationFn = () => {
 					this.Ani.scaleY(.5).step({
 						duration: AddDur.addDuration(100),
 						transformOrigin: '0 100%'
@@ -487,36 +476,9 @@
 					D: AddDur.getDuration(),
 					P: new Promise(async (rs, rj) => {
 						// #ifdef APP-NVUE
-						let s = this.iconTransition;
-						await s({
-							styles: {
-								transform: 'scaleY(.5)',
-								transformOrigin: '0 100%'
-							},
-							duration: 200
-						});
-						await s({
-							styles: {
-								transform: 'scaleY(1.3)',
-								transformOrigin: '0 100%'
-							},
-							duration: 100
-						});
-						await s({
-							styles: {
-								transform: 'scaleY(.5)',
-								transformOrigin: '0 100%'
-							},
-							duration: 100
-						});
-						await s({
-							styles: {
-								transform: 'scaleY(1)',
-								transformOrigin: '0 100%'
-							},
-							duration: 100
-						});
-						rs();
+						posAnimation(()=>{
+							rs();
+						})
 						// #endif
 						// #ifndef APP-NVUE
 						this.$nextTick(() => {

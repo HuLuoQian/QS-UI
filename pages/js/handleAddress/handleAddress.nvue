@@ -6,7 +6,7 @@
 					<text class="QS-text large-x weight">演示示例</text>
 				</view>
 				<QS-P height="45rpx"></QS-P>
-				<QS-Input title="需解析的地址" v-model="address"></QS-Input>
+				<input v-model="address" placeholder="需解析的地址" />
 				<QS-P height="45rpx"></QS-P>
 				<QS-Button @click="handleAddress">解析地址</QS-Button>
 			</view>

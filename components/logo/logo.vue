@@ -75,6 +75,11 @@
 		created() {
 			_this = this;
 		},
+		// #ifndef APP-NVUE
+		beforeDestroy() {
+			uni.$qs.obsDisconnect(this.obs);
+		},
+		// #endif
 		async mounted() {
 			// #ifndef MP-BAIDU
 			await new Promise(rs => this.$nextTick(() => {
@@ -91,19 +96,14 @@
 				},
 				viewportHeight: Sys.windowHeight
 			}, (res) => {
-				const size = targetImageObj.height + (originImageObj.height - targetImageObj.height) * res
-					.intersectionRatio;
+				const size = targetImageObj.height + (originImageObj.height - targetImageObj.height) * res.intersectionRatio;
 				const imgdiffw = (halfWidth - size / 2);
 				this.imageObj.height = size;
 				this.imageObj.width = size;
-				this.imageObj.top = targetImageObj.top + (originImageObj.top - targetImageObj.top) * res
-					.intersectionRatio;
-				this.imageObj.left = targetImageObj.left + (originImageObj.left - targetImageObj.left) * res
-					.intersectionRatio;
-				this.textObj.top = targetTextObj.top + (originTextObj.top - targetTextObj.top) * res
-					.intersectionRatio;
-				this.textObj.left = targetTextObj.left + (originTextObj.left - targetTextObj.left) * res
-					.intersectionRatio;
+				this.imageObj.top  = targetImageObj.top   + (originImageObj.top  - targetImageObj.top)  * res.intersectionRatio;
+				this.imageObj.left = targetImageObj.left  + (originImageObj.left - targetImageObj.left) * res.intersectionRatio;
+				this.textObj.top   = targetTextObj.top    + (originTextObj.top   - targetTextObj.top)   * res.intersectionRatio;
+				this.textObj.left  = targetTextObj.left   + (originTextObj.left  - targetTextObj.left)  * res.intersectionRatio;
 				this.bgOpacity = 1 - res.intersectionRatio;
 			})
 		}

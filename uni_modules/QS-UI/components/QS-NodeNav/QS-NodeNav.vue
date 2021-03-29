@@ -7,14 +7,6 @@
 		backgroundColor: backgroundColor
 	}">
 		<QSTabs :width="width" :height="height" :tabs="nodes" :tabIndex="current" @click="click"></QSTabs>
-		<!-- <view class="item" v-for="(item, index) in nodes" :key="item.node" @tap="click(item)">
-			<view class="content" :style="{ borderBottom: current === index?`1px solid ${activeColor}`:'' }">
-				<text :style="{ 
-					fontSize: fontSize,
-					color: current === index?activeColor:defColor
-				}">{{item.text}}</text>
-			</view>
-		</view> -->
 	</view>
 </template>
 
@@ -24,14 +16,20 @@
 	import rpxUnit2px from '../../js/functions/rpxUnit2px.js';
 	import QSTabs from '../QS-Tabs/QS-Tabs.vue';
 	import intersectionObserver from '../../js/functions/intersectionObserver.js';
-
+	
+	// #ifdef APP-NVUE
+	const dom = weex.requireModule('dom');
+	// #endif
+	
 	const QSComponentMixinRes = QSComponentMixin({
 		componentType: 'QS-NodeNav',
 		setContext: true
 	});
 	var _this;
 	export default {
-		components: { QSTabs },
+		components: {
+			QSTabs
+		},
 		mixins: [QSComponentMixinRes.mixin],
 		props: {
 			// #ifdef MP-ALIPAY
@@ -101,7 +99,8 @@
 				fixed: false,
 				nshow: false,
 				top: 0,
-				scrollTop: 0
+				scrollTop: 0,
+				parent: null
 			}
 		},
 		computed: {
@@ -130,9 +129,10 @@
 			},
 			click(e) {
 				const item = this.nodes[e];
+				// #ifndef APP-NVUE
 				let view;
 				// #ifndef MP-ALIPAY
-				view = uni.createSelectorQuery().in(this.$parent);
+				view = uni.createSelectorQuery().in(this.parent);
 				// #endif
 				// #ifdef MP-ALIPAY
 				view = uni.createSelectorQuery();
@@ -143,14 +143,20 @@
 						scrollTop: this.scrollTop + data[0].top + rpxUnit2px(this.getScrollToOffsetTop)
 					})
 				})
+				// #endif
+				// #ifdef APP-NVUE
+				console.log(this.$parent.$refs.length)
+				dom.scrollToElement(this.parent.$refs[item.node || item])
+				// #endif
 			},
 			init(obj = {}) {
+				this.parent = obj.vm;
 				this.obsObj = intersectionObserver({
 					vm: obj.vm,
 					offsetTop: this.offsetTop,
 					viewportHeight: 1,
 					nodes: this.nodes
-				}, (res, i)=>{
+				}, (res, i) => {
 					uni.vibrateShort();
 					this.current = i;
 				});
@@ -176,29 +182,16 @@
 
 <style scoped lang="scss">
 	.QS-NodeNav {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
-		transition: opacity, background-color .3s;
+		transition-property: opacity;
+		transition-duration: .3s;
 
-		&.fixed {
-			position: fixed;
-		}
+	}
 
-		.item {
-			flex: 1;
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-
-			.content {
-				height: 100%;
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				transition: all .3s;
-			}
-		}
+	.fixed {
+		position: fixed;
 	}
 </style>

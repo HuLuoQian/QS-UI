@@ -1,6 +1,6 @@
 <template>
 	<view class="QS">
-		<view id="toast" class="padding-rpx_25 toast">
+		<view id="toast" ref="toast" class="padding-rpx_25 toast">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">Toast</text>
@@ -15,7 +15,7 @@
 				<text class="QS-text color_666666">toast只不过在原有的基础上多了title自动转String的操作, 并支持merge传参</text>
 			</view>
 		</view>
-		<view id="modal" class="padding-rpx_25 modal">
+		<view id="modal" ref="modal" class="padding-rpx_25 modal">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">Modal</text>
@@ -30,7 +30,7 @@
 				<text class="QS-text color_666666">modal只不过在原有的基础上支持merge传参</text>
 			</view>
 		</view>
-		<view id="actionSheet" class="padding-rpx_25 actionSheet">
+		<view id="actionSheet" ref="actionSheet" class="padding-rpx_25 actionSheet">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
 					<text class="QS-text large-x weight">ActionSheet</text>
@@ -194,14 +194,6 @@
 		},
 		onReady() {
 			this.$refs.QSNodeNav.init({ vm: this });
-			// uni.$qs.intersectionObserver({
-			// 	vm: this,
-			// 	nodes: this.nodes
-			// }, (i)=>{
-			// 	console.log('intersection', i)
-			// }, (i)=>{
-			// 	console.log('unIntersection', i)
-			// })
 		},
 		methods: {
 			toast() {

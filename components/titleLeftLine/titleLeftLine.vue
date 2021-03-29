@@ -59,11 +59,12 @@
 
 <style scoped>
 	.title-left-line {
-		/* width: 100%; */
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		padding-top: 8px;
 		padding-bottom: 8px;
 		margin-bottom: 10px;
-		display: flex;
 		flex-direction: row;
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
@@ -74,9 +75,11 @@
 	}
 
 	.title-left-line-title {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		margin-left: 12px;
 		font-weight: bold;
-		display: flex;
 		flex-direction: row;
 		align-items: center;
 	}
