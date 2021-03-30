@@ -1,10 +1,13 @@
 <template>
-	<view class="tab-line" :style="{top: (currentTabInfo.height * 0.1) + 'px',
-					left: (currentTabInfo.left + (currentTabInfo.width * 0.1)) + 'px',
-					height: (currentTabInfo.height * 0.8) + 'px',
-					width: (currentTabInfo.width * 0.8) + 'px',
-					backgroundColor: lineColor
-				}"></view>
+	<view 
+	class="tab-line" 
+	:style="{
+		top: getLineInfo.top,
+		left: getLineInfo.left,
+		height: getLineInfo.height,
+		width: getLineInfo.width,
+		backgroundColor: getLineInfo.backgroundColor
+	}"></view>
 </template>
 
 <script>
@@ -21,6 +24,17 @@
 				type: String,
 			}
 		},
+		computed: {
+			getLineInfo() {
+				return {
+					top: (this.currentTabInfo.height * (0.1)) + 'px',
+					left: (this.currentTabInfo.left + (this.currentTabInfo.width * (0.1))) + 'px',
+					height: (this.currentTabInfo.height * (0.8)) + 'px',
+					width: (this.currentTabInfo.width * (0.8)) + 'px',
+					backgroundColor: this.lineColor
+				}
+			}
+		}
 	}
 </script>
 

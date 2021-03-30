@@ -8,7 +8,8 @@
 			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="[getModeClass]">
 				
 				<!-- #ifndef APP-NVUE -->
-				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
+				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo" :lineColor="getLineColor"
+						:theme="theme"></slot>
 				<block v-else-if="hasLine && !lineUseSlot">
 					<lineSeperate :lineType="lineType" :currentTabInfo="getTabInfo" :lineColor="getLineColor"
 						:theme="theme"></lineSeperate>

@@ -36,36 +36,29 @@
 				default: ()=>{ return {} }
 			},
 			height: {
-				type: [String, Number],
-				default: '84rpx'
+				type: [String, Number]
 			},
 			fontSize: {
-				type: [String, Number],
-				default: '30rpx'
+				type: [String, Number]
 			},
 			fontWeight: {
-				type: [String, Number],
-				default: ''
+				type: [String, Number]
 			},
 			color: {
-				type: String,
-				default: ''
+				type: String
 			},
 			index: {
-				type: [String, Number],
-				default: null
+				type: [String, Number]
 			},
 			tabsLen: {
-				type: [String, Number],
-				default: null
+				type: [String, Number]
 			},
 			props: {
 				type: Object,
 				default: ()=>{ return { nameField: 'name' } }
 			},
 			type: {
-				type: String,
-				default: ''
+				type: String
 			},
 			isActive: {
 				type: [String, Boolean],

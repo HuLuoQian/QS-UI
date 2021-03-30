@@ -1,14 +1,13 @@
 <template>
-	<view
+	<view 
 	class="tab-line" 
-	:style="{ 
-		top: currentTabInfo.height * .1 + 'px',
-		left: (currentTabInfo.left + (currentTabInfo.width * .1)) + 'px',
-		height: currentTabInfo.height * .8 + 'px',
-		width: currentTabInfo.width * .8 + 'px',
-		backgroundColor: lineColor
-	}">
-	</view>
+	:style="{
+		top: getLineInfo.top,
+		left: getLineInfo.left,
+		height: getLineInfo.height,
+		width: getLineInfo.width,
+		backgroundColor: getLineInfo.backgroundColor
+	}"></view>
 </template>
 
 <script>
@@ -16,24 +15,34 @@
 		props: {
 			currentTabInfo: {
 				type: Object,
-				default: ()=>({})
+				default: () => ({})
 			},
 			theme: {
 				type: String,
-				default: 'primary'
 			},
 			lineColor: {
 				type: String,
-				default: ''
+			}
+		},
+		computed: {
+			getLineInfo() {
+				return {
+					top: (this.currentTabInfo.height * (0.1)) + 'px',
+					left: (this.currentTabInfo.left + (this.currentTabInfo.width * (0.1))) + 'px',
+					height: (this.currentTabInfo.height * (0.8)) + 'px',
+					width: (this.currentTabInfo.width * (0.8)) + 'px',
+					backgroundColor: this.lineColor
+				}
 			}
 		}
 	}
 </script>
 
-<style scoped lang="scss">
-	.tab-line{
+<style scoped>
+	.tab-line {
 		position: absolute;
-		border-radius: 10rpx;
-		transition: left .3s;
+		border-radius: 5px;
+		transition-property: left;
+		transition-duration: .3s;
 	}
 </style>

@@ -7,15 +7,21 @@
 						<text class="QS-text large weight">演示示例</text>
 					</view>
 					<QS-P height="40rpx"></QS-P>
+					<titleLeftLine title="使用模板分流确定line模板"></titleLeftLine>
 					<QS-Tabs ref="tabs" mode="scroll" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"
-						:tabIndex="tabIndex" @click="tabIndex = $event">
-						<template v-slot:line="{ currentTabInfo }">
+						:tabIndex="tabIndex" @click="tabIndex = $event"></QS-Tabs>
+					<QS-P></QS-P>
+					<titleLeftLine title="使用slot确定line模板"></titleLeftLine>
+					<QS-Tabs ref="tabs" mode="scroll" :tabs="tabs" :theme="themes[themeTabIndex].value" width="650rpx"
+					activeColor="#000000"
+						:tabIndex="tabIndex" @click="tabIndex = $event" :lineUseSlot="true">
+						<template v-slot:line="{ currentTabInfo, lineColor }">
 							<view class="tab-line" :style="{ 
-								top: currentTabInfo.height * .1 + 'px',
-								left: (currentTabInfo.left + (currentTabInfo.width * .1)) + 'px',
-								height: currentTabInfo.height * .8 + 'px',
-								width: currentTabInfo.width * .8 + 'px',
-								backgroundColor: '#f1505c'
+								top: currentTabInfo.height * 0.9 + 'px',
+								left: (currentTabInfo.left + (currentTabInfo.width * 0.1)) + 'px',
+								height: currentTabInfo.height * 0.1 + 'px',
+								width: currentTabInfo.width * 0.8 + 'px',
+								backgroundColor: lineColor
 							}">
 							</view>
 						</template>
