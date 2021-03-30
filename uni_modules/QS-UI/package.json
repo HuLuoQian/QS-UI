@@ -10,7 +10,7 @@
         "组件",
         "QS"
     ],
-	"repository": "https://github.com/HuLuoQian/QS-UI",
+	"repository": "https://gitee.com/QS-UI/QS-UI",
 	"engines": {
 		"HBuilderX": "^3.1.2"
 	},
