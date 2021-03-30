@@ -15,7 +15,7 @@
 		props: {
 			currentTabInfo: {
 				type: Object,
-				default: () => ({})
+				default: () => null
 			},
 			theme: {
 				type: String,
@@ -25,12 +25,15 @@
 			}
 		},
 		computed: {
+			getCurrentTabInfo() {
+				return this.currentTabInfo || {height: 0, width: 0, left: 0, right: 0};
+			},
 			getLineInfo() {
 				return {
-					top: (this.currentTabInfo.height * (0.1)) + 'px',
-					left: (this.currentTabInfo.left + (this.currentTabInfo.width * (0.1))) + 'px',
-					height: (this.currentTabInfo.height * (0.8)) + 'px',
-					width: (this.currentTabInfo.width * (0.8)) + 'px',
+					top: (this.getCurrentTabInfo.height * (0.1)) + 'px',
+					left: (this.getCurrentTabInfo.left + (this.getCurrentTabInfo.width * (0.1))) + 'px',
+					height: (this.getCurrentTabInfo.height * (0.8)) + 'px',
+					width: (this.getCurrentTabInfo.width * (0.8)) + 'px',
 					backgroundColor: this.lineColor
 				}
 			}
