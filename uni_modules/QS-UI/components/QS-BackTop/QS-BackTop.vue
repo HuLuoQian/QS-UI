@@ -1,23 +1,25 @@
 <template>
-	<view class="QS-Backtop" :class="getClass" :style="getStyle" @tap="active">
+	<view class="QS-Backtop" :class="getClass" :style="getStyle" >
 		<!-- #ifdef APP-NVUE -->
 		<view class="nvue-placeholder" ref="nvuePlaceholder"></view>
 		<!-- #endif -->
-		<image 
-		v-if="type==='image'" 
-		class="backtop-container" 
-		:class="compClass.image"
-		:style="compStyle.image"
-		:src="image"
-		mode="aspectFill"></image>
-		<view
-		v-else-if="type==='text'"
-		class="backtop-container" 
-		:class="compClass.textContainer"
-		:style="compStyle.textContainer">
-			<text>{{text}}</text>
+		<view :class="getElClass" :style="getElStyle" class="QS-Backtop-el" @tap="active">
+			<image 
+			v-if="type==='image'" 
+			class="backtop-container" 
+			:class="compClass.image"
+			:style="compStyle.image"
+			:src="image"
+			mode="aspectFill"></image>
+			<view
+			v-else-if="type==='text'"
+			class="backtop-container" 
+			:class="compClass.textContainer"
+			:style="compStyle.textContainer">
+				<text>{{text}}</text>
+			</view>
+			<slot v-else-if="type==='slot'"></slot>
 		</view>
-		<slot v-else-if="type==='slot'"></slot>
 	</view>
 </template>
 
@@ -95,10 +97,10 @@
 			isTabbar() {
 				return String(this.tabbar) === 'true';
 			},
-			QS_nCompClass() {
+			getElClass() {
 				return classObj2String(this.compClass.backTop);
 			},
-			QS_nCompStyle() {
+			getElStyle() {
 				const style =  {
 					right: this.right,
 					bottom: this.getBottom,
@@ -172,7 +174,10 @@
 </script>
 
 <style scoped>
-	.QS-Backtop {
+	.QS-Backtop{
+		
+	}
+	.QS-Backtop-el {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -195,9 +200,9 @@
 	}
 	
 	.nvue-placeholder{
-		position: fixed;
+		/* position: fixed;
 		top: 0;
-		left: 0;
+		left: 0; */
 		height: 0;
 		width: 0;
 		opacity: 0;

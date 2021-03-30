@@ -41,9 +41,10 @@
 				const style = {
 					height: this.getHeight,
 					width: this.getWidth,
+					// #ifndef APP-NVUE
 					minHeight: this.getHeight,
 					minWidth: this.getWidth,
-					backgroundColor: this.backgroundColor,
+					// #endif
 					borderRadius: this.borderRadius
 				};
 				return style;

@@ -1,5 +1,6 @@
 <template>
 	<view class="QS">
+		<QS-BackTop></QS-BackTop>
 		<!-- #ifdef H5 -->
 		<QS-P height="44px"></QS-P>
 		<!-- #endif -->
@@ -23,7 +24,6 @@
 		</view>
 		<QS-P height="500px"></QS-P>
 
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

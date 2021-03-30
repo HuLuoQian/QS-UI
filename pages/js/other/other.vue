@@ -1,6 +1,5 @@
 <template>
 	<view class="QS">
-		
 		<QS-BackTop></QS-BackTop>
 	</view>
 </template>

@@ -1,5 +1,6 @@
 <template>
 	<view class="QS">
+		<QS-BackTop></QS-BackTop>
 		<view class="padding-rpx_25">
 			<view class="flex_column_c_c">
 				<text class="QS-text large weight">演示示例</text>
@@ -27,8 +28,6 @@
 				<showProps :prop="prop"></showProps>
 			</view>
 		</view>
-		
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

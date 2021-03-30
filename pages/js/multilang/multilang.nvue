@@ -1,5 +1,6 @@
 <template>
 	<view class="QS">
+		<QS-BackTop></QS-BackTop>
 		<view class="padding-rpx_25">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<QS-P height="100rpx"></QS-P>
@@ -19,7 +20,6 @@
 				<QS-P height="50rpx"></QS-P>
 			</view>
 		</view>
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

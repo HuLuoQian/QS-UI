@@ -46,7 +46,6 @@ module.exports = function (config = {}) {
 		countDownObj.status = 3;
 	}
 	countDownObj.fn = setInterval(() => {
-		console.log('循环中')
 		const nNow = new Date();
 		if (nNow < bgDate) {
 			countDownObj.text = `${aboutToBeginText} ${number2Duration(bgDate - nNow)}`;

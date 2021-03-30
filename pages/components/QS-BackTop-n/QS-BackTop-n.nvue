@@ -1,5 +1,10 @@
 <template>
 	<view class="QS page">
+		<!-- 
+		只要QS-UI-CONFIG/config/index.js-> mixins.usePageScroll为true， 
+		并在页面上放置 QS-BackTop 组件 即可, nvue需要放在前面
+		-->
+		<QS-BackTop></QS-BackTop>
 		<view class="padding-rpx_25">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<QS-P height="150rpx"></QS-P>
@@ -11,12 +16,6 @@
 				<QS-P :height="`${pageHeight}px`"></QS-P>
 			</view>
 		</view>
-		
-		<!-- 
-		只要QS-UI-CONFIG/config/index.js-> mixins.usePageScroll为true， 
-		并在页面上放置 QS-BackTop 组件 即可 
-		-->
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

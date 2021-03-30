@@ -1,5 +1,6 @@
 <template>
 	<view class="QS">
+		<QS-BackTop></QS-BackTop>
 		<view ref="toast" class="padding-rpx_25 toast">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
@@ -46,7 +47,6 @@
 			</view>
 		</view>
 		<QS-NodeNav ref="QSNodeNav" :nodes="nodes" :fixedTop="fixedTop" :offsetTop="offsetTop" :scrollToOffsetTop="scrollToOffsetTop"></QS-NodeNav>
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

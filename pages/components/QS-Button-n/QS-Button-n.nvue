@@ -1,5 +1,6 @@
 <template>
 	<view class="QS page">
+		<QS-BackTop></QS-BackTop>
 		<view class="padding-rpx_25">
 			<QS-Sticky>
 				<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
@@ -40,8 +41,6 @@
 				<showProps :prop="prop"></showProps>
 			</view>
 		</view>
-
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
 	<view class="QS">
+		<QS-BackTop></QS-BackTop>
 		<view class="padding-rpx_25">
 			<view class="padding-rpx_25 bgColor_ffffff border-radius-rpx_10">
 				<view class="flex_row_c_c">
@@ -22,8 +23,6 @@
 				<text class="QS-text color_666666 flex-wrap_wrap"></text>
 			</view>
 		</view>
-		
-		<QS-BackTop></QS-BackTop>
 	</view>
 </template>
 
