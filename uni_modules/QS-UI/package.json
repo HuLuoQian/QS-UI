@@ -1,7 +1,7 @@
 {
 	"id": "QS-UI",
 	"displayName": "QS-UI 支持Nvue",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "uni-app 框架，主题配置、路由、请求、多语言、完善的组件配置",
 	"keywords": [
         "QS-UI",
