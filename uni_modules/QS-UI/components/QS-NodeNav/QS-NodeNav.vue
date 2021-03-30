@@ -26,6 +26,7 @@
 		setContext: true
 	});
 	var _this;
+	var parent;
 	export default {
 		components: {
 			QSTabs
@@ -100,7 +101,6 @@
 				nshow: false,
 				top: 0,
 				scrollTop: 0,
-				parent: null,
 				copyNodes: []
 			}
 		},
@@ -124,20 +124,22 @@
 			}
 			// #endif
 		},
+		// #ifdef APP-NVUE
 		watch: {
-			// #ifdef APP-NVUE
 			getCurrent(n) {
 				if(-1 == n) return ;
 				this.changeCurrent(n);
 			}
-			// #endif
 		},
+		// #endif
 		created() {
 			_this = this;
 		},
+		// #ifndef APP-NVUE
 		beforeDestroy() {
 			this.obsDisconnect();
 		},
+		// #endif
 		methods: {
 			setScrollTop(e) {
 				_this.scrollTop = e;
@@ -147,7 +149,7 @@
 				// #ifndef APP-NVUE
 				let view;
 				// #ifndef MP-ALIPAY
-				view = uni.createSelectorQuery().in(this.parent);
+				view = uni.createSelectorQuery().in(parent);
 				// #endif
 				// #ifdef MP-ALIPAY
 				view = uni.createSelectorQuery();
@@ -163,7 +165,7 @@
 				let node = item.node || 'item';
 				const pre = node.substring(0, 1);
 				if(pre == '#' || pre == '.') node = node.substring(1, node.length - 1);
-				dom.scrollToElement(this.parent.$refs[node], {
+				dom.scrollToElement(parent.$refs[node], {
 					offset: rpxUnit2px(this.getScrollToOffsetTop)
 				})
 				// #endif
@@ -173,9 +175,12 @@
 				this.current = i;
 			},
 			init(obj = {}) {
-				const Sys = uni.getSystemInfoSync();
-				console.log(Sys)
-				this.parent = obj.vm;
+				if(!obj.vm) {
+					console.log('请传入当前vue实例this至vm属性');
+					console.warn('请传入当前vue实例this至vm属性');
+					return;
+				}
+				parent = obj.vm;
 				// #ifndef APP-NVUE
 				this.obsObj = intersectionObserver({
 					vm: obj.vm,
@@ -192,7 +197,7 @@
 					const item = this.nodes[i];
 					arr.push(
 						new Promise((rs, rj)=>{
-							dom.getComponentRect(this.parent.$refs[item.node || item], option=>{
+							dom.getComponentRect(parent.$refs[item.node || item], option=>{
 								rs({...item, rect: option.size});
 							});
 						})
@@ -201,7 +206,6 @@
 				Promise.all(arr)
 					.then(res=>{
 						this.copyNodes = res;
-						console.log(res);
 					})
 				// #endif
 			},
