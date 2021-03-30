@@ -12,7 +12,7 @@ const QSUI_JS_NAME = CONFIG.QSUI_JS_NAME || '$qs';
 // }
 var id = 0;
 module.exports = function({ componentType, setContext } = {}) {
-	var _this;
+	let _this;
 	const props = {
 		'compClass': {
 			type: Object,
@@ -36,7 +36,14 @@ module.exports = function({ componentType, setContext } = {}) {
 			// #endif
 			created() {
 				_this = this;
-				if(componentType && setContext) uni[QSUI_JS_NAME].pageRoots.setPageContext(this, componentType);
+				if(componentType && setContext) {
+					// #ifndef APP-NVUE
+					uni[QSUI_JS_NAME].pageRoots.setPageContext(this, componentType);
+					// #endif
+					// #ifdef APP-NVUE
+					uni[QSUI_JS_NAME].pageRoots.setPageContext(_this, componentType);
+					// #endif
+				}
 			},
 			beforeDestroy() {
 				if(componentType && setContext) uni[QSUI_JS_NAME].pageRoots.clearPageContext(this, componentType);

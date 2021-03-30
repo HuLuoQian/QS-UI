@@ -24,19 +24,11 @@
 					@click="typeTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
 				<titleLeftLine title="是否禁用"></titleLeftLine>
-				<QS-Tabs mode="scroll" :tabs="disabledArr" :tabIndex="disabledTabIndex" width="650rpx"
+				<QS-Tabs :tabs="disabledArr" :tabIndex="disabledTabIndex" width="650rpx" :itemFull="true"
 					@click="disabledTabIndex = $event"></QS-Tabs>
 				<QS-P></QS-P>
-				<!-- <titleLeftLine title="是否启用loading"></titleLeftLine>
-				<QS-Tabs mode="scroll" :tabs="loadingdArr" :tabIndex="loadingTabIndex" width="650rpx"
-					@click="loadingTabIndex = $event"></QS-Tabs>
-				<QS-P></QS-P> -->
-				<!-- <titleLeftLine title="是否镂空"></titleLeftLine>
-				<QS-Tabs mode="scroll" :tabs="plainArr" :tabIndex="plainTabIndex" width="650rpx"
-					@click="plainTabIndex = $event"></QS-Tabs>
-				<QS-P></QS-P> -->
 				<titleLeftLine title="大小"></titleLeftLine>
-				<QS-Tabs mode="scroll" :tabs="sizes" :tabIndex="sizeTabIndex" width="650rpx"
+				<QS-Tabs :tabs="sizes" :tabIndex="sizeTabIndex" width="650rpx" :itemFull="true"
 					@click="sizeTabIndex = $event"></QS-Tabs>
 			</view>
 			<QS-P></QS-P>

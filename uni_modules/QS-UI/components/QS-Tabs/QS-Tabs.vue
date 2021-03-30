@@ -5,7 +5,7 @@
 			height: getHeight,
 			width: width
 		}">
-			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="getModeClass">
+			<view ref="scrollViewX-row" id="scrollViewX-row" class="scrollViewX-row" :class="[getModeClass]">
 				
 				<!-- #ifndef APP-NVUE -->
 				<slot v-if="hasLine && lineUseSlot" name="line" :currentTabInfo="getTabInfo"></slot>
@@ -361,14 +361,14 @@
 						for (let i = 0; i < res.length; i++) {
 							const item = res[i];
 							if (!item) return;
-							// if (this.getModeClass == 'center') {
-							// 	item.left -= scrollInfo.left;
-							// } else {
+							if (this.getModeClass == 'center') {
+								item.left -= scrollInfo.left;
+							} else {
 								if (!i) {
 									diffLeft = item.left;
 								}
 								item.left -= diffLeft;
-							// }
+							}
 						}
 						// console.log('布局信息2:', JSON.stringify(res));
 						this.tabsInfo = Object.freeze(res);
@@ -489,13 +489,13 @@
 		height: 100%;
 		display: flex;
 		/* #endif */
-		/* #ifdef APP-NVUE */
-		/* flex: 1; */
-		/* #endif */
 		flex-direction: row;
 	}
 
 	.center {
+		/* #ifdef APP-NVUE */
+		flex: 1;
+		/* #endif */
 		justify-content: center;
 	}
 

@@ -6,7 +6,7 @@
 		opacity: isFixed?getShow:1,
 		backgroundColor: backgroundColor
 	}">
-		<QSTabs :width="width" :height="height" :tabs="nodes" :tabIndex="current" @click="click"></QSTabs>
+		<QSTabs :width="width" :height="height" :tabs="nodes" :tabIndex="current" :itemFull="true" @click="click"></QSTabs>
 	</view>
 </template>
 
@@ -100,7 +100,8 @@
 				nshow: false,
 				top: 0,
 				scrollTop: 0,
-				parent: null
+				parent: null,
+				copyNodes: []
 			}
 		},
 		computed: {
@@ -114,8 +115,22 @@
 				return this.scrollToOffsetTop == 'this' ? this.height : this.scrollToOffsetTop;
 			},
 			getOffsetTop() {
-				return this.offsetTop == 'this' ? this.height : this.offsetTop;
+				return rpxUnit2px(this.offsetTop == 'this' ? this.height : this.offsetTop);
+			},
+			// #ifdef APP-NVUE
+			getCurrent() {
+				if(!this.copyNodes.length) return 0;
+				return this.copyNodes.findIndex(ite=>(this.scrollTop >= (ite.rect.top - this.getOffsetTop) && this.scrollTop < ite.rect.bottom));
 			}
+			// #endif
+		},
+		watch: {
+			// #ifdef APP-NVUE
+			getCurrent(n) {
+				if(-1 == n) return ;
+				this.changeCurrent(n);
+			}
+			// #endif
 		},
 		created() {
 			_this = this;
@@ -145,21 +160,50 @@
 				})
 				// #endif
 				// #ifdef APP-NVUE
-				console.log(this.$parent.$refs.length)
-				dom.scrollToElement(this.parent.$refs[item.node || item])
+				let node = item.node || 'item';
+				const pre = node.substring(0, 1);
+				if(pre == '#' || pre == '.') node = node.substring(1, node.length - 1);
+				dom.scrollToElement(this.parent.$refs[node], {
+					offset: rpxUnit2px(this.getScrollToOffsetTop)
+				})
 				// #endif
 			},
+			changeCurrent(i) {
+				uni.vibrateShort();
+				this.current = i;
+			},
 			init(obj = {}) {
+				const Sys = uni.getSystemInfoSync();
+				console.log(Sys)
 				this.parent = obj.vm;
+				// #ifndef APP-NVUE
 				this.obsObj = intersectionObserver({
 					vm: obj.vm,
-					offsetTop: this.offsetTop,
+					offsetTop: this.getOffsetTop,
 					viewportHeight: 1,
 					nodes: this.nodes
 				}, (res, i) => {
-					uni.vibrateShort();
-					this.current = i;
+					this.changeCurrent(i);
 				});
+				// #endif
+				// #ifdef APP-NVUE
+				const arr = [];
+				for(let i = 0; i < this.nodes.length; i++) {
+					const item = this.nodes[i];
+					arr.push(
+						new Promise((rs, rj)=>{
+							dom.getComponentRect(this.parent.$refs[item.node || item], option=>{
+								rs({...item, rect: option.size});
+							});
+						})
+					)
+				}
+				Promise.all(arr)
+					.then(res=>{
+						this.copyNodes = res;
+						console.log(res);
+					})
+				// #endif
 			},
 			obsDisconnect() {
 				if (Array.isArray(this.obsObj)) {

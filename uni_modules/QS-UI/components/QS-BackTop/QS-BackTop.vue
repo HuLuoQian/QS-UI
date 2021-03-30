@@ -166,7 +166,7 @@
 				} else {
 					_this.$emit('backTop');
 				}
-			}
+			},
 		}
 	}
 </script>
