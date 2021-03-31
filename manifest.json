@@ -76,5 +76,14 @@
     },
     "uniStatistics" : {
         "enable" : false
+    },
+    "h5" : {
+        "devServer" : {
+            "https" : false
+        },
+        "router" : {
+            "base" : "/QS-UI/"
+        },
+        "domain" : "http://www.qsui.net"
     }
 }

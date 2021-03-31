@@ -99,6 +99,18 @@ function QSRequest(args = {}) {
 						res,
 						type: checkType
 					})
+					
+					if(isPromise(checkResult)) {
+						checkResult = await checkResult;
+					}
+				}
+				console.log('checkResult', checkResult)
+				if(typeof checkResult == 'object') {
+					if(checkResult.handleType === 'replaceData') {
+						log(`接口${name?`-${name}`:''}-替换输出数据`, checkResult.result)
+						resolve(checkResult.result);
+						return;
+					}
 				}
 				if (checkResult) {
 					const data = getField(res, field);

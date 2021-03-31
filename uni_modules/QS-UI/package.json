@@ -48,7 +48,7 @@
 			"client": {
 				"App": {
 					"app-vue": "y",
-					"app-nvue": "n"
+					"app-nvue": "y"
 				},
 				"H5-mobile": {
 					"Safari": "y",
