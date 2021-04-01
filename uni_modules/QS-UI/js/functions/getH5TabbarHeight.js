@@ -4,6 +4,5 @@ module.exports = function () {
 	h = document.getElementsByClassName('uni-tabbar')[0].offsetHeight;
 	// #endif
 	h = h || 0;
-	console.log('获取tabbar高度:' + h);
 	return h;
 }

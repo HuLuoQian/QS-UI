@@ -15,7 +15,7 @@
 				<view class="flex_column_c_c">
 					<text class="QS-text weight mini">可以返回页面查看</text>
 					<QS-P></QS-P>
-					<text class="QS-text weight mini">字节跳动小程序暂不支持</text>
+					<text class="QS-text weight mini">字节跳动小程序需重启后生效</text>
 				</view>
 				<QS-P height="50rpx"></QS-P>
 			</view>

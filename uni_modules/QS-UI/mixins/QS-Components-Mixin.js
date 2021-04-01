@@ -14,11 +14,11 @@ var id = 0;
 module.exports = function({ componentType, setContext } = {}) {
 	let _this;
 	const props = {
-		'compClass': {
+		compClass: {
 			type: Object,
 			default: ()=>({})
 		},
-		'compStyle': {
+		compStyle: {
 			type: Object,
 			default: ()=>({})
 		},

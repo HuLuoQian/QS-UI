@@ -78,10 +78,13 @@ function QSRequest(args = {}) {
 			}
 
 			//为了便于示例
-			const obj = setConfig(JSON.parse(JSON.stringify({
+			let obj = setConfig(JSON.parse(JSON.stringify({
 				url: nUrl,
 				...sendData
 			})), args);
+			
+			if(isPromise(obj)) obj = await obj;
+			
 			if (obj === false) {
 				if (ifUseDebounce) unlock(nUrl);
 				console.log('主动停止访问')
