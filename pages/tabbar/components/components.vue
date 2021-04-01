@@ -23,7 +23,7 @@
 		</view>
 		<QS-P height="500px"></QS-P>
 
-		<QS-BackTop></QS-BackTop>
+		<QS-BackTop tabbar></QS-BackTop>
 	</view>
 </template>
 

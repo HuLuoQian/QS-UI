@@ -44,6 +44,7 @@
 					// #ifndef APP-NVUE
 					minHeight: this.getHeight,
 					minWidth: this.getWidth,
+					backgroundColor: this.backgroundColor,
 					// #endif
 					borderRadius: this.borderRadius
 				};

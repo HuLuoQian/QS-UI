@@ -78,10 +78,13 @@ function QSRequest(args = {}) {
 			}
 
 			//为了便于示例
-			const obj = setConfig(JSON.parse(JSON.stringify({
+			let obj = setConfig(JSON.parse(JSON.stringify({
 				url: nUrl,
 				...sendData
 			})), args);
+			
+			if(isPromise(obj)) obj = await obj;
+			
 			if (obj === false) {
 				if (ifUseDebounce) unlock(nUrl);
 				console.log('主动停止访问')
@@ -99,6 +102,18 @@ function QSRequest(args = {}) {
 						res,
 						type: checkType
 					})
+					
+					if(isPromise(checkResult)) {
+						checkResult = await checkResult;
+					}
+				}
+				console.log('checkResult', checkResult)
+				if(typeof checkResult == 'object') {
+					if(checkResult.handleType === 'replaceData') {
+						log(`接口${name?`-${name}`:''}-替换输出数据`, checkResult.result)
+						resolve(checkResult.result);
+						return;
+					}
 				}
 				if (checkResult) {
 					const data = getField(res, field);
