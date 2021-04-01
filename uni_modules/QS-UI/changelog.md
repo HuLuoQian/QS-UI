@@ -1,3 +1,6 @@
+## 1.0.4（2021-03-30）
+* #### 修复 iOS Nvue QS-BackTop 返回顶部问题, Nvue QS-BackTop 需放在最前面
+* #### 修复 字节跳动小程序 QS-Tabs line 背景色块不显示问题
 ## 1.0.3（2021-03-30）
 * #### 修复 vue页面使用QS-NodeNav parent 问题 导致 交互反馈示例页 QS-NodeNav组件不显示问题
 ## 1.0.2（2021-03-30）
