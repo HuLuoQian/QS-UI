@@ -15,7 +15,8 @@ module.exports = {
 			request: 'Request',
 			handleAddress: 'Address Resolution',
 			countDown: 'Count Down',
-			theme: 'Theme'
+			theme: 'Theme',
+			refresh: 'Refresh'
 		},
 		components: {
 			QSAnimation: 'QS-Animation Animation',

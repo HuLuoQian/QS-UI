@@ -39,7 +39,6 @@
 </template>
 
 <script>
-	import { agilityDemoTest } from '@/apis/agilityDemo.js';
 	export default {
 		data() {
 			return {
@@ -252,7 +251,8 @@
 					})
 			},
 			agilityDemo() {
-				agilityDemoTest({
+				//此处是拓展在$qs核心中的
+				uni.$qs.myApis.agilityDemo.agilityDemoTest({
 					code: 200,
 					name: 'uni-app',
 					noncestr: Date.now()

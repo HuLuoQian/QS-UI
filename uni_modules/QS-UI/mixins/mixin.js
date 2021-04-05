@@ -20,20 +20,25 @@ import multiLang from '../js/functions/multiLang.js'
 					const result = this[VALUES.mixins.pullDownRefreshFnName]();
 					let oldTime = +new Date();
 					if (isPromise(result)) {
+						console.log(1)
 						result
 							.then(() => {
+								console.log(2)
 								const now = +new Date();
 								const diff = (now - oldTime);
 								if (diff < CONFIG.stopPullDownRefreshDuration) {
+									console.log(4)
 									const time = CONFIG.stopPullDownRefreshDuration - diff;
 									setTimeout(() => {
 										uni.stopPullDownRefresh();
 									}, time)
 								} else {
+									console.log(5)
 									uni.stopPullDownRefresh();
 								}
 							})
 							.catch(() => {
+								console.log(3)
 								uni.stopPullDownRefresh();
 							})
 					} else {

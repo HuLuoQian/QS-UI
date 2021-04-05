@@ -62,6 +62,13 @@ const Pages = { //配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			url: '/pages/js/countDown/countDown', //必须
 			key: 'js.countDown', //示例所需
 			type: 'API'
+		},
+		
+		refresh: {
+			name: '刷新',
+			url: '/pages/js/mixins/refresh/refresh',
+			key: 'js.refresh',
+			type: 'Mixin'
 		}
 	},
 	components: {

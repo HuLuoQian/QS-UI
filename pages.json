@@ -204,6 +204,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/js/mixins/refresh/refresh",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
