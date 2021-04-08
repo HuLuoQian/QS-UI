@@ -1,9 +1,3 @@
-# QS-UI
-
-uni-app 框架, 致力于项目的快速搭建与开发
-
-[Dcloud插件市场地址](https://ext.dcloud.net.cn/plugin?id=4472)
-
 ## QQ交流群: 750104037 [点我加入](https://jq.qq.com/?_wv=1027&k=5OyZoXa)
 
 * ### 目前还是试水阶段, 虽然源码中有许多组件, 但是没有都按目前的规范进行调整, 所以目前不建议使用示例外的组件
@@ -55,3 +49,8 @@ Vue.use(QSUI);
     |-- index.js	//将配置项统一导出
 
 ```
+
+## 立即体验
+![alt h5](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-17eef8c0-12fd-4ec9-8104-b57b116bc15d/947cec7e-e985-4e11-932f-9bc3035289b5.png)
+![alt 微信小程序](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-17eef8c0-12fd-4ec9-8104-b57b116bc15d/e04d5e57-e4d7-4efd-8443-edd224339f6d.jpg)
+
