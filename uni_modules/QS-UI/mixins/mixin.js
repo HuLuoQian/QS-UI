@@ -65,29 +65,24 @@ import multiLang from '../js/functions/multiLang.js'
 			}
 		}
 
-		if (CONFIG.mixins.useGetQuery) {
-			methods[VALUES.mixins.getQuery] = function(elements, fields = {
-				size: true
-			}) {
-				let view;
-				// #ifdef MP-ALIPAY
-				view = uni.createSelectorQuery();
-				// #endif
-				// #ifndef MP-ALIPAY
-				view = uni.createSelectorQuery().in(this);
-				// #endif
-				if (Array.isArray(elements)) {
-					elements.forEach(item => view.select(item).fields(fields));
-				} else {
-					view.select(elements).fields(fields);
-				}
-				return new Promise((rs, rj) => {
-					view.exec(data => {
-						rs(data);
-					})
-				})
-			}
-		}
+		// if (CONFIG.mixins.useGetQuery) {
+		// 	methods[VALUES.mixins.getQuery] = function(elements, fields = {
+		// 		size: true
+		// 	}, method = 'select') {
+		// 		return new Promise((rs, rj) => {
+		// 			const view = uni.createSelectorQuery().in(this);
+		// 			if (Array.isArray(elements)) {
+		// 				elements.forEach(item => view[method](item).fields(fields));
+		// 			} else {
+		// 				view[method](elements).fields(fields);
+		// 			}
+					
+		// 			view.exec(data => {
+		// 				rs(data);
+		// 			})
+		// 		})
+		// 	}
+		// }
 
 		function onPageScroll(e) {
 			handleScroll(e.scrollTop);
@@ -100,11 +95,12 @@ import multiLang from '../js/functions/multiLang.js'
 			// let backTopVm = uni.$qs.pageRoots.getCurrentPageContext('QS-BackTop');
 			if (backTopVm) {
 				backTopVm = backTopVm.getRoot();
-				if (backTopVm)
-				if (scrollTop > CONFIG.backTopShowScrollTop) {
-					if (!backTopVm.showBl) backTopVm.show();
-				} else {
-					if (backTopVm.showBl) backTopVm.hide();
+				if (backTopVm) {
+					if (scrollTop > CONFIG.backTopShowScrollTop) {
+						if (!backTopVm.showBl) backTopVm.show();
+					} else {
+						if (backTopVm.showBl) backTopVm.hide();
+					}
 				}
 			}
 			// #ifndef APP-NVUE
@@ -119,8 +115,43 @@ import multiLang from '../js/functions/multiLang.js'
 		if (CONFIG.mixins.usePageScroll) {
 			mixin.onPageScroll = onPageScroll;
 		}
-
+		
+		function getQuery(elements, fields = {
+			size: true
+		}, method = 'select') {
+			return new Promise((rs, rj) => {
+				const view = uni.createSelectorQuery().in(this);
+				if (Array.isArray(elements)) {
+					elements.forEach(item => view[method](item).fields(fields));
+				} else {
+					view[method](elements).fields(fields);
+				}
+				
+				view.exec(data => {
+					rs(data);
+				})
+			})
+		}
+		const onLoad = function() {
+			// #ifdef MP-BAIDU || MP-ALIPAY
+			if(CONFIG.mixins.useGetQuery) uni[CONFIG.QSUI_JS_NAME].getQuery = getQuery;
+			// #endif
+			// #ifndef MP-BAIDU || MP-ALIPAY
+			if(CONFIG.mixins.useGetQuery) uni[CONFIG.QSUI_JS_NAME].getQuery = getQuery.bind(this);
+			// #endif
+		}
+		const onShow = function() {
+			// #ifdef MP-BAIDU || MP-ALIPAY
+			if(CONFIG.mixins.useGetQuery) uni[CONFIG.QSUI_JS_NAME].getQuery = getQuery;
+			// #endif
+			// #ifndef MP-BAIDU || MP-ALIPAY
+			if(CONFIG.mixins.useGetQuery) uni[CONFIG.QSUI_JS_NAME].getQuery = getQuery.bind(this);
+			// #endif		
+		}
+		
 		mixin.methods = methods;
+		mixin.onLoad = onLoad;
+		mixin.onShow = onShow;
 
 		if (CONFIG.mixins.useOnShareAppMessage)
 			mixin.onShareAppMessage = function() {

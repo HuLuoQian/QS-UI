@@ -1,6 +1,6 @@
 ## 1.0.5（2021-04-08）
+* #### 新增 示例新增js-Query-布局信息
 * #### 新增 示例新增mixin-Refresh
-* #### 新增 示例新增mixin-Query
 * #### 新增 uni.$qs.v 版本号
 * #### 新增 文档新增体验二维码
 * #### 优化 优化请求在QS-UI-CONFIG->config->request.js 中 setConfig、checkRes都支持返回Promise, 意味着你可以做一些异步操作, 比如判断未登录 进行登录后 继续执行 request

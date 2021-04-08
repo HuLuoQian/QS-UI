@@ -63,6 +63,12 @@ const Pages = { //配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			key: 'js.countDown', //示例所需
 			type: 'API'
 		},
+		query: {
+			name: '布局信息',
+			url: '/pages/js/query/query',
+			key: 'js.query',
+			type: 'API'
+		},
 		
 		refresh: {
 			name: '刷新',
@@ -70,12 +76,6 @@ const Pages = { //配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			key: 'js.refresh',
 			type: 'Mixin'
 		},
-		query: {
-			name: '布局信息',
-			url: '/pages/js/mixins/query/query',
-			key: 'js.query',
-			type: 'Mixin'
-		}
 	},
 	components: {
 		QSComponentReading: {

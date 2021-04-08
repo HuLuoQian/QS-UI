@@ -205,20 +205,18 @@
             
         }
         ,{
-            "path" : "pages/js/mixins/refresh/refresh",
+            "path" : "pages/js/query/query",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": true
+                "enablePullDownRefresh": false
             }
             
         }
         ,{
-            "path" : "pages/js/mixins/query/query",
+            "path" : "pages/js/mixins/refresh/refresh",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": true
             }
             
         }
