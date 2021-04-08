@@ -84,6 +84,6 @@
         "router" : {
             "base" : "/QS-UI/"
         },
-        "domain" : "http://www.qsui.net"
+        "domain" : "http://demo.qsui.net"
     }
 }

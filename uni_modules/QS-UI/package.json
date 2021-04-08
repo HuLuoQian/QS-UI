@@ -1,7 +1,7 @@
 {
 	"id": "QS-UI",
 	"displayName": "QS-UI 支持Nvue",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "uni-app 框架，主题配置、路由、请求、多语言、完善的组件配置",
 	"keywords": [
         "QS-UI",
@@ -17,7 +17,7 @@
 	"dcloudext": {
 		"category": [
 			"uni-app前端模板",
-			"前端页面模板"
+			"vue 页面模板"
 		],
 		"sale": {
 			"regular": {
