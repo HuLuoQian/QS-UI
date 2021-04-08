@@ -55,7 +55,7 @@
 				// 	icon: 'none',
 				// 	position: 'center'
 				// })
-				this.QS_navigateTo('integralMall.integralProductDetail', {
+				this.navigateTo('integralMall.integralProductDetail', {
 					id: this.listItem.id
 				});
 			},

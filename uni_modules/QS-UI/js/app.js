@@ -4,17 +4,7 @@ import apis from '@/QS-UI-CONFIG/config/apis.js';
 import VALUES from '@/QS-UI-CONFIG/config/values.js';
 import CONFIG from '@/QS-UI-CONFIG/index.js';
 import $qs from '@/QS-UI-CONFIG/config/$qs.js';
-import {
-	isNumber,
-	isArray,
-	isArrayHasLen,
-	isFn,
-	isObject,
-	isPromise,
-	isUndef,
-	isNull,
-	isString,
-} from './baseUtil.js';
+import baseUtil from './baseUtil.js';
 import rpxUnit2px from './functions/rpxUnit2px.js';
 import {
 	QSRequest
@@ -62,6 +52,8 @@ import pageRootsClass from './functions/pageRoots.js';
 import store from './store/index.js';
 import mixin from '../mixins/mixin.js';
 
+import {v} from './v.js';
+
 const Pages = CONFIG.Pages || {};
 const launchPath = CONFIG.launchPath;
 
@@ -71,6 +63,7 @@ const newpageRootsObj = new pageRootsClass();
 
 module.exports = {
 	...$qs,
+	...baseUtil,
 	config: CONFIG,
 	STATUS: CONFIG.STATUS,
 	QSDebcKeys,
@@ -94,15 +87,6 @@ module.exports = {
 	showActionSheet,
 	actionSheet: showActionSheet,
 
-	isNumber,
-	isArray,
-	isArrayHasLen,
-	isFn,
-	isObject,
-	isPromise,
-	isUndef,
-	isNull,
-	isString,
 	getField,
 	mergeArg,
 	renderUrlData,
@@ -136,5 +120,9 @@ module.exports = {
 	intersectionObserver,
 	obsDisconnect,
 	store,
-	mixin
+	mixin,
+	
+	v: v,
+	V: v,
+	version: v
 }

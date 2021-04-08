@@ -213,6 +213,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/js/mixins/query/query",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

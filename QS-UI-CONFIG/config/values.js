@@ -1,8 +1,8 @@
 module.exports = {	//各种名称配置，方便名称重复时修改, 或者改为自己喜欢的名字
 	mixins: {	//全局mixins名称
-		navigateTo: 'QS_navigateTo',	//跳转页面
-		getQuery: 'QS_getQuery',	//获取布局信息
-		pullDownRefreshFnName: 'QS_pullDownRefreshFn',
+		navigateTo: 'navigateTo',	//跳转页面
+		getQuery: 'getQuery',	//获取布局信息
+		pullDownRefreshFnName: 'pullDownRefreshFn',
 		onShareAppMessageData: 'onShareAppMessageData'
 	},
 	H5BrowserType: {	//H5浏览器环境判断, 该值会被uni.$qs.getSys中的H5BrowserType使用

@@ -69,6 +69,12 @@ const Pages = { //配置页面列表, 当使用 uni.$qs.navigateTo 时 , 页面�
 			url: '/pages/js/mixins/refresh/refresh',
 			key: 'js.refresh',
 			type: 'Mixin'
+		},
+		query: {
+			name: '布局信息',
+			url: '/pages/js/mixins/query/query',
+			key: 'js.query',
+			type: 'Mixin'
 		}
 	},
 	components: {

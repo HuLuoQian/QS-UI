@@ -8,11 +8,11 @@
 				<QS-P height="25rpx"></QS-P>
 				<text class="QS-text large color_808080">template模板中使用</text>
 				<QS-P height="25rpx"></QS-P>
-				<QS-Button setTimeoutClick @click="QS_navigateTo('js.testRouterOpen')">直接跳转</QS-Button>
+				<QS-Button setTimeoutClick @click="navigateTo('js.testRouterOpen')">直接跳转</QS-Button>
 				<QS-P height="25rpx"></QS-P>
-				<QS-Button setTimeoutClick @click="QS_navigateTo('js.testRouterOpen', { a: 1 })">携带参数</QS-Button>
+				<QS-Button setTimeoutClick @click="navigateTo('js.testRouterOpen', { a: 1 })">携带参数</QS-Button>
 				<QS-P height="25rpx"></QS-P>
-				<QS-Button setTimeoutClick @click="QS_navigateTo('js.testRouterLogin')">校验登录</QS-Button>
+				<QS-Button setTimeoutClick @click="navigateTo('js.testRouterLogin')">校验登录</QS-Button>
 				<QS-P height="25rpx"></QS-P>
 				<text class="QS-text large color_808080">js中使用</text>
 				<QS-P height="25rpx"></QS-P>
@@ -46,7 +46,7 @@
 				<QS-P height="25rpx"></QS-P>
 				<view class="flex_row">
 					<QS-P width="25rpx">·</QS-P>
-					<text class="QS-text color_808080 flex-wrap_wrap">template模板中使用的QS_navigateTo方法是Vue.mixins所继承的一个方法,
+					<text class="QS-text color_808080 flex-wrap_wrap">template模板中使用的navigateTo方法是Vue.mixins所继承的一个方法,
 						可以在QS-UI-CONFIG/config/index.js-->mixins.useNavigateTo 来决定是否开启</text>
 				</view>
 				<QS-P height="25rpx"></QS-P>

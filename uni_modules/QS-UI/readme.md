@@ -49,3 +49,8 @@ Vue.use(QSUI);
     |-- index.js	//将配置项统一导出
 
 ```
+
+## 立即体验
+![alt h5](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-17eef8c0-12fd-4ec9-8104-b57b116bc15d/947cec7e-e985-4e11-932f-9bc3035289b5.png)
+![alt 微信小程序](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-17eef8c0-12fd-4ec9-8104-b57b116bc15d/e04d5e57-e4d7-4efd-8443-edd224339f6d.jpg)
+

@@ -16,7 +16,8 @@ module.exports = {
 			handleAddress: '地址解析',
 			countDown: '倒计时',
 			theme: '主题',
-			refresh: '刷新'
+			refresh: '刷新',
+			query: '布局信息'
 		},
 		components: {
 			QSAnimation: 'QS-Animation 动画',

@@ -4,7 +4,7 @@
 	
 	<view v-if="show" class="QS">
 		<!-- <view class="lists"> -->
-			<!-- <view class="scroll-item" v-for="(item, index) in list" :key="index" @tap="QS_navigateTo('mine.integralOrderDetail',item)">
+			<!-- <view class="scroll-item" v-for="(item, index) in list" :key="index" @tap="navigateTo('mine.integralOrderDetail',item)">
 				<view class="left">
 					<text class="QS-text large weight color_ffffff">￥5.00</text>
 					<text class="QS-text large weight_500 color_ffffff">优惠券</text>

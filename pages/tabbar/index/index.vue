@@ -14,7 +14,7 @@
 				<block v-else>
 					<view
 						class="flex_row_between_c bgColor_ffffff padding-rpx_20_25 border-radius-rpx_10 margin-bottom-px_1"
-						hover-class="bgColor_f8f8f8" @tap="QS_navigateTo(item.key)">
+						hover-class="bgColor_f8f8f8" @tap="navigateTo(item.key)">
 						<text class="QS-text">{{ $qst(`router.${item.key}`) }}</text>
 						<QS-Icons type="arrow-right" size="30rpx"></QS-Icons>
 					</view>

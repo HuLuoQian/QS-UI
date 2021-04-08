@@ -3,7 +3,7 @@
 	<!-- 为性能缘故, 当tab项多时, 请尽量不要删除 v-if="show" -->
 
 	<view v-if="show" class="QS">
-		<view class="scroll-item" v-for="(item, index) in list" :key="index" @tap="QS_navigateTo('integralMall.integralOrderDetail', { id: item.id })">
+		<view class="scroll-item" v-for="(item, index) in list" :key="index" @tap="navigateTo('integralMall.integralOrderDetail', { id: item.id })">
 			<view class="title">
 				<text class="left">订单编号: {{item.orderNo || ''}}</text>
 				<text class="right">{{item.statusText}}</text>
@@ -28,7 +28,7 @@
 					<QSButton height="50rpx" width="130rpx" plain borderRadius="60px" fontSize="26rpx" @click="cancel(item)">取消</QSButton>
 				</view>
 				<view class="item">
-					<QSButton height="50rpx" width="150rpx" plain borderRadius="60px" fontSize="26rpx" @click="QS_navigateTo('integralMall.integralOrderDetail', { id: item.id })">查看订单</QSButton>
+					<QSButton height="50rpx" width="150rpx" plain borderRadius="60px" fontSize="26rpx" @click="navigateTo('integralMall.integralOrderDetail', { id: item.id })">查看订单</QSButton>
 				</view>
 			</view>
 		</view>

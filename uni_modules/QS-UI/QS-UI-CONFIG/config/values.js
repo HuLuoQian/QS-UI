@@ -1,6 +1,6 @@
 module.exports = {	//各种名称配置，方便名称重复时修改, 或者改为自己喜欢的名字
 	mixinsName: {	//全局mixins名称
-		navigateTo: 'QS_navigateTo',	//跳转页面
+		navigateTo: 'navigateTo',	//跳转页面
 		getQuery: 'QS_getQuery',	//获取布局信息
 		pullDownRefreshFnName: 'QS_pullDownRefreshFn',
 		onShareAppMessageData: 'onShareAppMessageData'
